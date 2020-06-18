@@ -1,0 +1,11 @@
+﻿{
+	"name": "UnityTextureRgbPacker",
+	"references": [
+	],
+	"optionalUnityReferences": [],
+	"includePlatforms": [
+		"Editor"
+	],
+	"excludePlatforms": [],
+	"allowUnsafeCode": false
+}
