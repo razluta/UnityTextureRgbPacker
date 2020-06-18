@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:VisualElement style="white-space: normal; flex-direction: row;">
+        <ui:Label text="Channel: R" style="-unity-text-align: middle-left; flex-grow: 1; flex-shrink: 1;" />
+        <ui:VisualElement style="flex-grow: 1;">
+            <uie:ObjectField />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

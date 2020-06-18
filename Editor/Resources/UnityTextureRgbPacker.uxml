@@ -1,0 +1,30 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:Template name="TextureInput" src="TextureInput.uxml" />
+    <ui:VisualElement style="border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px;">
+        <Style src="UnityTextureRgbPacker.uss" />
+        <ui:Label text="Texture RGB Packer" style="-unity-text-align: upper-center; border-left-color: rgb(17, 17, 17); border-right-color: rgb(17, 17, 17); border-top-color: rgb(17, 17, 17); border-bottom-color: rgb(17, 17, 17); border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; background-color: rgb(46, 46, 46);" />
+    </ui:VisualElement>
+    <ui:VisualElement name="VE_Input" style="padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px; background-color: rgb(79, 79, 79); flex-grow: 1; flex-shrink: 0;">
+        <Style src="UnityTextureRgbPacker.uss" />
+        <ui:Label text="Inputs" style="-unity-text-align: upper-left; -unity-font-style: bold;" />
+        <ui:ScrollView style="flex-grow: 1;">
+            <ui:Instance template="TextureInput" />
+            <ui:Instance template="TextureInput" />
+            <ui:Instance template="TextureInput" />
+            <ui:Instance template="TextureInput" />
+        </ui:ScrollView>
+    </ui:VisualElement>
+    <ui:VisualElement name="VE_Output" style="border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-color: rgb(79, 79, 79); margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; flex-grow: 1; flex-shrink: 0;">
+        <Style src="UnityTextureRgbPacker.uss" />
+        <ui:Label text="Outputs" style="-unity-text-align: upper-left; -unity-font-style: bold;" />
+        <ui:VisualElement style="flex-direction: row;">
+            <ui:Label text="Width x Height" style="justify-content: flex-start; -unity-text-align: middle-left;" />
+            <uie:IntegerField value="2048" style="flex-grow: 1; -unity-text-align: upper-center;" />
+            <uie:IntegerField value="2048" style="flex-wrap: nowrap; flex-grow: 1; -unity-text-align: upper-center;" />
+        </ui:VisualElement>
+        <uie:EnumField label="Format" value="Center" />
+    </ui:VisualElement>
+    <ui:Button text="Generate Packed Texture" style="margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; border-top-left-radius: 8px; border-bottom-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; min-height: 30px; background-color: rgb(84, 84, 84);">
+        <Style src="UnityTextureRgbPacker.uss" />
+    </ui:Button>
+</ui:UXML>
