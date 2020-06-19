@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
@@ -89,18 +91,26 @@ public class UnityTextureRgbPackerEditorWindow : EditorWindow
             blueChannelTexture,
             _nameIdentifierTextField.text);
 
-        // Find the common substring in the names and add the 
-        var compositeTextureName = StringUtilities.GetCommonPrefix(new []
+        // If inputs are valid, add their names to a list
+        var validInputsNameList = new List<string>();
+        if (redChannelTexture)
         {
-            redChannelTexture.name, 
-            greenChannelTexture.name, 
-            blueChannelTexture.name
-        }) + _nameIdentifierTextField.text;
+            validInputsNameList.Add(redChannelTexture.name);
+        }
+        if (greenChannelTexture)
+        {
+            validInputsNameList.Add(greenChannelTexture.name);
+        }
+        if (blueChannelTexture)
+        {
+            validInputsNameList.Add(blueChannelTexture.name);
+        }
+        
+        // Find the common substring in the names and add the identifier
+        var compositeTextureName = StringUtilities.GetCommonPrefix(validInputsNameList) + _nameIdentifierTextField.text;
         
         var relativeCompositeTexturePath =
-            Path.Combine(
-                Path.GetDirectoryName(AssetDatabase.GetAssetPath(redChannelInput)),
-                compositeTextureName);
+            Path.Combine(Path.GetDirectoryName(AssetDatabase.GetAssetPath(redChannelInput)), compositeTextureName);
 
         // Save the composite texture
         var hasSaved = false;

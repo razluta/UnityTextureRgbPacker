@@ -1,10 +1,12 @@
-﻿using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace UnityTextureRgbPacker
 {
     public class StringUtilities
     {
-        public static string GetCommonPrefix(string[] names)
+        public static string GetCommonPrefix(List<string> names)
         {
             var commonPrefix = new StringBuilder();
             var checker = new StringBuilder();
@@ -28,7 +30,7 @@ namespace UnityTextureRgbPacker
             return commonPrefix.ToString();
         }
 
-        private static string GetShortestString(string[] names)
+        private static string GetShortestString(List<string> names)
         {
             var shortestString = names[0];
             var shortestStringLength = names[0].Length;

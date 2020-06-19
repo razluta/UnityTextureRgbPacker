@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace UnityTextureRgbPacker
 {
@@ -50,6 +51,11 @@ namespace UnityTextureRgbPacker
             RenderTexture.active = previous;
             RenderTexture.ReleaseTemporary(renderTexture);
             return readableText;
+        }
+
+        public static Texture2D GetSmallestSizedTexture(List<Texture2D> textures)
+        {
+            return textures[0];
         }
     }
 }

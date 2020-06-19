@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 namespace UnityTextureRgbPacker
 {
@@ -10,11 +12,45 @@ namespace UnityTextureRgbPacker
             Texture2D textureBlueChannel,
             string compositeTextureName)
         {
-            if (!textureRedChannel || !textureGreenChannel || !textureBlueChannel)
+            if (!textureRedChannel && !textureGreenChannel && !textureBlueChannel)
             {
-                throw new System.Exception("Input textures cannot be null.");
+                throw new System.Exception("At least one texture input must be valid.");
             }
 
+            // If the texture input was provided, add it to a list
+            var validTextureList = new List<Texture2D>();
+            if (textureRedChannel)
+            {
+                validTextureList.Add(textureRedChannel);
+            }
+            if (textureGreenChannel)
+            {
+                validTextureList.Add(textureGreenChannel);
+            }
+            if (textureBlueChannel)
+            {
+                validTextureList.Add(textureBlueChannel);
+            }
+
+            // Determine the smallest texture size
+            var smallestTexture = TextureUtilities.GetSmallestSizedTexture(validTextureList);
+            var smallestTextureWidth = smallestTexture.width;
+            var smallestTextureHeight = smallestTexture.height;
+            
+            // Create "empty" black textures for the ones that are missing
+            if (!textureRedChannel)
+            {
+                textureRedChannel = CreateTextureOfColor(smallestTextureWidth, smallestTextureHeight, Color.black);
+            }
+            if (!textureGreenChannel)
+            {
+                textureGreenChannel = CreateTextureOfColor(smallestTextureWidth, smallestTextureHeight, Color.black);
+            }
+            if (!textureBlueChannel)
+            {
+                textureBlueChannel = CreateTextureOfColor(smallestTextureWidth, smallestTextureHeight, Color.black);
+            }
+            
             // Obtaining the texture sizes
             var textureRedChannelWidth = textureRedChannel.width;
             var textureRedChannelHeight = textureRedChannel.height;
@@ -76,6 +112,20 @@ namespace UnityTextureRgbPacker
             }
             
             return packedTexture;
+        }
+        
+        private static UnityEngine.Texture2D CreateTextureOfColor(int width, int height, Color color)
+        {
+            var texture = new Texture2D(width, height);
+
+            for (var i = 0; i < width; i++)
+            {
+                for (var j = 0; j < height; j++)
+                {
+                    texture.SetPixel(i, j, color);
+                }
+            }
+            return texture;
         }
     }
 }
