@@ -97,7 +97,7 @@ namespace UnityTextureRgbPacker
             Texture2D textureRedChannel,
             Texture2D textureGreenChannel,
             Texture2D textureBlueChannel,
-            Texture2D textureAlphaChannel)
+            Texture2D textureAlphaChannel = null)
         {
             var packedTexture = new Texture2D(width, height, TextureFormat.RGB24, false);
             packedTexture.name = compositeTextureName;

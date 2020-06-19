@@ -141,7 +141,7 @@ public class UnityTextureRgbPackerEditorWindow : EditorWindow
             hasSaved = true;
         }
 
-        // If a new texture has been saved to disk, display it
+        // If a new texture has been saved to disk, display it and select in the Project Window
         if (hasSaved)
         {
             AssetDatabase.Refresh();

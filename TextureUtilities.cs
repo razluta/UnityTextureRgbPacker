@@ -45,12 +45,12 @@ namespace UnityTextureRgbPacker
             Graphics.Blit(sourceTexture, renderTexture);
             var previous = RenderTexture.active;
             RenderTexture.active = renderTexture;
-            var readableText = new Texture2D(sourceTexture.width, sourceTexture.height);
-            readableText.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
-            readableText.Apply();
+            var rwTexture = new Texture2D(sourceTexture.width, sourceTexture.height);
+            rwTexture.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
+            rwTexture.Apply();
             RenderTexture.active = previous;
             RenderTexture.ReleaseTemporary(renderTexture);
-            return readableText;
+            return rwTexture;
         }
 
         public static Texture2D GetSmallestSizedTexture(List<Texture2D> textures)
