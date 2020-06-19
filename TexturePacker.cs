@@ -110,7 +110,7 @@ namespace UnityTextureRgbPacker
                             rwCopyTextureBlueChannel.GetPixel(i, j).grayscale));
                 }
             }
-            
+            packedTexture.Apply();
             return packedTexture;
         }
         
@@ -125,6 +125,7 @@ namespace UnityTextureRgbPacker
                     texture.SetPixel(i, j, color);
                 }
             }
+            texture.Apply();
             return texture;
         }
     }
