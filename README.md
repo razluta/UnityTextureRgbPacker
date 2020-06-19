@@ -11,15 +11,11 @@ _- input textures must be the same size_
 ![](https://github.com/razluta/UnityTextureRgbPacker/blob/master/Screenshots/UnityTextureRgbPacker.png)
 
 *  *  *  *  *
-*  *  *  *  *
-*  *  *  *  *
 
 ## Setup
 Clone or download the repository into your Unity project.
 _Coming soon: availability through the Unity Package Manager._ 
 
-*  *  *  *  *
-*  *  *  *  *
 *  *  *  *  *
 
 ## Usage
