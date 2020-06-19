@@ -99,7 +99,7 @@ namespace UnityTextureRgbPacker
             Texture2D textureBlueChannel,
             Texture2D textureAlphaChannel)
         {
-            var packedTexture = new Texture2D(width, height);
+            var packedTexture = new Texture2D(width, height, TextureFormat.RGB24, false);
             packedTexture.name = compositeTextureName;
 
             var rwCopyTextureRedChannel = TextureUtilities.GetRwTextureCopy(textureRedChannel);
@@ -112,6 +112,7 @@ namespace UnityTextureRgbPacker
                 {
                     if (textureAlphaChannel)
                     {
+                        packedTexture = new Texture2D(width, height, TextureFormat.RGBA32, false);
                         var rwCopyTextureAlphaChannel = TextureUtilities.GetRwTextureCopy(textureAlphaChannel);
                         packedTexture.SetPixel(
                             i, j,
