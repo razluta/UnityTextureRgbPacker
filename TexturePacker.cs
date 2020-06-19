@@ -7,12 +7,13 @@ namespace UnityTextureRgbPacker
     public class TexturePacker
     {
         public static UnityEngine.Texture2D GetCompositeTextureRgb(
+            string compositeTextureName,
             Texture2D textureRedChannel,
             Texture2D textureGreenChannel,
             Texture2D textureBlueChannel,
-            string compositeTextureName)
+            Texture2D textureAlphaChannel)
         {
-            if (!textureRedChannel && !textureGreenChannel && !textureBlueChannel)
+            if (!textureRedChannel && !textureGreenChannel && !textureBlueChannel && !textureAlphaChannel)
             {
                 throw new System.Exception("At least one texture input must be valid.");
             }
@@ -30,6 +31,11 @@ namespace UnityTextureRgbPacker
             if (textureBlueChannel)
             {
                 validTextureList.Add(textureBlueChannel);
+            }
+
+            if (textureAlphaChannel)
+            {
+                validTextureList.Add(textureAlphaChannel);
             }
 
             // Determine the smallest texture size
@@ -67,10 +73,11 @@ namespace UnityTextureRgbPacker
             {
                 var packedTexture = CreatePackedTexture(
                     textureRedChannelWidth, textureRedChannelHeight,
+                    compositeTextureName,
                     textureRedChannel,
                     textureGreenChannel,
                     textureBlueChannel,
-                    compositeTextureName);
+                    textureAlphaChannel);
 
                 return packedTexture;
             }
@@ -86,10 +93,11 @@ namespace UnityTextureRgbPacker
 
         private static UnityEngine.Texture2D CreatePackedTexture(
             int width, int height,
+            string compositeTextureName,
             Texture2D textureRedChannel,
             Texture2D textureGreenChannel,
             Texture2D textureBlueChannel,
-            string compositeTextureName)
+            Texture2D textureAlphaChannel)
         {
             var packedTexture = new Texture2D(width, height);
             packedTexture.name = compositeTextureName;
@@ -102,12 +110,27 @@ namespace UnityTextureRgbPacker
             {
                 for (var j = 0; j < height; j++)
                 {
-                    packedTexture.SetPixel(
+                    if (textureAlphaChannel)
+                    {
+                        var rwCopyTextureAlphaChannel = TextureUtilities.GetRwTextureCopy(textureAlphaChannel);
+                        packedTexture.SetPixel(
+                            i, j,
+                            new Color(
+                                rwCopyTextureRedChannel.GetPixel(i, j).grayscale,
+                                rwCopyTextureGreenChannel.GetPixel(i, j).grayscale,
+                                rwCopyTextureBlueChannel.GetPixel(i, j).grayscale,
+                                rwCopyTextureAlphaChannel.GetPixel(i, j).grayscale)
+                            );
+                    }
+                    else
+                    {
+                        packedTexture.SetPixel(
                         i, j,
                         new Color(
                             rwCopyTextureRedChannel.GetPixel(i, j).grayscale,
                             rwCopyTextureGreenChannel.GetPixel(i, j).grayscale,
                             rwCopyTextureBlueChannel.GetPixel(i, j).grayscale));
+                    }
                 }
             }
             packedTexture.Apply();

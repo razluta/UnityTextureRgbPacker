@@ -76,20 +76,22 @@ public class UnityTextureRgbPackerEditorWindow : EditorWindow
         var redChannelInput = _channelRedTextureObjectField.value;
         var greenChannelInput = _channelGreenTextureObjectField.value;
         var blueChannelInput = _channelBlueTextureObjectField.value;
-        var alphaChannelTexture = _channelAlphaTextureObjectField.value;
+        var alphaChannelInput = _channelAlphaTextureObjectField.value;
         var width = _widthIntField.value;
         var height = _heightIntField.value;
 
         var redChannelTexture = (Texture2D) redChannelInput;
         var greenChannelTexture = (Texture2D) greenChannelInput;
         var blueChannelTexture = (Texture2D) blueChannelInput;
+        var alphaChannelTexture = (Texture2D) alphaChannelInput;
 
         // Create the composite texture
         var compositeTexture = TexturePacker.GetCompositeTextureRgb(
+            _nameIdentifierTextField.text,
             redChannelTexture,
             greenChannelTexture,
             blueChannelTexture,
-            _nameIdentifierTextField.text);
+            alphaChannelTexture);
 
         // If inputs are valid, add their names to a list
         var validInputsNameList = new List<string>();
