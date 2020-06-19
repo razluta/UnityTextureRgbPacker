@@ -100,20 +100,20 @@ namespace UnityTextureRgbPacker
             Texture2D textureAlphaChannel = null)
         {
             var packedTexture = new Texture2D(width, height, TextureFormat.RGB24, false);
-            packedTexture.name = compositeTextureName;
-
             var rwCopyTextureRedChannel = TextureUtilities.GetRwTextureCopy(textureRedChannel);
             var rwCopyTextureGreenChannel = TextureUtilities.GetRwTextureCopy(textureGreenChannel);
             var rwCopyTextureBlueChannel = TextureUtilities.GetRwTextureCopy(textureBlueChannel);
 
-            for (var i = 0; i < width; i++)
+            packedTexture.name = compositeTextureName;
+
+            if (textureAlphaChannel)
             {
-                for (var j = 0; j < height; j++)
+                packedTexture = new Texture2D(width, height, TextureFormat.RGBA32, false);
+                var rwCopyTextureAlphaChannel = TextureUtilities.GetRwTextureCopy(textureAlphaChannel);
+                for (var i = 0; i < width; i++)
                 {
-                    if (textureAlphaChannel)
+                    for (var j = 0; j < height; j++)
                     {
-                        packedTexture = new Texture2D(width, height, TextureFormat.RGBA32, false);
-                        var rwCopyTextureAlphaChannel = TextureUtilities.GetRwTextureCopy(textureAlphaChannel);
                         packedTexture.SetPixel(
                             i, j,
                             new Color(
@@ -121,19 +121,26 @@ namespace UnityTextureRgbPacker
                                 rwCopyTextureGreenChannel.GetPixel(i, j).grayscale,
                                 rwCopyTextureBlueChannel.GetPixel(i, j).grayscale,
                                 rwCopyTextureAlphaChannel.GetPixel(i, j).grayscale)
-                            );
-                    }
-                    else
-                    {
-                        packedTexture.SetPixel(
-                        i, j,
-                        new Color(
-                            rwCopyTextureRedChannel.GetPixel(i, j).grayscale,
-                            rwCopyTextureGreenChannel.GetPixel(i, j).grayscale,
-                            rwCopyTextureBlueChannel.GetPixel(i, j).grayscale));
+                        );
                     }
                 }
             }
+            else
+            {
+                for (var i = 0; i < width; i++)
+                {
+                    for (var j = 0; j < height; j++)
+                    {
+                        packedTexture.SetPixel(
+                            i, j,
+                            new Color(
+                                rwCopyTextureRedChannel.GetPixel(i, j).grayscale,
+                                rwCopyTextureGreenChannel.GetPixel(i, j).grayscale,
+                                rwCopyTextureBlueChannel.GetPixel(i, j).grayscale));
+                    }
+                }
+            }
+            
             packedTexture.Apply();
             return packedTexture;
         }
