@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace UnityTextureRgbPacker.Editor
+namespace UnityTextureRgbPacker
 {
     public class TexturePacker
     {
@@ -10,8 +10,6 @@ namespace UnityTextureRgbPacker.Editor
             Texture2D textureBlueChannel,
             string compositeTextureName)
         {
-            Texture2D packedTexture;
-
             if (!textureRedChannel || !textureGreenChannel || !textureBlueChannel)
             {
                 throw new System.Exception("Input textures cannot be null.");
@@ -31,7 +29,7 @@ namespace UnityTextureRgbPacker.Editor
                 (textureRedChannelHeight == textureGreenChannelHeight && 
                  textureRedChannelHeight == textureBlueChannelHeight))
             {
-                packedTexture = CreatePackedTexture(
+                var packedTexture = CreatePackedTexture(
                     textureRedChannelWidth, textureRedChannelHeight,
                     textureRedChannel,
                     textureGreenChannel,

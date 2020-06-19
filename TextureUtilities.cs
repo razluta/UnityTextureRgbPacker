@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace UnityTextureRgbPacker.Editor
+namespace UnityTextureRgbPacker
 {
     public class TextureUtilities
     {
@@ -10,7 +10,10 @@ namespace UnityTextureRgbPacker.Editor
             Tga
         }
         
-        public static void SaveTextureToPath(Texture2D texture, string path, TextureUtilitiesFormats format)
+        public static void SaveTextureToPath(
+            Texture2D texture, 
+            string path, 
+            TextureUtilitiesFormats format)
         {
             var bytes = new byte[0];
 
