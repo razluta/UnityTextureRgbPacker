@@ -13,9 +13,17 @@ _- input textures must be the same size_
 *  *  *  *  *
 
 ## Setup
-Clone or download the repository into your Unity project.
-_Coming soon: availability through the Unity Package Manager._ 
-
+Option 001) Clone or download the repository and drop it in your Unity project.
+Option 002) Add the repository to the package manifest (go in YourProject/Packages/ and open the "manifest.json" file and add "com..." line in the depenencies section). If you don't have Git installed, Unity will require you to install it.
+```
+{
+  "dependencies": {
+      ...
+      "com.razluta.unitytexturergbpacker": "https://github.com/razluta/UnityTextureRgbPacker.git#1.0.0"
+      ...
+  }
+}
+```
 *  *  *  *  *
 
 ## Automatic Generation using the API
