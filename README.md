@@ -13,8 +13,8 @@ _- input textures must be the same size_
 *  *  *  *  *
 
 ## Setup
-### Option 001) Clone or download the repository and drop it in your Unity project.
-### Option 002) Add the repository to the package manifest (go in YourProject/Packages/ and open the "manifest.json" file and add "com..." line in the depenencies section). If you don't have Git installed, Unity will require you to install it.
+##### Option 001) Clone or download the repository and drop it in your Unity project.
+##### Option 002) Add the repository to the package manifest (go in YourProject/Packages/ and open the "manifest.json" file and add "com..." line in the depenencies section). If you don't have Git installed, Unity will require you to install it.
 ```
 {
   "dependencies": {
