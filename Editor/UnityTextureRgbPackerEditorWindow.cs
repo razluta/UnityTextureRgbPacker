@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -107,12 +106,27 @@ public class UnityTextureRgbPackerEditorWindow : EditorWindow
         {
             validInputsNameList.Add(blueChannelTexture.name);
         }
+        if (alphaChannelTexture)
+        {
+            validInputsNameList.Add(alphaChannelTexture.name);
+        }
         
         // Find the common substring in the names and add the identifier
         var compositeTextureName = StringUtilities.GetCommonPrefix(validInputsNameList) + _nameIdentifierTextField.text;
         
+        // Find the first valid input and create the path based on that 
+        var listOfTextureInputs = new List<Texture2D>()
+        {
+            redChannelTexture,
+            redChannelTexture,
+            redChannelTexture,
+            alphaChannelTexture
+        };
         var relativeCompositeTexturePath =
-            Path.Combine(Path.GetDirectoryName(AssetDatabase.GetAssetPath(redChannelInput)), compositeTextureName);
+            Path.Combine(
+                Path.GetDirectoryName(AssetDatabase.GetAssetPath(
+                    GetFirstValidTextureInput(listOfTextureInputs))), 
+                compositeTextureName);
 
         // Save the composite texture
         var hasSaved = false;
@@ -149,5 +163,22 @@ public class UnityTextureRgbPackerEditorWindow : EditorWindow
             _previewImageVisualElement.style.backgroundImage = compositeTexture;
             Selection.activeObject = AssetDatabase.LoadAssetAtPath(relativeCompositeTexturePath, typeof(Texture2D));
         }
+    }
+
+    private Texture2D GetFirstValidTextureInput(List<Texture2D> textureInputs)
+    {
+        var textureInputCount = textureInputs.Count;
+        var firstValidInput = textureInputs[textureInputCount - 1];
+
+        for (var i = 0; i < textureInputCount; i++)
+        {
+            if (textureInputs[i])
+            {
+                firstValidInput = textureInputs[i];
+                return firstValidInput;
+            }
+        }
+        
+        return firstValidInput;
     }
 }
