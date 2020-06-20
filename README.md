@@ -19,7 +19,7 @@ Option 002) Add the repository to the package manifest (go in YourProject/Packag
 {
   "dependencies": {
       ...
-      "com.razluta.unitytexturergbpacker": "https://github.com/razluta/UnityTextureRgbPacker.git#1.0.0"
+      "com.razluta.unitytexturergbpacker": "https://github.com/razluta/UnityTextureRgbPacker.git"
       ...
   }
 }
