@@ -18,9 +18,36 @@ _Coming soon: availability through the Unity Package Manager._
 
 *  *  *  *  *
 
-## Usage
-![](https://github.com/razluta/UnityTextureRgbPacker/blob/master/Screenshots/UnityTextureRgbPackerUsage.gif)
+## Automatic Generation using the API
+If you are using this repository to automate the creation of the packed texture in your own code, you'll need to use the:
+```
+UnityextureRgbPacker.TexturePacker.GetComposite(
+            compositeTextureName,
+            textureRedChannel,
+            textureGreenChannel,
+            textureBlueChannel,
+            textureAlphaChannel)
+# compositeTextureName = a string representing the name of the texture
+# textureRedChannel = the input for the Red channel
+# textureGreenChannel = the input for the Green channel
+# textureBlueChannel = the input for the Blue channel
+# textureAlphaChannel = the input for the Alpha channel
 
+```
+To save the file to disk, you can use the:
+```
+UnityextureRgbPacker.TextureUtilities.SaveTextureToPath(
+                texture,
+                path,
+                format)
+# texture = the texture object you want to save
+# path = a string representing the absolute path of the texture
+# format = one of the accepted UnityextureRgbPacker.TextureUtilities.TextureUtilietiesFormats
+```
+
+*  *  *  *  *
+
+## Manual generation using the UI
 ### Step 001
 Launch the _**Unity Texture RGB(A) Packer**_ from the top menu bar under **Texture RGB(A) Packer > Open Texture Packer**.
 
@@ -44,3 +71,4 @@ Press "Generated Packed Texture".
 This button will generate the texture in the same folder as the first valid input (if the texture for the Red channel is the first valid input, the code will save the need composite texture in that same folder).
 After the image is saved, the preview will update with the newly generate image and the code will attempt to select in the Project window.
 
+![](https://github.com/razluta/UnityTextureRgbPacker/blob/master/Screenshots/UnityTextureRgbPackerUsage.gif)
