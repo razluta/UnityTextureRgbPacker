@@ -132,10 +132,10 @@ public class UnityTextureRgbPackerEditorWindow : EditorWindow
         var hasSaved = false;
         if (_tgaToggle.value)
         {
-            relativeCompositeTexturePath += _tgaToggle.label;
+            var newRelativeCompositeTexturePath = relativeCompositeTexturePath + _tgaToggle.label;
             var absoluteCompositeTexturePath = Path.Combine(
                 Directory.GetParent(Application.dataPath).FullName, 
-                relativeCompositeTexturePath);
+                newRelativeCompositeTexturePath);
             TextureUtilities.SaveTextureToPath(
                 compositeTexture,
                 absoluteCompositeTexturePath,
@@ -144,10 +144,10 @@ public class UnityTextureRgbPackerEditorWindow : EditorWindow
         }
         if (_pngToggle.value)
         {
-            relativeCompositeTexturePath += _pngToggle.label;
+            var newRelativeCompositeTexturePath = relativeCompositeTexturePath + _pngToggle.label;
             var absoluteCompositeTexturePath = Path.Combine(
                 Directory.GetParent(Application.dataPath).FullName, 
-                relativeCompositeTexturePath);
+                newRelativeCompositeTexturePath);
             TextureUtilities.SaveTextureToPath(
                 compositeTexture,
                 absoluteCompositeTexturePath,
