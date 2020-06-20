@@ -36,10 +36,10 @@ UnityextureRgbPacker.TexturePacker.GetComposite(
             textureBlueChannel,
             textureAlphaChannel)
 # compositeTextureName = a string representing the name of the texture
-# textureRedChannel = the input for the Red channel
-# textureGreenChannel = the input for the Green channel
-# textureBlueChannel = the input for the Blue channel
-# textureAlphaChannel = the input for the Alpha channel
+# textureRedChannel = a Texture2D asset representing the input for the Red channel
+# textureGreenChannel = a Texture2D asset representing the input for the Green channel
+# textureBlueChannel = a Texture2D asset representing the input for the Blue channel
+# textureAlphaChannel = a Texture2D asset representing the input for the Alpha channel
 ```
 To save the file to disk, you can use the:
 ```
@@ -47,9 +47,9 @@ UnityextureRgbPacker.TextureUtilities.SaveTextureToPath(
                 texture,
                 path,
                 format)
-# texture = the texture object you want to save
+# texture = a Texture2D asset representing the object you want to save
 # path = a string representing the absolute path of the texture
-# format = one of the accepted UnityextureRgbPacker.TextureUtilities.TextureUtilietiesFormats
+# format = one of the accepted UnityextureRgbPacker.TextureUtilities.TextureUtilietiesFormats texture formats
 ```
 *  *  *  *  *
 
