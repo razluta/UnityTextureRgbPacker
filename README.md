@@ -1,4 +1,4 @@
-# Unity Texture RGB(A) Packer
+# Unity Texture RGB(A) Packer [![License](https://img.shields.io/badge/License-MIT-lightgrey.svg?style=flat)](http://mit-license.org)
 This is a Unity Texture Packer that allows the user to pack 1 to 4 textures in any of the Red, Green, Blue and Alpha channels of a newly created texture that gets saved to disk and can be used in the Editor and Engine.
 
 Verified on the following versions of Unity:
