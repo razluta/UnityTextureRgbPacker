@@ -19,7 +19,11 @@ public class UnityTextureRgbPackerEditorWindow : EditorWindow
     private Toggle _pngToggle;
     private TextField _nameIdentifierTextField;
     private Button _generatePackedTextureButton;
-    private VisualElement _previewImageVisualElement;
+    private VisualElement _previewImageRedChannelVisualElement;
+    private VisualElement _previewImageGreenChannelVisualElement;
+    private VisualElement _previewImageBlueChannelVisualElement;
+    private VisualElement _previewImageAlphaChannelVisualElement;
+    private VisualElement _previewImageResultVisualElement;
 
     [MenuItem("Texture RGB(A) Packer/Open Texture Packer")]
     public static void ShowWindow()
@@ -31,7 +35,7 @@ public class UnityTextureRgbPackerEditorWindow : EditorWindow
         window.titleContent = new GUIContent("Texture RGB(A) Packer");
 
         // Sets a minimum and maximum size to the window.
-        window.minSize = new Vector2(300, 500);
+        window.minSize = new Vector2(350, 600);
     }
     
     private void OnEnable()
@@ -58,7 +62,11 @@ public class UnityTextureRgbPackerEditorWindow : EditorWindow
         _pngToggle = _root.Q<Toggle>("TG_Png");
         _nameIdentifierTextField = _root.Q<TextField>("TF_NameIdentifier");
         _generatePackedTextureButton = _root.Q<Button>("BT_GeneratePackedTexture");
-        _previewImageVisualElement = _root.Q<VisualElement>("VE_PreviewImage");
+        _previewImageRedChannelVisualElement = _root.Q<VisualElement>("VE_PreviewImageRedChannel");
+        _previewImageGreenChannelVisualElement = _root.Q<VisualElement>("VE_PreviewImageGreenChannel");
+        _previewImageBlueChannelVisualElement = _root.Q<VisualElement>("VE_PreviewImageBlueChannel");
+        _previewImageAlphaChannelVisualElement = _root.Q<VisualElement>("VE_PreviewImageAlphaChannel");
+        _previewImageResultVisualElement = _root.Q<VisualElement>("VE_PreviewImageResult");
 
         // Set the object field inputs as Texture2D
         _channelRedTextureObjectField.objectType = typeof(Texture2D);
@@ -155,12 +163,18 @@ public class UnityTextureRgbPackerEditorWindow : EditorWindow
             hasSaved = true;
         }
 
+        // Update the previews for the provided images
+        _previewImageRedChannelVisualElement.style.backgroundImage = redChannelTexture;
+        _previewImageGreenChannelVisualElement.style.backgroundImage = greenChannelTexture;
+        _previewImageBlueChannelVisualElement.style.backgroundImage = blueChannelTexture;
+        _previewImageAlphaChannelVisualElement.style.backgroundImage = alphaChannelTexture;
+        
         // If a new texture has been saved to disk, display it and select in the Project Window
         if (hasSaved)
         {
             AssetDatabase.Refresh();
             compositeTexture.Apply();
-            _previewImageVisualElement.style.backgroundImage = compositeTexture;
+            _previewImageResultVisualElement.style.backgroundImage = compositeTexture;
             Selection.activeObject = AssetDatabase.LoadAssetAtPath(relativeCompositeTexturePath, typeof(Texture2D));
         }
     }
