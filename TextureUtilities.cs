@@ -55,7 +55,20 @@ namespace UnityTextureRgbPacker
 
         public static Texture2D GetSmallestSizedTexture(List<Texture2D> textures)
         {
-            return textures[0];
+            var smallestTexture = textures[0];
+            var smallestTextureArea = textures[0].width * textures[0].height;
+            
+            foreach (var texture in textures)
+            {
+                var textureArea = texture.width * texture.height;
+                if (textureArea < smallestTextureArea)
+                {
+                    smallestTexture = texture;
+                    smallestTextureArea = textureArea;
+                }
+            }
+            
+            return smallestTexture;
         }
     }
 }

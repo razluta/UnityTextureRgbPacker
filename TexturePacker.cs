@@ -33,10 +33,13 @@ namespace UnityTextureRgbPacker
                 validTextureList.Add(textureBlueChannel);
             }
 
+            var hasAlphaInput = false;
             if (textureAlphaChannel)
             {
                 validTextureList.Add(textureAlphaChannel);
+                hasAlphaInput = true;
             }
+
 
             // Determine the smallest texture size
             var smallestTexture = TextureUtilities.GetSmallestSizedTexture(validTextureList);
@@ -56,6 +59,10 @@ namespace UnityTextureRgbPacker
             {
                 textureBlueChannel = CreateTextureOfColor(smallestTextureWidth, smallestTextureHeight, Color.black);
             }
+            if (!textureAlphaChannel)
+            {
+                textureAlphaChannel = CreateTextureOfColor(smallestTextureWidth, smallestTextureHeight, Color.black);
+            }
             
             // Obtaining the texture sizes
             var textureRedChannelWidth = textureRedChannel.width;
@@ -64,31 +71,59 @@ namespace UnityTextureRgbPacker
             var textureGreenChannelHeight = textureGreenChannel.height;
             var textureBlueChannelWidth = textureBlueChannel.width;
             var textureBlueChannelHeight = textureBlueChannel.height;
+            var textureAlphaChannelWidth = textureAlphaChannel.width;
+            var textureAlphaChannelHeight = textureAlphaChannel.height;
             
-            // If the textures are the same size, combine them...
-            if ((textureRedChannelWidth == textureGreenChannelWidth && 
-                 textureRedChannelWidth == textureBlueChannelWidth) &&
-                (textureRedChannelHeight == textureGreenChannelHeight && 
-                 textureRedChannelHeight == textureBlueChannelHeight))
+            // Resize all the textures to the smallest input
+            textureRedChannel = TextureUtilities.GetRwTextureCopy(textureRedChannel);
+            if (smallestTextureWidth != textureRedChannelWidth && smallestTextureHeight != textureRedChannelHeight)
             {
-                var packedTexture = CreatePackedTexture(
-                    textureRedChannelWidth, textureRedChannelHeight,
+                textureRedChannel.Resize(
+                    smallestTextureWidth, smallestTextureHeight);
+                textureRedChannel.Apply();
+            }
+            textureGreenChannel = TextureUtilities.GetRwTextureCopy(textureGreenChannel);
+            if (smallestTextureWidth != textureGreenChannelWidth && smallestTextureHeight != textureGreenChannelHeight)
+            {
+                textureGreenChannel.Resize(
+                    smallestTextureWidth, smallestTextureHeight);
+                textureGreenChannel.Apply();
+            }
+            textureBlueChannel = TextureUtilities.GetRwTextureCopy(textureBlueChannel);
+            if (smallestTextureWidth != textureBlueChannelWidth && smallestTextureHeight != textureBlueChannelHeight)
+            {
+                textureBlueChannel.Resize(
+                    smallestTextureWidth, smallestTextureHeight);
+                textureBlueChannel.Apply();
+            }
+            textureAlphaChannel = TextureUtilities.GetRwTextureCopy(textureAlphaChannel);
+            if (smallestTextureWidth != textureAlphaChannelWidth && smallestTextureHeight != textureAlphaChannelHeight)
+            {
+                textureAlphaChannel.Resize(
+                    smallestTextureWidth, smallestTextureHeight);
+                textureAlphaChannel.Apply();
+            }
+
+            // If there was an alpha input, use it, if not, create a texture without it.
+            if (hasAlphaInput)
+            {
+                var packedTextureWithAlpha = CreatePackedTexture(
+                    smallestTextureWidth, smallestTextureHeight,
                     compositeTextureName,
                     textureRedChannel,
                     textureGreenChannel,
                     textureBlueChannel,
                     textureAlphaChannel);
-
-                return packedTexture;
+                return packedTextureWithAlpha;
             }
-            else
-            {
-                throw new System.Exception("The input textures need to be the same size.");
-            }
-            
-            // TODO: ... if the textures are not the same size ...
-            // TODO: ... find the smallest size, reduce the others and combine them
-            
+            var packedTextureWithoutAlpha = CreatePackedTexture(
+                smallestTextureWidth, smallestTextureHeight,
+                compositeTextureName,
+                textureRedChannel,
+                textureGreenChannel,
+                textureBlueChannel,
+                null);
+            return packedTextureWithoutAlpha;
         }
 
         private static UnityEngine.Texture2D CreatePackedTexture(
@@ -100,16 +135,12 @@ namespace UnityTextureRgbPacker
             Texture2D textureAlphaChannel = null)
         {
             var packedTexture = new Texture2D(width, height, TextureFormat.RGB24, false);
-            var rwCopyTextureRedChannel = TextureUtilities.GetRwTextureCopy(textureRedChannel);
-            var rwCopyTextureGreenChannel = TextureUtilities.GetRwTextureCopy(textureGreenChannel);
-            var rwCopyTextureBlueChannel = TextureUtilities.GetRwTextureCopy(textureBlueChannel);
-
             packedTexture.name = compositeTextureName;
 
             if (textureAlphaChannel)
             {
                 packedTexture = new Texture2D(width, height, TextureFormat.RGBA32, false);
-                var rwCopyTextureAlphaChannel = TextureUtilities.GetRwTextureCopy(textureAlphaChannel);
+
                 for (var i = 0; i < width; i++)
                 {
                     for (var j = 0; j < height; j++)
@@ -117,10 +148,10 @@ namespace UnityTextureRgbPacker
                         packedTexture.SetPixel(
                             i, j,
                             new Color(
-                                rwCopyTextureRedChannel.GetPixel(i, j).grayscale,
-                                rwCopyTextureGreenChannel.GetPixel(i, j).grayscale,
-                                rwCopyTextureBlueChannel.GetPixel(i, j).grayscale,
-                                rwCopyTextureAlphaChannel.GetPixel(i, j).grayscale)
+                                textureRedChannel.GetPixel(i, j).grayscale,
+                                textureGreenChannel.GetPixel(i, j).grayscale,
+                                textureBlueChannel.GetPixel(i, j).grayscale,
+                                textureAlphaChannel.GetPixel(i, j).grayscale)
                         );
                     }
                 }
@@ -134,9 +165,9 @@ namespace UnityTextureRgbPacker
                         packedTexture.SetPixel(
                             i, j,
                             new Color(
-                                rwCopyTextureRedChannel.GetPixel(i, j).grayscale,
-                                rwCopyTextureGreenChannel.GetPixel(i, j).grayscale,
-                                rwCopyTextureBlueChannel.GetPixel(i, j).grayscale));
+                                textureRedChannel.GetPixel(i, j).grayscale,
+                                textureGreenChannel.GetPixel(i, j).grayscale,
+                                textureBlueChannel.GetPixel(i, j).grayscale));
                     }
                 }
             }
