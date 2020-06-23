@@ -28,17 +28,22 @@ _Important to note: input textures must be the same size; if the input textures 
 ## Automatic Generation using the API
 If you are using this repository to automate the creation of the packed texture in your own code, you'll need to use the:
 ```
-UnityextureRgbPacker.TexturePacker.GetComposite(
-            compositeTextureName,
-            textureRedChannel,
-            textureGreenChannel,
-            textureBlueChannel,
-            textureAlphaChannel)
+UnityextureRgbPacker.TexturePacker.GetCompositeTextureRgb(
+            string compositeTextureName,
+            Texture2D textureRedChannel,
+            Texture2D textureGreenChannel,
+            Texture2D textureBlueChannel,
+            Texture2D textureAlphaChannel = null,
+            int width = 0, 
+            int height = 0)
 # compositeTextureName = a string representing the name of the texture
 # textureRedChannel = a Texture2D asset representing the input for the Red channel
 # textureGreenChannel = a Texture2D asset representing the input for the Green channel
 # textureBlueChannel = a Texture2D asset representing the input for the Blue channel
-# textureAlphaChannel = a Texture2D asset representing the input for the Alpha channel
+# textureAlphaChannel = (optional) a Texture2D asset representing the input for the Alpha channel
+# width = (optional) an integer representing the desired output texture width
+# height = (optional) an integer representing the desired output texture height
+# If the width or height are left at 0, the the smallest input texture will be used for sizing.
 ```
 To save the file to disk, you can use the:
 ```
@@ -72,6 +77,11 @@ The code will figure out the common name prefix between all the input textures a
 For example, if the source textures are called "Env_Tree_Roughness" and "Env_Tree_Metallic", the result will be called "Env_Tree_Composite".
 
 ### Step 005
+For sizing, if the settings are left at default, the tool will determine which of the input textures is smalles and use its width and heigh to scale down the other input textures.
+If you want to set your own size, enable the **(override) scale to specific size** flag and input the X (width) and Y (height) values of the target texture. 
+_It is important to note that scaling textures can introduce artifacts, so we recommend that the inputs are all the same size and you avoid using the scaling, unless it is highly necessary._
+
+### Step 006
 Press "Generated Packed Texture".
 This button will generate the texture in the same folder as the first valid input (if the texture for the Red channel is the first valid input, the code will save the need composite texture in that same folder).
 After the image is saved, the preview will update with the newly generate image and the code will attempt to select in the Project window.
