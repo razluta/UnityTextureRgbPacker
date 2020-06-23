@@ -29,13 +29,13 @@ _Important to note: input textures must be the same size; if the input textures 
 If you are using this repository to automate the creation of the packed texture in your own code, you'll need to use the:
 ```
 UnityextureRgbPacker.TexturePacker.GetCompositeTextureRgb(
-            string compositeTextureName,
-            Texture2D textureRedChannel,
-            Texture2D textureGreenChannel,
-            Texture2D textureBlueChannel,
-            Texture2D textureAlphaChannel = null,
-            int width = 0, 
-            int height = 0)
+            compositeTextureName,
+            textureRedChannel,
+            textureGreenChannel,
+            textureBlueChannel,
+            textureAlphaChannel,
+            width, 
+            height)
 # compositeTextureName = a string representing the name of the texture
 # textureRedChannel = a Texture2D asset representing the input for the Red channel
 # textureGreenChannel = a Texture2D asset representing the input for the Green channel
