@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace UnityTextureRgbPacker
@@ -11,7 +10,9 @@ namespace UnityTextureRgbPacker
             Texture2D textureRedChannel,
             Texture2D textureGreenChannel,
             Texture2D textureBlueChannel,
-            Texture2D textureAlphaChannel = null)
+            Texture2D textureAlphaChannel = null,
+            int width = 0, 
+            int height = 0)
         {
             if (!textureRedChannel && !textureGreenChannel && !textureBlueChannel && !textureAlphaChannel)
             {
@@ -39,29 +40,38 @@ namespace UnityTextureRgbPacker
                 validTextureList.Add(textureAlphaChannel);
                 hasAlphaInput = true;
             }
-
-
-            // Determine the smallest texture size
-            var smallestTexture = TextureUtilities.GetSmallestSizedTexture(validTextureList);
-            var smallestTextureWidth = smallestTexture.width;
-            var smallestTextureHeight = smallestTexture.height;
             
+            // Determine the smallest texture size or use the input if one is provided
+            int resizeWidth;
+            int resizeHeight;
+            if (width == 0 || height == 0)
+            {
+                var resizeTargetTexture = TextureUtilities.GetSmallestSizedTexture(validTextureList);
+                resizeWidth = resizeTargetTexture.width;
+                resizeHeight = resizeTargetTexture.height;
+            }
+            else
+            {
+                resizeWidth = width;
+                resizeHeight = height;
+            }
+
             // Create "empty" black textures for the ones that are missing
             if (!textureRedChannel)
             {
-                textureRedChannel = CreateTextureOfColor(smallestTextureWidth, smallestTextureHeight, Color.black);
+                textureRedChannel = CreateTextureOfColor(resizeWidth, resizeHeight, Color.black);
             }
             if (!textureGreenChannel)
             {
-                textureGreenChannel = CreateTextureOfColor(smallestTextureWidth, smallestTextureHeight, Color.black);
+                textureGreenChannel = CreateTextureOfColor(resizeWidth, resizeHeight, Color.black);
             }
             if (!textureBlueChannel)
             {
-                textureBlueChannel = CreateTextureOfColor(smallestTextureWidth, smallestTextureHeight, Color.black);
+                textureBlueChannel = CreateTextureOfColor(resizeWidth, resizeHeight, Color.black);
             }
             if (!textureAlphaChannel)
             {
-                textureAlphaChannel = CreateTextureOfColor(smallestTextureWidth, smallestTextureHeight, Color.black);
+                textureAlphaChannel = CreateTextureOfColor(resizeWidth, resizeHeight, Color.black);
             }
             
             // Obtaining the texture sizes
@@ -74,37 +84,37 @@ namespace UnityTextureRgbPacker
             var textureAlphaChannelWidth = textureAlphaChannel.width;
             var textureAlphaChannelHeight = textureAlphaChannel.height;
             
-            // Resize all the textures to the smallest input
+            // Resize all the textures to the needed size
             textureRedChannel = TextureUtilities.GetRwTextureCopy(textureRedChannel);
-            if (smallestTextureWidth != textureRedChannelWidth && smallestTextureHeight != textureRedChannelHeight)
+            if (resizeWidth != textureRedChannelWidth && resizeHeight != textureRedChannelHeight)
             {
                 textureRedChannel = TextureUtilities.ScaleTexture(
-                    textureRedChannel, smallestTextureWidth, smallestTextureHeight);
+                    textureRedChannel, resizeWidth, resizeHeight);
             }
             textureGreenChannel = TextureUtilities.GetRwTextureCopy(textureGreenChannel);
-            if (smallestTextureWidth != textureGreenChannelWidth && smallestTextureHeight != textureGreenChannelHeight)
+            if (resizeWidth != textureGreenChannelWidth && resizeHeight != textureGreenChannelHeight)
             {
                 textureGreenChannel = TextureUtilities.ScaleTexture(
-                    textureGreenChannel, smallestTextureWidth, smallestTextureHeight);
+                    textureGreenChannel, resizeWidth, resizeHeight);
             }
             textureBlueChannel = TextureUtilities.GetRwTextureCopy(textureBlueChannel);
-            if (smallestTextureWidth != textureBlueChannelWidth && smallestTextureHeight != textureBlueChannelHeight)
+            if (resizeWidth != textureBlueChannelWidth && resizeHeight != textureBlueChannelHeight)
             {
                 textureBlueChannel = TextureUtilities.ScaleTexture(
-                    textureBlueChannel, smallestTextureWidth, smallestTextureHeight);
+                    textureBlueChannel, resizeWidth, resizeHeight);
             }
             textureAlphaChannel = TextureUtilities.GetRwTextureCopy(textureAlphaChannel);
-            if (smallestTextureWidth != textureAlphaChannelWidth && smallestTextureHeight != textureAlphaChannelHeight)
+            if (resizeWidth != textureAlphaChannelWidth && resizeHeight != textureAlphaChannelHeight)
             {
                 textureAlphaChannel = TextureUtilities.ScaleTexture(
-                    textureAlphaChannel, smallestTextureWidth, smallestTextureHeight);
+                    textureAlphaChannel, resizeWidth, resizeHeight);
             }
 
             // If there was an alpha input, use it. If not, create a texture without it.
             if (hasAlphaInput)
             {
                 var packedTextureWithAlpha = CreatePackedTexture(
-                    smallestTextureWidth, smallestTextureHeight,
+                    resizeWidth, resizeHeight,
                     compositeTextureName,
                     textureRedChannel,
                     textureGreenChannel,
@@ -113,7 +123,7 @@ namespace UnityTextureRgbPacker
                 return packedTextureWithAlpha;
             }
             var packedTextureWithoutAlpha = CreatePackedTexture(
-                smallestTextureWidth, smallestTextureHeight,
+                resizeWidth, resizeHeight,
                 compositeTextureName,
                 textureRedChannel,
                 textureGreenChannel,

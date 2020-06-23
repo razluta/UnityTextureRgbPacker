@@ -27,6 +27,12 @@
         <ui:Toggle label=".tga" name="TG_Tga" value="true" style="-unity-text-align: upper-left; margin-left: 3px;" />
         <ui:Toggle label=".png" name="TG_Png" style="-unity-text-align: upper-left; margin-left: 3px;" />
         <ui:TextField picking-mode="Ignore" label="Name Identifier" value="filler text" text="Composite" name="TF_NameIdentifier" />
+        <ui:VisualElement style="margin-top: 10px;">
+            <ui:Label text="Size" name="LB_Size" />
+            <ui:Label text="• (by default) scale to smallest input" name="LB_SmallestInput" style="margin-left: 3px; margin-right: 3px; margin-top: 1px; margin-bottom: 3px; padding-left: 1px; padding-right: 1px; padding-top: 1px; padding-bottom: 1px; opacity: 0.5;" />
+            <ui:Toggle label="• (override) scale to specific size" name="TG_SpecificValue" />
+            <uie:Vector2Field name="VF_TextureSize" x="1024" y="1024" style="margin-left: 30px; -unity-text-align: upper-left;" />
+        </ui:VisualElement>
     </ui:VisualElement>
     <ui:VisualElement name="Preview" style="border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-color: rgb(79, 79, 79); margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; flex-grow: 1; flex-shrink: 0;">
         <Style src="UnityTextureRgbPacker.uss" />

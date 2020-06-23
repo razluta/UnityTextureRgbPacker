@@ -17,6 +17,9 @@ public class UnityTextureRgbPackerEditorWindow : EditorWindow
     private IntegerField _heightIntField;
     private Toggle _tgaToggle;
     private Toggle _pngToggle;
+    private Label _scaleToSmallestLabel;
+    private Toggle _scaleToSpecificValueToggle;
+    private Vector2Field _textureSizeVectorField;
     private TextField _nameIdentifierTextField;
     private Button _generatePackedTextureButton;
     private VisualElement _previewImageRedChannelVisualElement;
@@ -35,7 +38,7 @@ public class UnityTextureRgbPackerEditorWindow : EditorWindow
         window.titleContent = new GUIContent("Texture RGB(A) Packer");
 
         // Sets a minimum and maximum size to the window.
-        window.minSize = new Vector2(350, 600);
+        window.minSize = new Vector2(350, 650);
     }
     
     private void OnEnable()
@@ -60,6 +63,9 @@ public class UnityTextureRgbPackerEditorWindow : EditorWindow
         _heightIntField = _root.Q<IntegerField>("IF_Height");
         _tgaToggle = _root.Q<Toggle>("TG_Tga");
         _pngToggle = _root.Q<Toggle>("TG_Png");
+        _scaleToSmallestLabel = _root.Q<Label>("LB_SmallestInput");
+        _scaleToSpecificValueToggle = _root.Q<Toggle>("TG_SpecificValue");
+        _textureSizeVectorField = _root.Q<Vector2Field>("VF_TextureSize");
         _nameIdentifierTextField = _root.Q<TextField>("TF_NameIdentifier");
         _generatePackedTextureButton = _root.Q<Button>("BT_GeneratePackedTexture");
         _previewImageRedChannelVisualElement = _root.Q<VisualElement>("VE_PreviewImageRedChannel");
@@ -93,13 +99,28 @@ public class UnityTextureRgbPackerEditorWindow : EditorWindow
         var alphaChannelTexture = (Texture2D) alphaChannelInput;
 
         // Create the composite texture
-        var compositeTexture = TexturePacker.GetCompositeTextureRgb(
-            _nameIdentifierTextField.text,
-            redChannelTexture,
-            greenChannelTexture,
-            blueChannelTexture,
-            alphaChannelTexture);
-
+        Texture2D compositeTexture;
+        if (_scaleToSpecificValueToggle.value)
+        {
+            compositeTexture = TexturePacker.GetCompositeTextureRgb(
+                _nameIdentifierTextField.text,
+                redChannelTexture,
+                greenChannelTexture,
+                blueChannelTexture,
+                alphaChannelTexture,
+                (int)_textureSizeVectorField.value.x,
+                (int)_textureSizeVectorField.value.y);
+        }
+        else
+        {
+            compositeTexture = TexturePacker.GetCompositeTextureRgb(
+                _nameIdentifierTextField.text,
+                redChannelTexture,
+                greenChannelTexture,
+                blueChannelTexture,
+                alphaChannelTexture);
+        }
+        
         // If inputs are valid, add their names to a list
         var validInputsNameList = new List<string>();
         if (redChannelTexture)
