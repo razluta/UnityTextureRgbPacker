@@ -52,6 +52,18 @@ namespace UnityTextureRgbPacker
             RenderTexture.ReleaseTemporary(renderTexture);
             return rwTexture;
         }
+        
+        public static Texture2D ScaleTexture(Texture2D texture,int textureWidth,int textureHeight, 
+            int textureDepth=24)
+        {
+            var renderTexture = new RenderTexture(textureWidth, textureHeight,textureDepth);
+            RenderTexture.active = renderTexture;
+            Graphics.Blit(texture, renderTexture);
+            var scaledTexture = new Texture2D(textureWidth,textureHeight);
+            scaledTexture.ReadPixels(new Rect(0,0,textureWidth,textureHeight),0,0);
+            scaledTexture.Apply();
+            return scaledTexture;
+        }
 
         public static Texture2D GetSmallestSizedTexture(List<Texture2D> textures)
         {

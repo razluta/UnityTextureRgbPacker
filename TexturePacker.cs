@@ -78,33 +78,29 @@ namespace UnityTextureRgbPacker
             textureRedChannel = TextureUtilities.GetRwTextureCopy(textureRedChannel);
             if (smallestTextureWidth != textureRedChannelWidth && smallestTextureHeight != textureRedChannelHeight)
             {
-                textureRedChannel.Resize(
-                    smallestTextureWidth, smallestTextureHeight);
-                textureRedChannel.Apply();
+                textureRedChannel = TextureUtilities.ScaleTexture(
+                    textureRedChannel, smallestTextureWidth, smallestTextureHeight);
             }
             textureGreenChannel = TextureUtilities.GetRwTextureCopy(textureGreenChannel);
             if (smallestTextureWidth != textureGreenChannelWidth && smallestTextureHeight != textureGreenChannelHeight)
             {
-                textureGreenChannel.Resize(
-                    smallestTextureWidth, smallestTextureHeight);
-                textureGreenChannel.Apply();
+                textureGreenChannel = TextureUtilities.ScaleTexture(
+                    textureGreenChannel, smallestTextureWidth, smallestTextureHeight);
             }
             textureBlueChannel = TextureUtilities.GetRwTextureCopy(textureBlueChannel);
             if (smallestTextureWidth != textureBlueChannelWidth && smallestTextureHeight != textureBlueChannelHeight)
             {
-                textureBlueChannel.Resize(
-                    smallestTextureWidth, smallestTextureHeight);
-                textureBlueChannel.Apply();
+                textureBlueChannel = TextureUtilities.ScaleTexture(
+                    textureBlueChannel, smallestTextureWidth, smallestTextureHeight);
             }
             textureAlphaChannel = TextureUtilities.GetRwTextureCopy(textureAlphaChannel);
             if (smallestTextureWidth != textureAlphaChannelWidth && smallestTextureHeight != textureAlphaChannelHeight)
             {
-                textureAlphaChannel.Resize(
-                    smallestTextureWidth, smallestTextureHeight);
-                textureAlphaChannel.Apply();
+                textureAlphaChannel = TextureUtilities.ScaleTexture(
+                    textureAlphaChannel, smallestTextureWidth, smallestTextureHeight);
             }
 
-            // If there was an alpha input, use it, if not, create a texture without it.
+            // If there was an alpha input, use it. If not, create a texture without it.
             if (hasAlphaInput)
             {
                 var packedTextureWithAlpha = CreatePackedTexture(
@@ -192,5 +188,3 @@ namespace UnityTextureRgbPacker
         }
     }
 }
-
-
