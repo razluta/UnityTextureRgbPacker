@@ -5,8 +5,8 @@ Verified on the following versions of Unity:
 - 2019.4
 - 2019.3
 
-_Current limitations:_
-_- input textures must be the same size_
+_Important to note:_
+_- input textures must be the same size; if the input textures are not the same size, the code will scale the larger textures to match the smaller textures and artifacts can occur in the compression_
 
 ![](https://github.com/razluta/UnityTextureRgbPacker/blob/master/Screenshots/UnityTextureRgbPacker.png)
 
