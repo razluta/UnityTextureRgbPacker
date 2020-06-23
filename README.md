@@ -43,7 +43,7 @@ UnityextureRgbPacker.TexturePacker.GetCompositeTextureRgb(
 # textureAlphaChannel = (optional) a Texture2D asset representing the input for the Alpha channel
 # width = (optional) an integer representing the desired output texture width
 # height = (optional) an integer representing the desired output texture height
-# If the width or height are left at 0, the the smallest input texture will be used for sizing.
+# If the width or height are left at 0, the smallest input texture will be used for sizing.
 ```
 To save the file to disk, you can use the:
 ```
