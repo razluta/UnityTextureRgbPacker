@@ -1,6 +1,8 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
-    <ui:VisualElement style="border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px;">
+    <ui:VisualElement style="flex-direction: row; justify-content: center; margin-bottom: 4px; margin-top: 3px;">
         <Style src="UnityTextureRgbPacker.uss" />
+        <ui:Button text="Single Use" style="flex-shrink: 1; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-top: 5px; padding-bottom: 5px;" />
+        <ui:Button text="Batching" style="flex-shrink: 1; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-top: 5px; padding-bottom: 5px;" />
     </ui:VisualElement>
     <ui:VisualElement name="VE_Input" style="padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px; background-color: rgb(79, 79, 79); flex-grow: 0; flex-shrink: 1;">
         <Style src="UnityTextureRgbPacker.uss" />
