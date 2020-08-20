@@ -10,6 +10,14 @@ namespace UnityTextureRgbPacker.Editor
     public class UnityTextureRgbPackerEditorWindow : EditorWindow
     {
         private VisualElement _root;
+
+        private VisualTreeAsset _tabsVisualTreeAsset;
+        private VisualTreeAsset _singleUseTabContentsVisualTreeAsset;
+        private VisualTreeAsset _batchingTabContentsVisualTreeAsset;
+
+        private Button _singleUseTab;
+        private Button _batchingTab;
+
         private ObjectField _channelRedTextureObjectField;
         private ObjectField _channelGreenTextureObjectField;
         private ObjectField _channelBlueTextureObjectField;
@@ -29,61 +37,99 @@ namespace UnityTextureRgbPacker.Editor
         private VisualElement _previewImageAlphaChannelVisualElement;
         private VisualElement _previewImageResultVisualElement;
 
+        private bool _isSingleUseTabActive;
+        private bool _isBatchTabActive;
+
         [MenuItem("Art Tools/Texture RGB(A) Packer")]
         public static void ShowWindow()
         {
-            // Opens the window, otherwise focuses it if it’s already open.
             var window = GetWindow<UnityTextureRgbPackerEditorWindow>();
-
-            // Adds a title to the window.
             window.titleContent = new GUIContent("Texture RGB(A) Packer");
-
-            // Sets a minimum and maximum size to the window.
             window.minSize = new Vector2(350, 650);
         }
-        
+
         private void OnEnable()
         {
-            // Reference to the root of the window.
+            _isSingleUseTabActive = true;
+            _isBatchTabActive = false;
             _root = rootVisualElement;
-            // Associates a stylesheet to our root. Thanks to inheritance, all root’s
-            // children will have access to it.
-            _root.styleSheets.Add(Resources.Load<StyleSheet>("UnityTextureRgbPacker"));
-
-            // Loads and clones our VisualTree (eg. our UXML structure) inside the root.
-            var mainVisualTree = Resources.Load<VisualTreeAsset>("UnityTextureRgbPacker");
-            var textureInputVisualTree = Resources.Load<VisualTreeAsset>("TextureInput");
-            mainVisualTree.CloneTree(_root);
             
-            // Query the needed fields to get the Visual Elements references
-            _channelRedTextureObjectField = _root.Q<ObjectField>("OF_RedChannelTexture");
-            _channelGreenTextureObjectField = _root.Q<ObjectField>("OF_GreenChannelTexture");
-            _channelBlueTextureObjectField = _root.Q<ObjectField>("OF_BlueChannelTexture");
-            _channelAlphaTextureObjectField = _root.Q<ObjectField>("OF_AlphaChannelTexture");
-            _widthIntField = _root.Q<IntegerField>("IF_Width");
-            _heightIntField = _root.Q<IntegerField>("IF_Height");
-            _tgaToggle = _root.Q<Toggle>("TG_Tga");
-            _pngToggle = _root.Q<Toggle>("TG_Png");
-            _scaleToSmallestLabel = _root.Q<Label>("LB_SmallestInput");
-            _scaleToSpecificValueToggle = _root.Q<Toggle>("TG_SpecificValue");
-            _textureSizeVectorField = _root.Q<Vector2Field>("VF_TextureSize");
-            _nameIdentifierTextField = _root.Q<TextField>("TF_NameIdentifier");
-            _generatePackedTextureButton = _root.Q<Button>("BT_GeneratePackedTexture");
-            _previewImageRedChannelVisualElement = _root.Q<VisualElement>("VE_PreviewImageRedChannel");
-            _previewImageGreenChannelVisualElement = _root.Q<VisualElement>("VE_PreviewImageGreenChannel");
-            _previewImageBlueChannelVisualElement = _root.Q<VisualElement>("VE_PreviewImageBlueChannel");
-            _previewImageAlphaChannelVisualElement = _root.Q<VisualElement>("VE_PreviewImageAlphaChannel");
-            _previewImageResultVisualElement = _root.Q<VisualElement>("VE_PreviewImageResult");
-
-            // Set the object field inputs as Texture2D
-            _channelRedTextureObjectField.objectType = typeof(Texture2D);
-            _channelGreenTextureObjectField.objectType = typeof(Texture2D);
-            _channelBlueTextureObjectField.objectType = typeof(Texture2D);
-            _channelAlphaTextureObjectField.objectType = typeof(Texture2D);
-            
-            // Set the button
-            _generatePackedTextureButton.clickable.clicked += () => GeneratePackedTexture();
+            InitUi();
         }
+
+        private void InitUi()
+        {
+            _root.Clear();
+            InitCommonUi();
+            
+            if (_isSingleUseTabActive)
+            {
+                _singleUseTabContentsVisualTreeAsset = Resources.Load<VisualTreeAsset>("CS_SingleUseTabContents");
+                _singleUseTabContentsVisualTreeAsset.CloneTree(_root);
+
+                // Query the needed fields to get the Visual Elements references
+                _channelRedTextureObjectField = _root.Q<ObjectField>("OF_RedChannelTexture");
+                _channelGreenTextureObjectField = _root.Q<ObjectField>("OF_GreenChannelTexture");
+                _channelBlueTextureObjectField = _root.Q<ObjectField>("OF_BlueChannelTexture");
+                _channelAlphaTextureObjectField = _root.Q<ObjectField>("OF_AlphaChannelTexture");
+                _widthIntField = _root.Q<IntegerField>("IF_Width");
+                _heightIntField = _root.Q<IntegerField>("IF_Height");
+                _tgaToggle = _root.Q<Toggle>("TG_Tga");
+                _pngToggle = _root.Q<Toggle>("TG_Png");
+                _scaleToSmallestLabel = _root.Q<Label>("LB_SmallestInput");
+                _scaleToSpecificValueToggle = _root.Q<Toggle>("TG_SpecificValue");
+                _textureSizeVectorField = _root.Q<Vector2Field>("VF_TextureSize");
+                _nameIdentifierTextField = _root.Q<TextField>("TF_NameIdentifier");
+                _generatePackedTextureButton = _root.Q<Button>("BT_GeneratePackedTexture");
+                _previewImageRedChannelVisualElement = _root.Q<VisualElement>("VE_PreviewImageRedChannel");
+                _previewImageGreenChannelVisualElement = _root.Q<VisualElement>("VE_PreviewImageGreenChannel");
+                _previewImageBlueChannelVisualElement = _root.Q<VisualElement>("VE_PreviewImageBlueChannel");
+                _previewImageAlphaChannelVisualElement = _root.Q<VisualElement>("VE_PreviewImageAlphaChannel");
+                _previewImageResultVisualElement = _root.Q<VisualElement>("VE_PreviewImageResult");
+
+                // Set the object field inputs as Texture2D
+                _channelRedTextureObjectField.objectType = typeof(Texture2D);
+                _channelGreenTextureObjectField.objectType = typeof(Texture2D);
+                _channelBlueTextureObjectField.objectType = typeof(Texture2D);
+                _channelAlphaTextureObjectField.objectType = typeof(Texture2D);
+
+                // Set the button
+                _generatePackedTextureButton.clickable.clicked += GeneratePackedTexture;
+            }
+            
+            else if (_isBatchTabActive)
+            {
+                _batchingTabContentsVisualTreeAsset = Resources.Load<VisualTreeAsset>("CS_BatchingTabContents");
+                _batchingTabContentsVisualTreeAsset.CloneTree(_root);
+            }
+        }
+
+        private void InitCommonUi()
+        {
+            _tabsVisualTreeAsset = Resources.Load<VisualTreeAsset>("CS_Tabs");
+            _tabsVisualTreeAsset.CloneTree(_root);
+
+            _singleUseTab = _root.Q<Button>("BT_SingleUseTab");
+            _singleUseTab.clickable.clicked += EnableSingleUseTab;
+
+            _batchingTab = _root.Q<Button>("BT_BatchingTab");
+            _batchingTab.clickable.clicked += EnableBatchingTab;
+        }
+        
+        private void EnableSingleUseTab()
+        {
+            _isSingleUseTabActive = true;
+            _isBatchTabActive = false;
+            InitUi();
+        }
+
+        private void EnableBatchingTab()
+        {
+            _isSingleUseTabActive = false;
+            _isBatchTabActive = true;
+            InitUi();
+        }
+        
 
         private void GeneratePackedTexture()
         {

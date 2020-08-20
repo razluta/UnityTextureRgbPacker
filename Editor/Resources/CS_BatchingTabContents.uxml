@@ -1,0 +1,36 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:Button text="Browse" name="BT_Browse" style="padding-top: 6px; padding-bottom: 6px; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0;" />
+    <ui:Label text="C:" name="LB_Browse" style="padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px; margin-left: 3px; margin-right: 4px; margin-top: 3px; margin-bottom: 3px; background-color: rgb(42, 42, 42); color: rgba(202, 202, 202, 255); border-left-color: rgb(36, 36, 36); border-right-color: rgb(36, 36, 36); border-top-color: rgb(36, 36, 36); border-bottom-color: rgb(36, 36, 36); border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; font-size: 10px;" />
+    <ui:VisualElement name="VE_Input" style="padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; margin-left: 3px; margin-right: 3px; margin-top: 3px; margin-bottom: 3px; background-color: rgb(79, 79, 79); flex-grow: 0; flex-shrink: 1;">
+        <ui:Label text="Rules" style="-unity-text-align: upper-left; -unity-font-style: bold;" />
+        <ui:ScrollView style="flex-grow: 1;">
+            <ui:Label text="For all the assets in this directory, find the textures that are prefixed or suffixed by the rules defined and combine them using the specified chanels (leave entry empty if you want the rule ignored and the channel empty)." name="LB_Instructions" style="padding-top: 3px; padding-bottom: 10px; padding-left: 4px; flex-wrap: wrap; white-space: normal;" />
+            <ui:Label text="Red Channel:" name="LB_RedChannel" style="padding-top: 3px; padding-bottom: 1px; padding-left: 4px; flex-wrap: wrap; white-space: normal;" />
+            <ui:TextField picking-mode="Ignore" label="Starts With" name="TF_RedStartsWith" style="padding-left: 10px;" />
+            <ui:TextField picking-mode="Ignore" label="Ends With" name="TF_RedEndsWith" style="padding-left: 10px;" />
+            <ui:Label text="Green Channel:" name="LB_GreenChannel" style="padding-top: 3px; padding-bottom: 1px; padding-left: 4px; flex-wrap: wrap; white-space: normal;" />
+            <ui:TextField picking-mode="Ignore" label="Starts With" name="TF_GreenStartsWith" style="padding-left: 10px;" />
+            <ui:TextField picking-mode="Ignore" label="Ends With" name="TF_GreenEndsWith" style="padding-left: 10px;" />
+            <ui:Label text="Blue Channel:" name="LB_BlueChannel" style="padding-top: 3px; padding-bottom: 1px; padding-left: 4px; flex-wrap: wrap; white-space: normal;" />
+            <ui:TextField picking-mode="Ignore" label="Starts With" name="TF_BlueStartsWith" style="padding-left: 10px;" />
+            <ui:TextField picking-mode="Ignore" label="Starts With" name="TF_BlueEndsWith" style="padding-left: 10px;" />
+            <ui:Label text="Alpha Channel:" name="LB_AlphaChannel" style="padding-top: 3px; padding-bottom: 1px; padding-left: 4px; flex-wrap: wrap; white-space: normal;" />
+            <ui:TextField picking-mode="Ignore" label="Starts With" name="TF_AlphaStartsWith" style="padding-left: 10px;" />
+            <ui:TextField picking-mode="Ignore" label="Starts With" name="TF_AlphaEndsWith" style="padding-left: 10px;" />
+        </ui:ScrollView>
+    </ui:VisualElement>
+    <ui:VisualElement name="VE_Export" style="border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-color: rgb(79, 79, 79); margin-left: 3px; margin-right: 3px; margin-top: 3px; margin-bottom: 3px; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; flex-grow: 0; flex-shrink: 1;">
+        <ui:Label text="Export" style="margin-top: 3px; -unity-font-style: bold; -unity-text-align: upper-left;" />
+        <ui:Toggle label=".tga" name="TG_Tga" value="true" style="-unity-text-align: upper-left; margin-left: 3px;" />
+        <ui:Toggle label=".png" name="TG_Png" style="-unity-text-align: upper-left; margin-left: 3px;" />
+        <ui:TextField picking-mode="Ignore" label="Name Identifier" value="filler text" text="Composite" name="TF_NameIdentifier" />
+        <ui:VisualElement style="margin-top: 10px;">
+            <ui:Label text="Size" name="LB_Size" />
+            <ui:Label text="• (by default) scale to smallest input" name="LB_SmallestInput" style="margin-left: 3px; margin-right: 3px; margin-top: 1px; margin-bottom: 3px; padding-left: 1px; padding-right: 1px; padding-top: 1px; padding-bottom: 1px; opacity: 0.5;" />
+            <ui:Toggle label="• (override) scale to specific size" name="TG_SpecificValue" />
+            <uie:Vector2Field name="VF_TextureSize" x="1024" y="1024" style="margin-left: 30px; -unity-text-align: upper-left;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement style="flex-grow: 1;" />
+    <ui:Button text="Generate Packed Textures" name="BT_GeneratePackedTextures" style="padding-top: 6px; padding-bottom: 6px; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0;" />
+</ui:UXML>

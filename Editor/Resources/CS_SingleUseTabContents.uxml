@@ -1,11 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
-    <ui:VisualElement style="flex-direction: row; justify-content: center; margin-bottom: 4px; margin-top: 3px;">
-        <Style src="UnityTextureRgbPacker.uss" />
-        <ui:Button text="Single Use" style="flex-shrink: 1; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-top: 5px; padding-bottom: 5px;" />
-        <ui:Button text="Batching" style="flex-shrink: 1; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-top: 5px; padding-bottom: 5px;" />
-    </ui:VisualElement>
-    <ui:VisualElement name="VE_Input" style="padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px; background-color: rgb(79, 79, 79); flex-grow: 0; flex-shrink: 1;">
-        <Style src="UnityTextureRgbPacker.uss" />
+    <ui:VisualElement name="VE_Input" style="padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; margin-left: 3px; margin-right: 3px; margin-top: 3px; margin-bottom: 3px; background-color: rgb(79, 79, 79); flex-grow: 0; flex-shrink: 1;">
         <ui:Label text="Inputs" style="-unity-text-align: upper-left; -unity-font-style: bold;" />
         <ui:ScrollView style="flex-grow: 1;">
             <uie:ObjectField label="Red Channel:" name="OF_RedChannelTexture" />
@@ -14,8 +8,7 @@
             <uie:ObjectField label="Alpha Channel:" name="OF_AlphaChannelTexture" />
         </ui:ScrollView>
     </ui:VisualElement>
-    <ui:VisualElement name="VE_Output" style="border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-color: rgb(79, 79, 79); margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; flex-grow: 0; flex-shrink: 1; display: none; visibility: hidden;">
-        <Style src="UnityTextureRgbPacker.uss" />
+    <ui:VisualElement name="VE_Output" style="border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-color: rgb(79, 79, 79); margin-left: 3px; margin-right: 3px; margin-top: 3px; margin-bottom: 3px; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; flex-grow: 0; flex-shrink: 1; display: none; visibility: hidden;">
         <ui:Label text="Outputs" style="-unity-text-align: upper-left; -unity-font-style: bold;" />
         <ui:VisualElement style="flex-direction: row;">
             <ui:Label text="Width x Height" style="justify-content: flex-start; -unity-text-align: middle-left; margin-left: 3px;" />
@@ -23,8 +16,7 @@
             <uie:IntegerField value="2048" name="IF_Height" style="flex-wrap: nowrap; flex-grow: 1; -unity-text-align: upper-center;" />
         </ui:VisualElement>
     </ui:VisualElement>
-    <ui:VisualElement name="VE_Export" style="border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-color: rgb(79, 79, 79); margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; flex-grow: 0; flex-shrink: 1;">
-        <Style src="UnityTextureRgbPacker.uss" />
+    <ui:VisualElement name="VE_Export" style="border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-color: rgb(79, 79, 79); margin-left: 3px; margin-right: 3px; margin-top: 3px; margin-bottom: 3px; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; flex-grow: 0; flex-shrink: 1;">
         <ui:Label text="Export" style="margin-top: 3px; -unity-font-style: bold; -unity-text-align: upper-left;" />
         <ui:Toggle label=".tga" name="TG_Tga" value="true" style="-unity-text-align: upper-left; margin-left: 3px;" />
         <ui:Toggle label=".png" name="TG_Png" style="-unity-text-align: upper-left; margin-left: 3px;" />
@@ -36,8 +28,7 @@
             <uie:Vector2Field name="VF_TextureSize" x="1024" y="1024" style="margin-left: 30px; -unity-text-align: upper-left;" />
         </ui:VisualElement>
     </ui:VisualElement>
-    <ui:VisualElement name="Preview" style="border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-color: rgb(79, 79, 79); margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; flex-grow: 1; flex-shrink: 0;">
-        <Style src="UnityTextureRgbPacker.uss" />
+    <ui:VisualElement name="Preview" style="border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-color: rgb(79, 79, 79); margin-left: 3px; margin-right: 3px; margin-top: 3px; margin-bottom: 3px; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; flex-grow: 1; flex-shrink: 0;">
         <ui:Label text="Preview" style="margin-top: 3px; -unity-font-style: bold; -unity-text-align: upper-left;" />
         <ui:Label text="Inputs" name="LB_Inputs" style="-unity-text-align: upper-center;" />
         <ui:VisualElement style="flex-direction: row; flex-grow: 0.15;">
@@ -67,7 +58,5 @@
             <ui:VisualElement name="VE_PreviewImageResult" style="flex-grow: 1; flex-shrink: 0; -unity-text-align: upper-left; -unity-background-scale-mode: scale-to-fit; border-left-width: 4px; border-right-width: 4px; border-top-width: 4px; border-bottom-width: 4px; border-top-left-radius: 2px; border-bottom-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; margin-left: 2px; margin-right: 2px; margin-top: 2px; margin-bottom: 2px; padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; -unity-background-image-tint-color: rgb(255, 255, 255);" />
         </ui:VisualElement>
     </ui:VisualElement>
-    <ui:Button text="Generate Packed Texture" name="BT_GeneratePackedTexture" style="padding-top: 6px; padding-bottom: 6px;">
-        <Style src="UnityTextureRgbPacker.uss" />
-    </ui:Button>
+    <ui:Button text="Generate Packed Texture" name="BT_GeneratePackedTexture" style="padding-top: 6px; padding-bottom: 6px; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0;" />
 </ui:UXML>
