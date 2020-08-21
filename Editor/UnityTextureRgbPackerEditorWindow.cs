@@ -40,6 +40,9 @@ namespace UnityTextureRgbPacker.Editor
         private bool _isSingleUseTabActive;
         private bool _isBatchTabActive;
 
+        private Color _selectedTabColor = new Color(0.5f, 0.5f, 0.5f);
+        private Color _unselectedTabColor = new Color(0.3647059f, 0.3647059f, 0.3647059f); 
+
         [MenuItem("Art Tools/Texture RGB(A) Packer")]
         public static void ShowWindow()
         {
@@ -95,12 +98,20 @@ namespace UnityTextureRgbPacker.Editor
 
                 // Set the button
                 _generatePackedTextureButton.clickable.clicked += GeneratePackedTexture;
+                
+                // Set tab button colors
+                _singleUseTab.style.backgroundColor = new StyleColor(_selectedTabColor);
+                _batchingTab.style.backgroundColor = new StyleColor(_unselectedTabColor);
             }
             
             else if (_isBatchTabActive)
             {
                 _batchingTabContentsVisualTreeAsset = Resources.Load<VisualTreeAsset>("CS_BatchingTabContents");
                 _batchingTabContentsVisualTreeAsset.CloneTree(_root);
+                
+                // Set tab button colors
+                _singleUseTab.style.backgroundColor = new StyleColor(_unselectedTabColor);
+                _batchingTab.style.backgroundColor = new StyleColor(_selectedTabColor);
             }
         }
 
@@ -120,6 +131,7 @@ namespace UnityTextureRgbPacker.Editor
         {
             _isSingleUseTabActive = true;
             _isBatchTabActive = false;
+
             InitUi();
         }
 
@@ -127,6 +139,7 @@ namespace UnityTextureRgbPacker.Editor
         {
             _isSingleUseTabActive = false;
             _isBatchTabActive = true;
+
             InitUi();
         }
         
