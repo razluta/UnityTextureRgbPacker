@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
     <ui:VisualElement style="flex-direction: row; justify-content: center; margin-bottom: 4px; margin-top: 3px;">
-        <ui:Button text="Single Use" name="BT_SingleUseTab" style="flex-shrink: 1; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-top: 5px; padding-bottom: 5px;" />
-        <ui:Button text="Batching" name="BT_BatchingTab" style="flex-shrink: 1; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-top: 5px; padding-bottom: 5px;" />
+        <ui:Button text="Single Use" name="BT_SingleUseTab" style="flex-shrink: 1; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-top: 4px; padding-bottom: 5px;" />
+        <ui:Button text="Batching" name="BT_BatchingTab" style="flex-shrink: 1; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-top: 4px; padding-bottom: 5px;" />
     </ui:VisualElement>
 </ui:UXML>
