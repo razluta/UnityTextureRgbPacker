@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -9,6 +10,9 @@ namespace UnityTextureRgbPacker.Editor
 {
     public class UnityTextureRgbPackerEditorWindow : EditorWindow
     {
+        private const string BrowsePanelName = "Browse";
+        private const string DefaultPath = "C:/";
+        
         private VisualElement _root;
 
         private VisualTreeAsset _tabsVisualTreeAsset;
@@ -36,6 +40,19 @@ namespace UnityTextureRgbPacker.Editor
         private VisualElement _previewImageBlueChannelVisualElement;
         private VisualElement _previewImageAlphaChannelVisualElement;
         private VisualElement _previewImageResultVisualElement;
+
+        private Button _browseButton;
+        private string _browsePath;
+        private Label _browseLabel;
+        private TextField _channelRedStartsWithTextField;
+        private TextField _channelRedEndsWithTextField;
+        private TextField _channelGreenStartsWithTextField;
+        private TextField _channelGreenEndsWithTextField;
+        private TextField _channelBlueStartsWithTextField;
+        private TextField _channelBlueEndsWithTextField;
+        private TextField _channelAlphaStartsWithTextField;
+        private TextField _channelAlphaEndsWithTextField;
+        private Button _generatePackedTexturesButton;
 
         private bool _isSingleUseTabActive;
         private bool _isBatchTabActive;
@@ -108,6 +125,39 @@ namespace UnityTextureRgbPacker.Editor
             {
                 _batchingTabContentsVisualTreeAsset = Resources.Load<VisualTreeAsset>("CS_BatchingTabContents");
                 _batchingTabContentsVisualTreeAsset.CloneTree(_root);
+
+                // Query the needed fields to get the Visual Elements references
+                _browseButton = _root.Q<Button>("BT_Browse");
+                _browseButton.clickable.clicked += Browse;
+                _browseLabel = _root.Q<Label>("LB_Browse");
+                _browseLabel.text = DefaultPath;
+                _channelRedStartsWithTextField = _root.Q<TextField>("TF_RedStartsWith");
+                _channelRedEndsWithTextField = _root.Q<TextField>("TF_RedEndsWith");
+                _channelGreenStartsWithTextField = _root.Q<TextField>("TF_GreenStartsWith");
+                _channelGreenEndsWithTextField = _root.Q<TextField>("TF_GreenEndsWith");
+                _channelBlueStartsWithTextField = _root.Q<TextField>("TF_BlueStartsWith");
+                _channelBlueEndsWithTextField = _root.Q<TextField>("TF_BlueEndsWith");
+                _channelAlphaStartsWithTextField = _root.Q<TextField>("TF_AlphaEndsWith");
+                _channelAlphaEndsWithTextField = _root.Q<TextField>("TF_AlphaEndsWith");
+                
+                _widthIntField = _root.Q<IntegerField>("IF_Width");
+                _heightIntField = _root.Q<IntegerField>("IF_Height");
+                _tgaToggle = _root.Q<Toggle>("TG_Tga");
+                _pngToggle = _root.Q<Toggle>("TG_Png");
+                _scaleToSmallestLabel = _root.Q<Label>("LB_SmallestInput");
+                _scaleToSpecificValueToggle = _root.Q<Toggle>("TG_SpecificValue");
+                _textureSizeVectorField = _root.Q<Vector2Field>("VF_TextureSize");
+                _nameIdentifierTextField = _root.Q<TextField>("TF_NameIdentifier");
+                _generatePackedTextureButton = _root.Q<Button>("BT_GeneratePackedTexture");
+                _previewImageRedChannelVisualElement = _root.Q<VisualElement>("VE_PreviewImageRedChannel");
+                _previewImageGreenChannelVisualElement = _root.Q<VisualElement>("VE_PreviewImageGreenChannel");
+                _previewImageBlueChannelVisualElement = _root.Q<VisualElement>("VE_PreviewImageBlueChannel");
+                _previewImageAlphaChannelVisualElement = _root.Q<VisualElement>("VE_PreviewImageAlphaChannel");
+                _previewImageResultVisualElement = _root.Q<VisualElement>("VE_PreviewImageResult");
+                
+                // Set the button
+                _generatePackedTexturesButton = _root.Q<Button>("BT_GeneratePackedTextures");
+                _generatePackedTexturesButton.clickable.clicked += GeneratePackedTextures;
                 
                 // Set tab button colors
                 _singleUseTab.style.backgroundColor = new StyleColor(_unselectedTabColor);
@@ -142,8 +192,18 @@ namespace UnityTextureRgbPacker.Editor
 
             InitUi();
         }
-        
 
+        private void Browse()
+        {
+            _browsePath = EditorUtility.OpenFolderPanel(BrowsePanelName, "", "");
+            if (String.IsNullOrWhiteSpace(_browsePath))
+            {
+                _browseLabel.text = DefaultPath;
+                return;
+            }
+            _browseLabel.text = _browsePath;
+        }
+        
         private void GeneratePackedTexture()
         {
             var redChannelInput = _channelRedTextureObjectField.value;
@@ -258,6 +318,11 @@ namespace UnityTextureRgbPacker.Editor
                 _previewImageResultVisualElement.style.backgroundImage = compositeTexture;
                 Selection.activeObject = AssetDatabase.LoadAssetAtPath(relativeCompositeTexturePath, typeof(Texture2D));
             }
+        }
+
+        private void GeneratePackedTextures()
+        {
+            Debug.Log("works");
         }
 
         private Texture2D GetFirstValidTextureInput(List<Texture2D> textureInputs)
