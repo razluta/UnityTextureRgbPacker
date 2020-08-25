@@ -322,7 +322,61 @@ namespace UnityTextureRgbPacker.Editor
 
         private void GeneratePackedTextures()
         {
-            Debug.Log("works");
+            // Get directory
+            _browsePath = _browseLabel.text;
+            if (String.IsNullOrWhiteSpace(_browsePath)) return;
+            if (_browsePath == DefaultPath) return;
+            if (!ProjectUtilities.IsPathInProject(_browsePath)) return;
+            var relativeBrowsePath = ProjectUtilities.GetRelativeDirectoryPath(_browsePath);
+            
+            // Get textures in the folder
+            var files = Directory.GetFiles(_browsePath);
+            var validTextures = new List<Texture2D>();
+            foreach (var filePath in files)
+            {
+                var fileRelativePath = ProjectUtilities.GetRelativeAssetPath(filePath);
+                var texture = (Texture2D) AssetDatabase.LoadAssetAtPath(fileRelativePath, typeof(Texture2D));
+                if (!texture)
+                {
+                    continue;
+                }
+
+                validTextures.Add(texture);
+            }
+
+            // Get matching textures
+            var matchingInputs = new List<MatchingTextureInput>();
+            foreach (var texture in validTextures)
+            {
+                var textureName = texture.name;
+                var expectedRedChannelName = string.Empty;
+                var expectedGreenChannelName = string.Empty;
+                var expectedBlueChannelName  = string.Empty;
+                var expectedAlphaChannelName = string.Empty;
+
+                // Red Channel
+                if (!String.IsNullOrWhiteSpace(_channelRedStartsWithTextField.value))
+                {
+                    if (textureName.StartsWith(_channelRedStartsWithTextField.value))
+                    {
+                        expectedRedChannelName = textureName;
+                    }
+                }
+                else if (!String.IsNullOrWhiteSpace(_channelRedEndsWithTextField.value))
+                {
+                    if (textureName.EndsWith(_channelRedEndsWithTextField.value))
+                    {
+                        expectedRedChannelName = textureName;
+                    }
+                }
+                Debug.Log(expectedRedChannelName);
+                
+                // Green Channel
+                
+                
+            }
+
+
         }
 
         private Texture2D GetFirstValidTextureInput(List<Texture2D> textureInputs)
