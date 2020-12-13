@@ -13,14 +13,16 @@ namespace UnityTextureRgbPacker.Editor
         private const string BrowsePanelName = "Browse";
         private const string DefaultPath = "C:/";
         
+        private readonly Color _selectedTabColor = new Color(0.50f, 0.50f, 0.50f);
+        private readonly Color _unselectedTabColor = new Color(0.36f, 0.36f, 0.36f); 
+        
         private VisualElement _root;
-
         private VisualTreeAsset _tabsVisualTreeAsset;
         private VisualTreeAsset _singleUseTabContentsVisualTreeAsset;
         private VisualTreeAsset _batchingTabContentsVisualTreeAsset;
 
-        private Button _singleUseTab;
-        private Button _batchingTab;
+        private Button _packSingleUseTab;
+        private Button _packBatchingTab;
 
         private ObjectField _channelRedTextureObjectField;
         private ObjectField _channelGreenTextureObjectField;
@@ -44,34 +46,30 @@ namespace UnityTextureRgbPacker.Editor
         private Button _browseButton;
         private string _browsePath;
         private Label _browseLabel;
-        private TextField _channelRedStartsWithTextField;
-        private TextField _channelRedEndsWithTextField;
-        private TextField _channelGreenStartsWithTextField;
-        private TextField _channelGreenEndsWithTextField;
-        private TextField _channelBlueStartsWithTextField;
-        private TextField _channelBlueEndsWithTextField;
-        private TextField _channelAlphaStartsWithTextField;
-        private TextField _channelAlphaEndsWithTextField;
+        private Toggle _startsWithToggle;
+        private Toggle _containsToggle;
+        private Toggle _endsWithToggle;
+        private TextField _channelRedKeywordTextField;
+        private TextField _channelGreenKeywordTextField;
+        private TextField _channelBlueKeywordTextField;
+        private TextField _channelAlphaKeywordTextField;
         private Button _generatePackedTexturesButton;
 
-        private bool _isSingleUseTabActive;
-        private bool _isBatchTabActive;
-
-        private Color _selectedTabColor = new Color(0.5f, 0.5f, 0.5f);
-        private Color _unselectedTabColor = new Color(0.3647059f, 0.3647059f, 0.3647059f); 
-
+        private bool _isPackSingleUseTabActive;
+        private bool _isPackBatchTabActive;
+        
         [MenuItem("Art Tools/Texture RGB(A) Packer")]
         public static void ShowWindow()
         {
             var window = GetWindow<UnityTextureRgbPackerEditorWindow>();
             window.titleContent = new GUIContent("Texture RGB(A) Packer");
-            window.minSize = new Vector2(350, 650);
+            window.minSize = new Vector2(500, 700);
         }
 
         private void OnEnable()
         {
-            _isSingleUseTabActive = true;
-            _isBatchTabActive = false;
+            _isPackSingleUseTabActive = true;
+            _isPackBatchTabActive = false;
             _root = rootVisualElement;
             
             InitUi();
@@ -82,9 +80,9 @@ namespace UnityTextureRgbPacker.Editor
             _root.Clear();
             InitCommonUi();
             
-            if (_isSingleUseTabActive)
+            if (_isPackSingleUseTabActive)
             {
-                _singleUseTabContentsVisualTreeAsset = Resources.Load<VisualTreeAsset>("CS_SingleUseTabContents");
+                _singleUseTabContentsVisualTreeAsset = Resources.Load<VisualTreeAsset>("CS_PackSingleUseTabContents");
                 _singleUseTabContentsVisualTreeAsset.CloneTree(_root);
 
                 // Query the needed fields to get the Visual Elements references
@@ -117,13 +115,13 @@ namespace UnityTextureRgbPacker.Editor
                 _generatePackedTextureButton.clickable.clicked += GeneratePackedTexture;
                 
                 // Set tab button colors
-                _singleUseTab.style.backgroundColor = new StyleColor(_selectedTabColor);
-                _batchingTab.style.backgroundColor = new StyleColor(_unselectedTabColor);
+                _packSingleUseTab.style.backgroundColor = new StyleColor(_selectedTabColor);
+                _packBatchingTab.style.backgroundColor = new StyleColor(_unselectedTabColor);
             }
             
-            else if (_isBatchTabActive)
+            else if (_isPackBatchTabActive)
             {
-                _batchingTabContentsVisualTreeAsset = Resources.Load<VisualTreeAsset>("CS_BatchingTabContents");
+                _batchingTabContentsVisualTreeAsset = Resources.Load<VisualTreeAsset>("CS_PackBatchingTabContents");
                 _batchingTabContentsVisualTreeAsset.CloneTree(_root);
 
                 // Query the needed fields to get the Visual Elements references
@@ -131,15 +129,14 @@ namespace UnityTextureRgbPacker.Editor
                 _browseButton.clickable.clicked += Browse;
                 _browseLabel = _root.Q<Label>("LB_Browse");
                 _browseLabel.text = DefaultPath;
-                _channelRedStartsWithTextField = _root.Q<TextField>("TF_RedStartsWith");
-                _channelRedEndsWithTextField = _root.Q<TextField>("TF_RedEndsWith");
-                _channelGreenStartsWithTextField = _root.Q<TextField>("TF_GreenStartsWith");
-                _channelGreenEndsWithTextField = _root.Q<TextField>("TF_GreenEndsWith");
-                _channelBlueStartsWithTextField = _root.Q<TextField>("TF_BlueStartsWith");
-                _channelBlueEndsWithTextField = _root.Q<TextField>("TF_BlueEndsWith");
-                _channelAlphaStartsWithTextField = _root.Q<TextField>("TF_AlphaEndsWith");
-                _channelAlphaEndsWithTextField = _root.Q<TextField>("TF_AlphaEndsWith");
-                
+                _startsWithToggle = _root.Q<Toggle>("TG_StartsWith");
+                _containsToggle = _root.Q<Toggle>("TG_Contains");
+                _endsWithToggle = _root.Q<Toggle>("TF_EndsWith");
+                _channelRedKeywordTextField = _root.Q<TextField>("TF_RedKeyword");
+                _channelGreenKeywordTextField = _root.Q<TextField>("TF_GreenKeyword");
+                _channelBlueKeywordTextField = _root.Q<TextField>("TF_BlueKeyword");
+                _channelAlphaKeywordTextField = _root.Q<TextField>("TF_AlphaKeyword");
+
                 _widthIntField = _root.Q<IntegerField>("IF_Width");
                 _heightIntField = _root.Q<IntegerField>("IF_Height");
                 _tgaToggle = _root.Q<Toggle>("TG_Tga");
@@ -160,8 +157,8 @@ namespace UnityTextureRgbPacker.Editor
                 _generatePackedTexturesButton.clickable.clicked += GeneratePackedTextures;
                 
                 // Set tab button colors
-                _singleUseTab.style.backgroundColor = new StyleColor(_unselectedTabColor);
-                _batchingTab.style.backgroundColor = new StyleColor(_selectedTabColor);
+                _packSingleUseTab.style.backgroundColor = new StyleColor(_unselectedTabColor);
+                _packBatchingTab.style.backgroundColor = new StyleColor(_selectedTabColor);
             }
         }
 
@@ -170,25 +167,25 @@ namespace UnityTextureRgbPacker.Editor
             _tabsVisualTreeAsset = Resources.Load<VisualTreeAsset>("CS_Tabs");
             _tabsVisualTreeAsset.CloneTree(_root);
 
-            _singleUseTab = _root.Q<Button>("BT_SingleUseTab");
-            _singleUseTab.clickable.clicked += EnableSingleUseTab;
+            _packSingleUseTab = _root.Q<Button>("BT_PackSingleUseTab");
+            _packSingleUseTab.clickable.clicked += EnableSingleUseTab;
 
-            _batchingTab = _root.Q<Button>("BT_BatchingTab");
-            _batchingTab.clickable.clicked += EnableBatchingTab;
+            _packBatchingTab = _root.Q<Button>("BT_PackBatchingTab");
+            _packBatchingTab.clickable.clicked += EnableBatchingTab;
         }
         
         private void EnableSingleUseTab()
         {
-            _isSingleUseTabActive = true;
-            _isBatchTabActive = false;
+            _isPackSingleUseTabActive = true;
+            _isPackBatchTabActive = false;
 
             InitUi();
         }
 
         private void EnableBatchingTab()
         {
-            _isSingleUseTabActive = false;
-            _isBatchTabActive = true;
+            _isPackSingleUseTabActive = false;
+            _isPackBatchTabActive = true;
 
             InitUi();
         }
@@ -272,8 +269,7 @@ namespace UnityTextureRgbPacker.Editor
                 alphaChannelTexture
             };
             var relativeCompositeTexturePath =
-                Path.Combine(
-                    Path.GetDirectoryName(AssetDatabase.GetAssetPath(
+                Path.Combine(Path.GetDirectoryName(AssetDatabase.GetAssetPath(
                         GetFirstValidTextureInput(listOfTextureInputs))), 
                     compositeTextureName);
 
@@ -346,37 +342,66 @@ namespace UnityTextureRgbPacker.Editor
 
             // Get matching textures
             var matchingInputs = new List<MatchingTextureInput>();
-            foreach (var texture in validTextures)
+            while (validTextures.Count > 0)
             {
-                var textureName = texture.name;
+                var currentTexture = validTextures[0];
+                var currentTextureName = currentTexture.name;
+                
+                // Set up some empty expectations
                 var expectedRedChannelName = string.Empty;
                 var expectedGreenChannelName = string.Empty;
                 var expectedBlueChannelName  = string.Empty;
                 var expectedAlphaChannelName = string.Empty;
+                
+                // Set up some empty textures
+                Texture2D redChannelTexture = null;
+                Texture2D greenChannelTexture = null;
+                Texture2D blueChannelTexture = null;
+                Texture2D alphaChannelTexture = null;
 
-                // Red Channel
-                if (!String.IsNullOrWhiteSpace(_channelRedStartsWithTextField.value))
+                if (_startsWithToggle.value)
                 {
-                    if (textureName.StartsWith(_channelRedStartsWithTextField.value))
+                    if (currentTextureName.StartsWith(_channelRedKeywordTextField.text))
                     {
-                        expectedRedChannelName = textureName;
+                        redChannelTexture = currentTexture;
+                        validTextures = GetListWithoutTexture(validTextures, currentTextureName);
+
+                        expectedGreenChannelName = currentTextureName.Replace(
+                            _channelRedKeywordTextField.value,
+                            _channelGreenKeywordTextField.value);
+                        
+                        
+                        
+                        
+                        
                     }
                 }
-                else if (!String.IsNullOrWhiteSpace(_channelRedEndsWithTextField.value))
+                else if(_containsToggle.value)
                 {
-                    if (textureName.EndsWith(_channelRedEndsWithTextField.value))
-                    {
-                        expectedRedChannelName = textureName;
-                    }
+                    
                 }
-                Debug.Log(expectedRedChannelName);
-                
-                // Green Channel
-                
-                
+                else if (_endsWithToggle.value)
+                {
+                    
+                }
+
+
+
+
             }
-
-
+        }
+        
+        private List<Texture2D> GetListWithoutTexture(List<Texture2D> listOfTextures, string textureName)
+        {
+            var optimizedTextureList = listOfTextures;
+            foreach (var texture in listOfTextures)
+            {
+                if (texture.name == textureName)
+                {
+                    optimizedTextureList.Remove(texture);
+                }
+            }
+            return optimizedTextureList;
         }
 
         private Texture2D GetFirstValidTextureInput(List<Texture2D> textureInputs)

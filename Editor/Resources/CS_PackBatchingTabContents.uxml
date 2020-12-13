@@ -5,18 +5,28 @@
         <ui:Label text="Rules" style="-unity-text-align: upper-left; -unity-font-style: bold;" />
         <ui:ScrollView style="flex-grow: 1;">
             <ui:Label text="For all the assets in this directory, find the textures that are prefixed or suffixed by the rules defined and combine them using the specified chanels (leave entry empty if you want the rule ignored and the channel empty)." name="LB_Instructions" style="padding-top: 3px; padding-bottom: 10px; padding-left: 4px; flex-wrap: wrap; white-space: normal;" />
+            <ui:VisualElement name="CheckBoxes" style="flex-direction: row;">
+                <ui:VisualElement name="CS_StartsWith" style="white-space: normal; flex-direction: row; flex-grow: 1; justify-content: center;">
+                    <ui:Toggle name="TG_StartsWith" style="margin-top: 3px;" />
+                    <ui:Label text="Starts With" name="LB_StartsWith" style="padding-top: 2px;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="CS_Contains" style="white-space: normal; flex-direction: row; flex-grow: 1; justify-content: center;">
+                    <ui:Toggle name="TG_Contains" style="margin-top: 3px;" />
+                    <ui:Label text="Contains" name="LB_Contains" style="padding-top: 2px;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="CS_EndsWith" style="white-space: normal; flex-direction: row; flex-grow: 1; justify-content: center;">
+                    <ui:Toggle name="TG_EndsWith" style="margin-top: 3px;" />
+                    <ui:Label text="Ends With" name="LB_EndsWith" style="padding-top: 2px; -unity-text-align: upper-right;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
             <ui:Label text="Red Channel:" name="LB_RedChannel" style="padding-top: 3px; padding-bottom: 1px; padding-left: 4px; flex-wrap: wrap; white-space: normal;" />
-            <ui:TextField picking-mode="Ignore" label="Starts With" name="TF_RedStartsWith" style="padding-left: 10px;" />
-            <ui:TextField picking-mode="Ignore" label="Ends With" name="TF_RedEndsWith" style="padding-left: 10px;" />
+            <ui:TextField picking-mode="Ignore" label="Keyword" name="TF_RedKeyword" style="padding-left: 10px;" />
             <ui:Label text="Green Channel:" name="LB_GreenChannel" style="padding-top: 3px; padding-bottom: 1px; padding-left: 4px; flex-wrap: wrap; white-space: normal;" />
-            <ui:TextField picking-mode="Ignore" label="Starts With" name="TF_GreenStartsWith" style="padding-left: 10px;" />
-            <ui:TextField picking-mode="Ignore" label="Ends With" name="TF_GreenEndsWith" style="padding-left: 10px;" />
+            <ui:TextField picking-mode="Ignore" label="Keyword" name="TF_GreenKeyword" style="padding-left: 10px;" />
             <ui:Label text="Blue Channel:" name="LB_BlueChannel" style="padding-top: 3px; padding-bottom: 1px; padding-left: 4px; flex-wrap: wrap; white-space: normal;" />
-            <ui:TextField picking-mode="Ignore" label="Starts With" name="TF_BlueStartsWith" style="padding-left: 10px;" />
-            <ui:TextField picking-mode="Ignore" label="Ends With" name="TF_BlueEndsWith" style="padding-left: 10px;" />
+            <ui:TextField picking-mode="Ignore" label="Keyword" name="TF_BlueKeyword" style="padding-left: 10px;" />
             <ui:Label text="Alpha Channel:" name="LB_AlphaChannel" style="padding-top: 3px; padding-bottom: 1px; padding-left: 4px; flex-wrap: wrap; white-space: normal;" />
-            <ui:TextField picking-mode="Ignore" label="Starts With" name="TF_AlphaStartsWith" style="padding-left: 10px;" />
-            <ui:TextField picking-mode="Ignore" label="Ends With" name="TF_AlphaEndsWith" style="padding-left: 10px;" />
+            <ui:TextField picking-mode="Ignore" label="Keyword" name="TF_AlphaKeyword" style="padding-left: 10px;" />
         </ui:ScrollView>
     </ui:VisualElement>
     <ui:VisualElement name="VE_Export" style="border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-color: rgb(79, 79, 79); margin-left: 3px; margin-right: 3px; margin-top: 3px; margin-bottom: 3px; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; flex-grow: 0; flex-shrink: 1;">

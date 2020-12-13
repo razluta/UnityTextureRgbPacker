@@ -4,7 +4,7 @@ using System.Text;
 
 namespace UnityTextureRgbPacker
 {
-    public class StringUtilities
+    public static class StringUtilities
     {
         public static string GetCommonPrefix(List<string> names)
         {
