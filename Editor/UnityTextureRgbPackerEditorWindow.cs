@@ -58,7 +58,7 @@ namespace UnityTextureRgbPacker.Editor
         private bool _isPackSingleUseTabActive;
         private bool _isPackBatchTabActive;
         
-        [MenuItem("Art Tools/Texture RGB(A) Packer")]
+        [MenuItem("Raz's Tools/Texture RGB(A) Packer")]
         public static void ShowWindow()
         {
             var window = GetWindow<UnityTextureRgbPackerEditorWindow>();
