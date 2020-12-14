@@ -28,7 +28,7 @@ _Important to note: input textures must be the same size; if the input textures 
 ## Automatic Generation using the API
 If you are using this repository to automate the creation of the packed texture in your own code, you'll need to use the:
 ```
-UnityextureRgbPacker.TexturePacker.GetCompositeTextureRgb(
+UnityTextureRgbPacker.TexturePacker.GetCompositeTextureRgb(
             compositeTextureName,
             textureRedChannel,
             textureGreenChannel,
@@ -47,7 +47,7 @@ UnityextureRgbPacker.TexturePacker.GetCompositeTextureRgb(
 ```
 To save the file to disk, you can use the:
 ```
-UnityextureRgbPacker.TextureUtilities.SaveTextureToPath(
+UnityTextureRgbPacker.TextureUtilities.SaveTextureToPath(
                 texture,
                 path,
                 format)
