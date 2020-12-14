@@ -1,0 +1,93 @@
+.thin_border {
+    border-left-color: rgba(38, 38, 38, 255);
+    border-right-color: rgba(38, 38, 38, 255);
+    border-top-color: rgba(38, 38, 38, 255);
+    border-bottom-color: rgba(38, 38, 38, 255);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.section_title_bold {
+    -unity-font-style: bold;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    -unity-text-align: upper-left;
+}
+
+.single_input_row {
+    flex-direction: row;
+    margin-left: 3px;
+    margin-right: 3px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.single_input_row_texture_input {
+    flex-grow: 1;
+    margin-left: 4px;
+    margin-right: 4px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.single_input_row_label {
+    border-top-width: 2px;
+    color: rgba(255, 255, 255, 255);
+    min-width: 100px;
+    margin-top: 3px;
+    margin-left: 2px;
+}
+
+.single_input_row_toggle {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.single_channel_input {
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+.unity-button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.external_border {
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgba(38, 38, 38, 255);
+    border-right-color: rgba(38, 38, 38, 255);
+    border-top-color: rgba(38, 38, 38, 255);
+    border-bottom-color: rgba(38, 38, 38, 255);
+    margin-left: 3px;
+    margin-right: 3px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 3px;
+    padding-bottom: 6px;
+}
