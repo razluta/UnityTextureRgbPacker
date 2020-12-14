@@ -71,6 +71,10 @@
     padding-right: 3px;
     padding-top: 3px;
     padding-bottom: 3px;
+    border-left-color: rgb(38, 38, 38);
+    border-right-color: rgb(38, 38, 38);
+    border-top-color: rgb(38, 38, 38);
+    border-bottom-color: rgb(38, 38, 38);
 }
 
 .external_border {
@@ -90,4 +94,27 @@
     padding-right: 3px;
     padding-top: 3px;
     padding-bottom: 6px;
+}
+
+.tiny_preview {
+    border-left-color: rgb(38, 38, 38);
+    border-right-color: rgb(38, 38, 38);
+    border-top-color: rgb(38, 38, 38);
+    border-bottom-color: rgb(38, 38, 38);
+    width: 34px;
+    height: 34px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    background-color: rgba(26, 26, 26, 255);
+}
+
+.tiny_image_preview {
+    width: 30px;
+    height: 30px;
+    margin-left: 1px;
+    margin-right: 1px;
+    margin-top: 1px;
+    margin-bottom: 1px;
 }
