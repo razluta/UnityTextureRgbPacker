@@ -14,7 +14,7 @@ namespace UnityTextureRgbPacker.Editor
         {
             var window = GetWindow<UnityTextureRgbPackerEditorWindow>();
             window.titleContent = new GUIContent(TexturePackerName);
-            window.minSize = new Vector2(387, 870);
+            window.minSize = new Vector2(387, 900);
         }
 
         private void OnEnable()
