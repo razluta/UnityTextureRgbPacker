@@ -1,13 +1,16 @@
 ﻿using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static UnityTextureRgbPacker.Editor.UnityTextureRgbPackagerEditorWindowConstants;
+using static UnityTextureRgbPacker.Editor.TexturePackerDataConstants;
 
 namespace UnityTextureRgbPacker.Editor
 {
     public class UnityTextureRgbPackerEditorWindow : EditorWindow
     {
         private VisualElement _root;
+        private TexturePackerData _texturePackerData;
         
         [MenuItem("Raz's Tools/Texture RGB(A) Packer")]
         public static void ShowWindow()
@@ -25,6 +28,7 @@ namespace UnityTextureRgbPacker.Editor
             // Process Type
             var processTypeVisualTreeAsset = Resources.Load<VisualTreeAsset>(ProcessTypeUxmlPath);
             processTypeVisualTreeAsset.CloneTree(_root);
+            var processTypeEnumField = _root.Q<EnumField>(ProcessTypeEnumFieldName);
             
             // Single vs Batch
             var tabButtonsVisualTreeAsset = Resources.Load<VisualTreeAsset>(TabButtonsUxmlPath);
@@ -44,6 +48,20 @@ namespace UnityTextureRgbPacker.Editor
 
             #endregion
 
+            #region BINDINGS
+            // Setup
+            _texturePackerData = ScriptableObject.CreateInstance<TexturePackerData>();
+            var texPackSerObj = new UnityEditor.SerializedObject(_texturePackerData);
+            
+            // Process Type
+            var processTypeProperty = texPackSerObj.FindProperty(ProcessTypePropName);
+            if (processTypeProperty != null)
+            {
+                processTypeEnumField.BindProperty(processTypeProperty);
+            }
+            // processTypeEnumField.style.display = DisplayStyle.None;
+
+            #endregion
         }
 
     }

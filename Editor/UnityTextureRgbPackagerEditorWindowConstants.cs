@@ -6,6 +6,7 @@ namespace UnityTextureRgbPacker.Editor
         
         // Process Type
         public const string ProcessTypeUxmlPath = "CS_Process";
+        public const string ProcessTypeEnumFieldName = "EF_ProcessType";
         // Tabs
         public const string TabButtonsUxmlPath = "CS_TabButtons";
         // Inputs
