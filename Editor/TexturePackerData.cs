@@ -14,8 +14,8 @@ namespace UnityTextureRgbPacker.Editor
         public enum ProcessTypeCategories
         {
             Pack,
-            Unpack,
-            Swap
+            // Unpack,
+            // Swap
         }
         #endregion
         
