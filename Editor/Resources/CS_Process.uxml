@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:VisualElement name="VE_Process" class="external_border">
+        <Style src="TextureRgbaPacker.uss" />
+        <ui:Label text="Process Type" class="section_title_bold" style="-unity-text-align: upper-center;" />
+        <uie:EnumField value="Center" name="EF_ProcessType" />
+    </ui:VisualElement>
+</ui:UXML>

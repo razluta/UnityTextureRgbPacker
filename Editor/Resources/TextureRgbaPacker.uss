@@ -1,8 +1,8 @@
 .thin_border {
-    border-left-color: rgba(38, 38, 38, 255);
-    border-right-color: rgba(38, 38, 38, 255);
-    border-top-color: rgba(38, 38, 38, 255);
-    border-bottom-color: rgba(38, 38, 38, 255);
+    border-left-color: rgb(38, 38, 38);
+    border-right-color: rgb(38, 38, 38);
+    border-top-color: rgb(38, 38, 38);
+    border-bottom-color: rgb(38, 38, 38);
     border-left-width: 1px;
     border-right-width: 1px;
     border-top-width: 1px;
@@ -40,7 +40,7 @@
 
 .single_input_row_label {
     border-top-width: 2px;
-    color: rgba(255, 255, 255, 255);
+    color: rgb(255, 255, 255);
     min-width: 100px;
     margin-top: 3px;
     margin-left: 2px;
@@ -75,6 +75,8 @@
     border-right-color: rgb(38, 38, 38);
     border-top-color: rgb(38, 38, 38);
     border-bottom-color: rgb(38, 38, 38);
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .external_border {
@@ -82,10 +84,10 @@
     border-right-width: 1px;
     border-top-width: 1px;
     border-bottom-width: 1px;
-    border-left-color: rgba(38, 38, 38, 255);
-    border-right-color: rgba(38, 38, 38, 255);
-    border-top-color: rgba(38, 38, 38, 255);
-    border-bottom-color: rgba(38, 38, 38, 255);
+    border-left-color: rgb(38, 38, 38);
+    border-right-color: rgb(38, 38, 38);
+    border-top-color: rgb(38, 38, 38);
+    border-bottom-color: rgb(38, 38, 38);
     margin-left: 3px;
     margin-right: 3px;
     margin-top: 3px;
@@ -107,7 +109,7 @@
     border-right-width: 1px;
     border-top-width: 1px;
     border-bottom-width: 1px;
-    background-color: rgba(26, 26, 26, 255);
+    background-color: rgb(26, 26, 26);
 }
 
 .tiny_image_preview {
@@ -117,4 +119,35 @@
     margin-right: 1px;
     margin-top: 1px;
     margin-bottom: 1px;
+}
+
+.unity-integer-field__label {
+    flex-shrink: 1;
+    -unity-text-align: upper-right;
+    margin-right: 3px;
+    margin-left: -120px;
+}
+
+.unity-integer-field__input {
+    -unity-text-align: upper-center;
+}
+
+.unity-enum-field {
+    min-height: 17px;
+}
+
+.preview_result_button {
+    flex-grow: 1;
+}
+
+.tab_contents_row_buttons {
+    flex-direction: row;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.tab_contents_button {
+    margin-left: 0;
+    padding-left: 0;
+    width: 50%;
 }

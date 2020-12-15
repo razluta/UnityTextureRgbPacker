@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:VisualElement name="VE_SingleBatchButtons" class="tab_contents_row_buttons external_border" style="padding-left: 3px; margin-left: 3px; padding-bottom: 3px;">
+        <Style src="TextureRgbaPacker.uss" />
+        <ui:Button text="Single" name="BT_Single" class="tab_contents_button" />
+        <ui:Button text="Batch" name="BT_Batch" class="tab_contents_button" />
+    </ui:VisualElement>
+</ui:UXML>
