@@ -60,6 +60,18 @@ namespace UnityTextureRgbPacker.Editor
             var redChannelUseBlueChannelToggle = inputsVisualElement.Q<Toggle>(RedChannelUseBlueChannelToggleName);
             var redChannelUseAlphaChannelToggle = inputsVisualElement.Q<Toggle>(RedChannelUseAlphaChannelToggleName);
             var redChannelDimensionsLabel = inputsVisualElement.Q<Label>(RedChannelDimensionsLabelName);
+            // Inputs - Green Channel
+            var greenChannelToggle = inputsVisualElement.Q<Toggle>(GreenChannelToggleName);
+            var greenChannelVisualElement = inputsVisualElement.Q<VisualElement>(GreenChannelVisualElementName);
+            var greenChannelObjectField = inputsVisualElement.Q<ObjectField>(GreenChannelObjectFieldName);
+            var greenChannelPreviewVisualElement = inputsVisualElement.Q<VisualElement>(GreenChannelPreviewVisualElementName);
+            var greenChannelAdvancedOptionsFoldout = inputsVisualElement.Q<Foldout>(GreenChannelAdvancedOptionsFoldoutName);
+            var greenChannelUseAllChannelsToggle = inputsVisualElement.Q<Toggle>(GreenChannelUseAllChannelsToggleName);
+            var greenChannelUseRedChannelToggle = inputsVisualElement.Q<Toggle>(GreenChannelUseRedChannelToggleName);
+            var greenChannelUseGreenChannelToggle = inputsVisualElement.Q<Toggle>(GreenChannelUseGreenChannelToggleName);
+            var greenChannelUseBlueChannelToggle = inputsVisualElement.Q<Toggle>(GreenChannelUseBlueChannelToggleName);
+            var greenChannelUseAlphaChannelToggle = inputsVisualElement.Q<Toggle>(GreenChannelUseAlphaChannelToggleName);
+            var greenChannelDimensionsLabel = inputsVisualElement.Q<Label>(GreenChannelDimensionsLabelName);
             // Export
             var exportVisualTreeAsset = Resources.Load<VisualTreeAsset>(ExportUxmlPath);
             exportVisualTreeAsset.CloneTree(_root);
@@ -283,6 +295,94 @@ namespace UnityTextureRgbPacker.Editor
                 redChannelUseRedChannelToggle.value = false; 
                 redChannelUseGreenChannelToggle.value = false; 
                 redChannelUseBlueChannelToggle.value = false;
+            });
+            
+            // Inputs - Green Channel
+            greenChannelVisualElement.SetEnabled(greenChannelToggle.value);
+            greenChannelToggle.RegisterValueChangedCallback(evt =>
+            {
+                greenChannelVisualElement.SetEnabled(greenChannelToggle.value);
+            });
+            
+            greenChannelObjectField.objectType = typeof(Texture2D);
+            greenChannelObjectField.RegisterValueChangedCallback(evt =>
+            {
+                if (greenChannelObjectField.value == null)
+                {
+                    greenChannelDimensionsLabel.text = "";
+                    return;
+                }
+                
+                var texture = (Texture2D) greenChannelObjectField.value;
+                if (texture == null)
+                {
+                    greenChannelDimensionsLabel.text = "";
+                    return;
+                }
+                greenChannelPreviewVisualElement.style.backgroundImage = texture;
+                greenChannelDimensionsLabel.text = texture.width.ToString() + PixelDimensionsX + texture.height.ToString();
+            });
+            
+            greenChannelAdvancedOptionsFoldout.value = false;
+            
+            greenChannelUseAllChannelsToggle.RegisterValueChangedCallback(evt =>
+            {
+                if (!greenChannelUseAllChannelsToggle.value)
+                {
+                    return;
+                }
+                greenChannelUseRedChannelToggle.value = false; 
+                greenChannelUseGreenChannelToggle.value = false; 
+                greenChannelUseBlueChannelToggle.value = false; 
+                greenChannelUseAlphaChannelToggle.value = false;
+            });
+            
+            greenChannelUseRedChannelToggle.RegisterValueChangedCallback(evt =>
+            {
+                if (!greenChannelUseRedChannelToggle.value)
+                {
+                    return;
+                }
+                greenChannelUseAllChannelsToggle.value = false; 
+                greenChannelUseGreenChannelToggle.value = false; 
+                greenChannelUseBlueChannelToggle.value = false; 
+                greenChannelUseAlphaChannelToggle.value = false;
+            });
+            
+            greenChannelUseGreenChannelToggle.RegisterValueChangedCallback(evt =>
+            {
+                if (!greenChannelUseGreenChannelToggle.value)
+                {
+                    return;
+                }
+                greenChannelUseAllChannelsToggle.value = false; 
+                greenChannelUseRedChannelToggle.value = false; 
+                greenChannelUseBlueChannelToggle.value = false; 
+                greenChannelUseAlphaChannelToggle.value = false;
+            });
+            
+            greenChannelUseBlueChannelToggle.RegisterValueChangedCallback(evt =>
+            {
+                if (!greenChannelUseBlueChannelToggle.value)
+                {
+                    return;
+                }
+                greenChannelUseAllChannelsToggle.value = false; 
+                greenChannelUseRedChannelToggle.value = false; 
+                greenChannelUseGreenChannelToggle.value = false; 
+                greenChannelUseAlphaChannelToggle.value = false;
+            });
+            
+            greenChannelUseAlphaChannelToggle.RegisterValueChangedCallback(evt =>
+            {
+                if (!greenChannelUseAlphaChannelToggle.value)
+                {
+                    return;
+                }
+                greenChannelUseAllChannelsToggle.value = false; 
+                greenChannelUseRedChannelToggle.value = false; 
+                greenChannelUseGreenChannelToggle.value = false; 
+                greenChannelUseBlueChannelToggle.value = false;
             });
             #endregion
         }

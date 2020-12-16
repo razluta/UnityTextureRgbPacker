@@ -33,6 +33,18 @@ namespace UnityTextureRgbPacker.Editor
         public const string RedChannelUseBlueChannelToggleName = "TG_RedUseBlueChannel";
         public const string RedChannelUseAlphaChannelToggleName = "TG_RedUseAlphaChannel";
         public const string RedChannelDimensionsLabelName = "LB_RedChannelDimensions";
+        public const string GreenChannelToggleName = "TG_GreenChannel";
+        public const string GreenChannelVisualElementName = "VE_GreenChannelInput";
+        public const string GreenChannelObjectFieldName = "OF_GreenChannelTexture";
+        public const string GreenChannelPreviewVisualElementName = "VE_GreenChannelPreview";
+        public const string GreenChannelAdvancedOptionsFoldoutName = "FO_GreenChannelAdvancedOptions";
+        public const string GreenChannelUseAllChannelsToggleName = "TG_GreenUseAllChannels";
+        public const string GreenChannelUseRedChannelToggleName = "TG_GreenUseRedChannel";
+        public const string GreenChannelUseGreenChannelToggleName = "TG_GreenUseGreenChannel";
+        public const string GreenChannelUseBlueChannelToggleName = "TG_GreenUseBlueChannel";
+        public const string GreenChannelUseAlphaChannelToggleName = "TG_GreenUseAlphaChannel";
+        public const string GreenChannelDimensionsLabelName = "LB_GreenChannelDimensions";
+        
         // Export
         public const string ExportUxmlPath = "CS_Export";
         public const string ExportVisualElementName = "VE_Export";

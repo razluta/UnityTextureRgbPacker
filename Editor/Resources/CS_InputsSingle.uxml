@@ -50,6 +50,54 @@
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
+        <ui:VisualElement name="VE_GreenChannelInputRow" class="single_input_row">
+            <ui:Toggle name="TG_GreenChannel" class="thin_border single_input_row_toggle" />
+            <ui:VisualElement name="VE_GreenChannelInput" style="flex-grow: 1;">
+                <ui:VisualElement name="VE_RedChannelText" class="single_channel_input thin_border">
+                    <ui:Label text="Green Channel Texture Input" class="section_title_bold" style="-unity-text-align: upper-left; flex-grow: 1;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="VE_GreenChannelInputRow" class="single_channel_input">
+                    <ui:VisualElement name="VE_GreenChannel" class="single_channel_input thin_border">
+                        <uie:ObjectField name="OF_GreenChannelTexture" class="single_input_row_texture_input" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="VE_GreenChannelAdvancedOptions" class="thin_border">
+                    <ui:Foldout text="Advanced Options" name="FO_GreenChannelAdvancedOptions">
+                        <ui:VisualElement style="flex-direction: row;">
+                            <ui:VisualElement class="thin_border" style="flex-direction: column;">
+                                <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
+                                    <ui:Toggle name="TG_GreenUseAllChannels" />
+                                    <ui:Label text="use all channels" />
+                                </ui:VisualElement>
+                                <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
+                                    <ui:Toggle name="TG_GreenUseRedChannel" />
+                                    <ui:Label text="use Red channel" />
+                                </ui:VisualElement>
+                                <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
+                                    <ui:Toggle name="TG_GreenUseGreenChannel" />
+                                    <ui:Label text="use Green channel" />
+                                </ui:VisualElement>
+                                <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
+                                    <ui:Toggle name="TG_GreenUseBlueChannel" />
+                                    <ui:Label text="use Blue channel" />
+                                </ui:VisualElement>
+                                <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
+                                    <ui:Toggle name="TG_GreenUseAlphaChannel" />
+                                    <ui:Label text="use Alpha channel" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="thin_border" style="flex-direction: row; flex-grow: 1; flex-shrink: 1;">
+                                <ui:VisualElement style="flex-grow: 1; flex-shrink: 0; background-color: rgb(26, 26, 26);">
+                                    <ui:VisualElement name="VE_GreenChannelPreview" style="flex-grow: 1; -unity-background-scale-mode: scale-to-fit; margin-left: 3px; margin-right: 3px; margin-top: 3px; margin-bottom: 3px;">
+                                        <ui:Label name="LB_GreenChannelDimensions" class="texture_properties" style="-unity-text-align: lower-right; margin-left: 3px; margin-right: 3px; margin-top: 3px; margin-bottom: 3px; flex-grow: 1;" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:Foldout>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
         <ui:Button text="Clear Inputs" name="BT_ClearInputs" style="margin-left: 3px; margin-right: 3px; margin-top: 3px; margin-bottom: 3px;" />
     </ui:VisualElement>
 </ui:UXML>
