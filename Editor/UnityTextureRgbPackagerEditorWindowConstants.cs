@@ -21,6 +21,10 @@ namespace UnityTextureRgbPacker.Editor
         // Inputs
         public const string InputsSingleUxmlPath = "CS_InputsSingle";
         public const string InputsSingleVisualElementName = "VE_InputsSingle";
+        public const string RedChannelToggleName = "TG_RedChannel";
+        public const string RedChannelVisualElementName = "VE_RedChannelInput";
+        public const string RedChannelObjectFieldName = "OF_RedChannelTexture";
+        public const string RedChannelPreviewVisualElementName = "VE_RedChannelPreview";
         // Export
         public const string ExportUxmlPath = "CS_Export";
         public const string ExportVisualElementName = "VE_Export";

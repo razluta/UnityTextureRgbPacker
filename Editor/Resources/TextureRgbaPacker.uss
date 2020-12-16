@@ -151,3 +151,7 @@
     padding-left: 0;
     width: 50%;
 }
+
+.unity-object-field-display__label {
+    max-width: 140px;
+}

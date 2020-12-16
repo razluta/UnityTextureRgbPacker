@@ -48,6 +48,11 @@ namespace UnityTextureRgbPacker.Editor
             var inputsVisualTreeAsset = Resources.Load<VisualTreeAsset>(InputsSingleUxmlPath);
             inputsVisualTreeAsset.CloneTree(_root);
             var inputsVisualElement = _root.Q<VisualElement>(InputsSingleVisualElementName);
+            // Inputs - Red Channel
+            var redChannelToggle = inputsVisualElement.Q<Toggle>(RedChannelToggleName);
+            var redChannelVisualElement = inputsVisualElement.Q<VisualElement>(RedChannelVisualElementName);
+            var redChannelObjectField = inputsVisualElement.Q<ObjectField>(RedChannelObjectFieldName);
+            var redChannelPreviewVisualElement = inputsVisualElement.Q<ObjectField>(RedChannelPreviewVisualElementName);
             
             // Export
             var exportVisualTreeAsset = Resources.Load<VisualTreeAsset>(ExportUxmlPath);
@@ -185,6 +190,14 @@ namespace UnityTextureRgbPacker.Editor
                 (evt.target as VisualElement).style.backgroundColor =
                     _texturePackerData.IsPackBatch ? SelectedTabColor : UnselectedTabColor;
             });
+            
+            // Inputs - Red Channel
+            redChannelVisualElement.SetEnabled(redChannelToggle.value);
+            redChannelToggle.RegisterValueChangedCallback(evt =>
+            {
+                redChannelVisualElement.SetEnabled(redChannelToggle.value);
+            });
+            redChannelObjectField.objectType = typeof(Texture2D);
             #endregion
         }
 

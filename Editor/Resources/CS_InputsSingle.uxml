@@ -3,7 +3,7 @@
         <Style src="TextureRgbaPacker.uss" />
         <ui:Label text="Inputs" class="section_title_bold" />
         <ui:VisualElement name="VE_RedChannelInputRow" class="single_input_row">
-            <ui:Toggle class="thin_border single_input_row_toggle" />
+            <ui:Toggle name="TG_RedChannel" class="thin_border single_input_row_toggle" />
             <ui:VisualElement name="VE_RedChannelInput" class="single_channel_input">
                 <ui:VisualElement name="VE_RedChannel" class="single_channel_input thin_border">
                     <ui:Label text="Red Channel:" class="single_input_row_label" />
