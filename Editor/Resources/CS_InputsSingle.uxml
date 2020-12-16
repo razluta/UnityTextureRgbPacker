@@ -11,72 +11,40 @@
                         <uie:ObjectField name="OF_RedChannelTexture" class="single_input_row_texture_input" />
                     </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:VisualElement style="flex-direction: row;">
-                    <ui:VisualElement class="thin_border" style="flex-direction: column;">
-                        <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
-                            <ui:Toggle />
-                            <ui:Label text="use all RGB channels" />
-                        </ui:VisualElement>
-                        <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
-                            <ui:Toggle />
-                            <ui:Label text="use Red channel" />
-                        </ui:VisualElement>
-                        <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
-                            <ui:Toggle />
-                            <ui:Label text="use Green channel" />
-                        </ui:VisualElement>
-                        <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
-                            <ui:Toggle />
-                            <ui:Label text="use Blue channel" />
-                        </ui:VisualElement>
-                        <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
-                            <ui:Toggle />
-                            <ui:Label text="use Alpha channel" />
-                        </ui:VisualElement>
-                    </ui:VisualElement>
-                    <ui:VisualElement class="thin_border" style="flex-direction: row; flex-grow: 1; flex-shrink: 1;">
-                        <ui:VisualElement style="flex-grow: 1; flex-shrink: 0; background-color: rgb(26, 26, 26);">
-                            <ui:VisualElement name="VE_RedChannelPreview" style="flex-grow: 1; background-image: url(&apos;/Assets/UnityTextureRgbPacker/SampleAssets/Env_Athens_Ext_Ground_Tile_Roughness.tga&apos;); -unity-background-scale-mode: scale-to-fit;">
-                                <ui:Label text="1024x1024" class="texture_properties" style="-unity-text-align: lower-right; margin-left: 3px; margin-right: 3px; margin-top: 3px; margin-bottom: 3px; flex-grow: 1; font-size: 7px;" />
+                <ui:VisualElement class="thin_border">
+                    <ui:Foldout text="Advanced Options" value="false">
+                        <ui:VisualElement style="flex-direction: row;">
+                            <ui:VisualElement class="thin_border" style="flex-direction: column;">
+                                <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
+                                    <ui:Toggle />
+                                    <ui:Label text="use all channels" />
+                                </ui:VisualElement>
+                                <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
+                                    <ui:Toggle />
+                                    <ui:Label text="use Red channel" />
+                                </ui:VisualElement>
+                                <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
+                                    <ui:Toggle />
+                                    <ui:Label text="use Green channel" />
+                                </ui:VisualElement>
+                                <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
+                                    <ui:Toggle />
+                                    <ui:Label text="use Blue channel" />
+                                </ui:VisualElement>
+                                <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
+                                    <ui:Toggle />
+                                    <ui:Label text="use Alpha channel" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement class="thin_border" style="flex-direction: row; flex-grow: 1; flex-shrink: 1;">
+                                <ui:VisualElement style="flex-grow: 1; flex-shrink: 0; background-color: rgb(26, 26, 26);">
+                                    <ui:VisualElement name="VE_RedChannelPreview" style="flex-grow: 1; background-image: url(&apos;/Assets/UnityTextureRgbPacker/SampleAssets/Env_Athens_Ext_Ground_Tile_Roughness.tga&apos;); -unity-background-scale-mode: scale-to-fit; margin-left: 3px; margin-right: 3px; margin-top: 3px; margin-bottom: 3px;">
+                                        <ui:Label text="1024x1024" class="texture_properties" style="-unity-text-align: lower-right; margin-left: 3px; margin-right: 3px; margin-top: 3px; margin-bottom: 3px; flex-grow: 1;" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
                             </ui:VisualElement>
                         </ui:VisualElement>
-                    </ui:VisualElement>
-                </ui:VisualElement>
-            </ui:VisualElement>
-        </ui:VisualElement>
-        <ui:VisualElement name="VE_GreenChannelInputRow" class="single_input_row">
-            <ui:Toggle class="thin_border single_input_row_toggle" />
-            <ui:VisualElement name="VE_GreenChannelInput" class="single_channel_input">
-                <ui:VisualElement name="VE_GreenChannel" class="single_channel_input thin_border">
-                    <ui:Label text="Green Channel:" class="single_input_row_label" />
-                    <uie:ObjectField name="OF_GreenChannelTexture" class="single_input_row_texture_input" />
-                </ui:VisualElement>
-                <ui:VisualElement class="tiny_preview">
-                    <ui:VisualElement name="VE_GreenChannelPreview" class="tiny_image_preview" />
-                </ui:VisualElement>
-            </ui:VisualElement>
-        </ui:VisualElement>
-        <ui:VisualElement name="VE_BlueChannelInputRow" class="single_input_row">
-            <ui:Toggle class="single_input_row_toggle thin_border" />
-            <ui:VisualElement name="VE_BlueChannelInput" class="single_channel_input" style="margin-left: 0;">
-                <ui:VisualElement name="VE_BlueChannel" class="single_channel_input thin_border">
-                    <ui:Label text="Blue Channel:" class="single_input_row_label" />
-                    <uie:ObjectField name="OF_BlueChannelTexture" class="single_input_row_texture_input" />
-                </ui:VisualElement>
-                <ui:VisualElement class="tiny_preview">
-                    <ui:VisualElement name="VE_BlueChannelPreview" class="tiny_image_preview" />
-                </ui:VisualElement>
-            </ui:VisualElement>
-        </ui:VisualElement>
-        <ui:VisualElement name="VE_AlphaChannelInputRow" class="single_input_row">
-            <ui:Toggle class="single_input_row_toggle thin_border" />
-            <ui:VisualElement name="VE_AlphaChannelInput" class="single_channel_input" style="margin-left: 0;">
-                <ui:VisualElement name="VE_AlphaChannel" class="single_channel_input thin_border">
-                    <ui:Label text="Alpha Channel:" class="single_input_row_label" />
-                    <uie:ObjectField name="OF_AlphaChannelTexture" class="single_input_row_texture_input" />
-                </ui:VisualElement>
-                <ui:VisualElement class="tiny_preview">
-                    <ui:VisualElement name="VE_AlphaChannelPreview" class="tiny_image_preview" />
+                    </ui:Foldout>
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
