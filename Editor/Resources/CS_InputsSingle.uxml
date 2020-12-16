@@ -4,13 +4,43 @@
         <ui:Label text="Inputs" class="section_title_bold" />
         <ui:VisualElement name="VE_RedChannelInputRow" class="single_input_row">
             <ui:Toggle name="TG_RedChannel" class="thin_border single_input_row_toggle" />
-            <ui:VisualElement name="VE_RedChannelInput" class="single_channel_input">
-                <ui:VisualElement name="VE_RedChannel" class="single_channel_input thin_border">
-                    <ui:Label text="Red Channel:" class="single_input_row_label" />
-                    <uie:ObjectField name="OF_RedChannelTexture" class="single_input_row_texture_input" />
+            <ui:VisualElement name="VE_RedChannelInput" style="flex-grow: 1;">
+                <ui:VisualElement name="VE_RedChannelInputRow" class="single_channel_input">
+                    <ui:VisualElement name="VE_RedChannel" class="single_channel_input thin_border">
+                        <ui:Label text="Red Channel:" class="single_input_row_label" />
+                        <uie:ObjectField name="OF_RedChannelTexture" class="single_input_row_texture_input" />
+                    </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:VisualElement class="tiny_preview">
-                    <ui:VisualElement name="VE_RedChannelPreview" class="tiny_image_preview" />
+                <ui:VisualElement style="flex-direction: row;">
+                    <ui:VisualElement class="thin_border" style="flex-direction: column;">
+                        <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
+                            <ui:Toggle />
+                            <ui:Label text="use all RGB channels" />
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
+                            <ui:Toggle />
+                            <ui:Label text="use Red channel" />
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
+                            <ui:Toggle />
+                            <ui:Label text="use Green channel" />
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
+                            <ui:Toggle />
+                            <ui:Label text="use Blue channel" />
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
+                            <ui:Toggle />
+                            <ui:Label text="use Alpha channel" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="thin_border" style="flex-direction: row; flex-grow: 1; flex-shrink: 1;">
+                        <ui:VisualElement style="flex-grow: 1; flex-shrink: 0; background-color: rgb(26, 26, 26);">
+                            <ui:VisualElement name="VE_RedChannelPreview" style="flex-grow: 1; background-image: url(&apos;/Assets/UnityTextureRgbPacker/SampleAssets/Env_Athens_Ext_Ground_Tile_Roughness.tga&apos;); -unity-background-scale-mode: scale-to-fit;">
+                                <ui:Label text="1024x1024" class="texture_properties" style="-unity-text-align: lower-right; margin-left: 3px; margin-right: 3px; margin-top: 3px; margin-bottom: 3px; flex-grow: 1; font-size: 7px;" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
