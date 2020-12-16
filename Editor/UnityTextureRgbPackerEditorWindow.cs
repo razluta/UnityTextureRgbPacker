@@ -11,13 +11,13 @@ namespace UnityTextureRgbPacker.Editor
     {
         private VisualElement _root;
         private TexturePackerData _texturePackerData;
-        
+
         [MenuItem("Raz's Tools/Texture RGB(A) Packer")]
         public static void ShowWindow()
         {
             var window = GetWindow<UnityTextureRgbPackerEditorWindow>();
             window.titleContent = new GUIContent(TexturePackerName);
-            window.minSize = new Vector2(387, 900);
+            window.minSize = MinWindowSize;
         }
 
         private void OnEnable()
@@ -45,6 +45,10 @@ namespace UnityTextureRgbPacker.Editor
             // Preview
             var previewVisualTreeAsset = Resources.Load<VisualTreeAsset>(PreviewUxmlPath);
             previewVisualTreeAsset.CloneTree(_root);
+            
+            // Generate Button
+            var generateButtonVisualTreeAsset = Resources.Load<VisualTreeAsset>(GenerateUxmlPath);
+            generateButtonVisualTreeAsset.CloneTree(_root);
 
             #endregion
 

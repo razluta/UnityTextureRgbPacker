@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:VisualElement name="VE_GenerateButton" class="external_border" style="padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+        <Style src="TextureRgbaPacker.uss" />
+        <ui:Button text="Generate" name="BT_GenerateButton" style="margin-left: 1px; margin-right: 1px;" />
+    </ui:VisualElement>
+</ui:UXML>
