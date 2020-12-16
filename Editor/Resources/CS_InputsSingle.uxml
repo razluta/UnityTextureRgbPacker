@@ -11,35 +11,35 @@
                         <uie:ObjectField name="OF_RedChannelTexture" class="single_input_row_texture_input" />
                     </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:VisualElement class="thin_border">
-                    <ui:Foldout text="Advanced Options" value="false">
+                <ui:VisualElement name="VE_RedChannelAdvancedOptions" class="thin_border">
+                    <ui:Foldout text="Advanced Options" name="FO_RedChannelAdvancedOptions">
                         <ui:VisualElement style="flex-direction: row;">
                             <ui:VisualElement class="thin_border" style="flex-direction: column;">
                                 <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
-                                    <ui:Toggle />
+                                    <ui:Toggle name="TG_RedUseAllChannels" />
                                     <ui:Label text="use all channels" />
                                 </ui:VisualElement>
                                 <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
-                                    <ui:Toggle />
+                                    <ui:Toggle name="TG_RedUseRedChannel" />
                                     <ui:Label text="use Red channel" />
                                 </ui:VisualElement>
                                 <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
-                                    <ui:Toggle />
+                                    <ui:Toggle name="TG_RedUseGreenChannel" />
                                     <ui:Label text="use Green channel" />
                                 </ui:VisualElement>
                                 <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
-                                    <ui:Toggle />
+                                    <ui:Toggle name="TG_RedUseBlueChannel" />
                                     <ui:Label text="use Blue channel" />
                                 </ui:VisualElement>
                                 <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
-                                    <ui:Toggle />
+                                    <ui:Toggle name="TG_RedUseAlphaChannel" />
                                     <ui:Label text="use Alpha channel" />
                                 </ui:VisualElement>
                             </ui:VisualElement>
                             <ui:VisualElement class="thin_border" style="flex-direction: row; flex-grow: 1; flex-shrink: 1;">
                                 <ui:VisualElement style="flex-grow: 1; flex-shrink: 0; background-color: rgb(26, 26, 26);">
-                                    <ui:VisualElement name="VE_RedChannelPreview" style="flex-grow: 1; background-image: url(&apos;/Assets/UnityTextureRgbPacker/SampleAssets/Env_Athens_Ext_Ground_Tile_Roughness.tga&apos;); -unity-background-scale-mode: scale-to-fit; margin-left: 3px; margin-right: 3px; margin-top: 3px; margin-bottom: 3px;">
-                                        <ui:Label text="1024x1024" class="texture_properties" style="-unity-text-align: lower-right; margin-left: 3px; margin-right: 3px; margin-top: 3px; margin-bottom: 3px; flex-grow: 1;" />
+                                    <ui:VisualElement name="VE_RedChannelPreview" style="flex-grow: 1; -unity-background-scale-mode: scale-to-fit; margin-left: 3px; margin-right: 3px; margin-top: 3px; margin-bottom: 3px;">
+                                        <ui:Label name="LB_RedChannelDimensions" class="texture_properties" style="-unity-text-align: lower-right; margin-left: 3px; margin-right: 3px; margin-top: 3px; margin-bottom: 3px; flex-grow: 1;" />
                                     </ui:VisualElement>
                                 </ui:VisualElement>
                             </ui:VisualElement>

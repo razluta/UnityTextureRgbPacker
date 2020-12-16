@@ -153,9 +153,12 @@
 }
 
 .unity-object-field-display__label {
-    max-width: 140px;
+    max-width: 168px;
 }
 
 .texture_properties {
     font-size: 10px;
+}
+
+.round {
 }

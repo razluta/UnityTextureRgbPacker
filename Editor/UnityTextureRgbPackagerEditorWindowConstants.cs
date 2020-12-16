@@ -6,6 +6,7 @@ namespace UnityTextureRgbPacker.Editor
     {
         public const string TexturePackerName = "Texture RGB(A) Packer";
         public static readonly Vector2 MinWindowSize = new Vector2(387, 1000);
+        public const string PixelDimensionsX = "x";
         
         // Process Type
         public const string ProcessTypeUxmlPath = "CS_Process";
@@ -25,6 +26,13 @@ namespace UnityTextureRgbPacker.Editor
         public const string RedChannelVisualElementName = "VE_RedChannelInput";
         public const string RedChannelObjectFieldName = "OF_RedChannelTexture";
         public const string RedChannelPreviewVisualElementName = "VE_RedChannelPreview";
+        public const string RedChannelAdvancedOptionsFoldoutName = "FO_RedChannelAdvancedOptions";
+        public const string RedChannelUseAllChannelsToggleName = "TG_RedUseAllChannels";
+        public const string RedChannelUseRedChannelToggleName = "TG_RedUseRedChannel";
+        public const string RedChannelUseGreenChannelToggleName = "TG_RedUseGreenChannel";
+        public const string RedChannelUseBlueChannelToggleName = "TG_RedUseBlueChannel";
+        public const string RedChannelUseAlphaChannelToggleName = "TG_RedUseAlphaChannel";
+        public const string RedChannelDimensionsLabelName = "LB_RedChannelDimensions";
         // Export
         public const string ExportUxmlPath = "CS_Export";
         public const string ExportVisualElementName = "VE_Export";
