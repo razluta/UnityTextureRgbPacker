@@ -153,7 +153,7 @@
 }
 
 .unity-object-field-display__label {
-    max-width: 168px;
+    max-width: 270px;
 }
 
 .texture_properties {

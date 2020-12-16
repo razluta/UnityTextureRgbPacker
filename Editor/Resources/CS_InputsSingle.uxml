@@ -5,9 +5,11 @@
         <ui:VisualElement name="VE_RedChannelInputRow" class="single_input_row">
             <ui:Toggle name="TG_RedChannel" class="thin_border single_input_row_toggle" />
             <ui:VisualElement name="VE_RedChannelInput" style="flex-grow: 1;">
+                <ui:VisualElement name="VE_RedChannelText" class="single_channel_input thin_border">
+                    <ui:Label text="Red Channel Texture Input" class="section_title_bold" style="-unity-text-align: upper-left; flex-grow: 1;" />
+                </ui:VisualElement>
                 <ui:VisualElement name="VE_RedChannelInputRow" class="single_channel_input">
                     <ui:VisualElement name="VE_RedChannel" class="single_channel_input thin_border">
-                        <ui:Label text="Red Channel:" class="single_input_row_label" />
                         <uie:ObjectField name="OF_RedChannelTexture" class="single_input_row_texture_input" />
                     </ui:VisualElement>
                 </ui:VisualElement>
@@ -48,6 +50,6 @@
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:Button text="Clear Inputs" name="BT_ClearInputs" />
+        <ui:Button text="Clear Inputs" name="BT_ClearInputs" style="margin-left: 3px; margin-right: 3px; margin-top: 3px; margin-bottom: 3px;" />
     </ui:VisualElement>
 </ui:UXML>
