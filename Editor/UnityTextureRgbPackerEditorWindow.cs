@@ -72,6 +72,31 @@ namespace UnityTextureRgbPacker.Editor
             var greenChannelUseBlueChannelToggle = inputsVisualElement.Q<Toggle>(GreenChannelUseBlueChannelToggleName);
             var greenChannelUseAlphaChannelToggle = inputsVisualElement.Q<Toggle>(GreenChannelUseAlphaChannelToggleName);
             var greenChannelDimensionsLabel = inputsVisualElement.Q<Label>(GreenChannelDimensionsLabelName);
+            // Inputs - Blue Channel
+            var blueChannelToggle = inputsVisualElement.Q<Toggle>(BlueChannelToggleName);
+            var blueChannelVisualElement = inputsVisualElement.Q<VisualElement>(BlueChannelVisualElementName);
+            var blueChannelObjectField = inputsVisualElement.Q<ObjectField>(BlueChannelObjectFieldName);
+            var blueChannelPreviewVisualElement = inputsVisualElement.Q<VisualElement>(BlueChannelPreviewVisualElementName);
+            var blueChannelAdvancedOptionsFoldout = inputsVisualElement.Q<Foldout>(BlueChannelAdvancedOptionsFoldoutName);
+            var blueChannelUseAllChannelsToggle = inputsVisualElement.Q<Toggle>(BlueChannelUseAllChannelsToggleName);
+            var blueChannelUseRedChannelToggle = inputsVisualElement.Q<Toggle>(BlueChannelUseRedChannelToggleName);
+            var blueChannelUseGreenChannelToggle = inputsVisualElement.Q<Toggle>(BlueChannelUseGreenChannelToggleName);
+            var blueChannelUseBlueChannelToggle = inputsVisualElement.Q<Toggle>(BlueChannelUseBlueChannelToggleName);
+            var blueChannelUseAlphaChannelToggle = inputsVisualElement.Q<Toggle>(BlueChannelUseAlphaChannelToggleName);
+            var blueChannelDimensionsLabel = inputsVisualElement.Q<Label>(BlueChannelDimensionsLabelName);
+            // Inputs - Alpha Channel
+            var alphaChannelToggle = inputsVisualElement.Q<Toggle>(AlphaChannelToggleName);
+            var alphaChannelVisualElement = inputsVisualElement.Q<VisualElement>(AlphaChannelVisualElementName);
+            var alphaChannelObjectField = inputsVisualElement.Q<ObjectField>(AlphaChannelObjectFieldName);
+            var alphaChannelPreviewVisualElement = inputsVisualElement.Q<VisualElement>(AlphaChannelPreviewVisualElementName);
+            var alphaChannelAdvancedOptionsFoldout = inputsVisualElement.Q<Foldout>(AlphaChannelAdvancedOptionsFoldoutName);
+            var alphaChannelUseAllChannelsToggle = inputsVisualElement.Q<Toggle>(AlphaChannelUseAllChannelsToggleName);
+            var alphaChannelUseRedChannelToggle = inputsVisualElement.Q<Toggle>(AlphaChannelUseRedChannelToggleName);
+            var alphaChannelUseGreenChannelToggle = inputsVisualElement.Q<Toggle>(AlphaChannelUseGreenChannelToggleName);
+            var alphaChannelUseBlueChannelToggle = inputsVisualElement.Q<Toggle>(AlphaChannelUseBlueChannelToggleName);
+            var alphaChannelUseAlphaChannelToggle = inputsVisualElement.Q<Toggle>(AlphaChannelUseAlphaChannelToggleName);
+            var alphaChannelDimensionsLabel = inputsVisualElement.Q<Label>(AlphaChannelDimensionsLabelName);
+            
             // Export
             var exportVisualTreeAsset = Resources.Load<VisualTreeAsset>(ExportUxmlPath);
             exportVisualTreeAsset.CloneTree(_root);
@@ -383,6 +408,182 @@ namespace UnityTextureRgbPacker.Editor
                 greenChannelUseRedChannelToggle.value = false; 
                 greenChannelUseGreenChannelToggle.value = false; 
                 greenChannelUseBlueChannelToggle.value = false;
+            });
+            
+            // Inputs - Blue Channel
+            blueChannelVisualElement.SetEnabled(blueChannelToggle.value);
+            blueChannelToggle.RegisterValueChangedCallback(evt =>
+            {
+                blueChannelVisualElement.SetEnabled(blueChannelToggle.value);
+            });
+            
+            blueChannelObjectField.objectType = typeof(Texture2D);
+            blueChannelObjectField.RegisterValueChangedCallback(evt =>
+            {
+                if (blueChannelObjectField.value == null)
+                {
+                    blueChannelDimensionsLabel.text = "";
+                    return;
+                }
+                
+                var texture = (Texture2D) blueChannelObjectField.value;
+                if (texture == null)
+                {
+                    blueChannelDimensionsLabel.text = "";
+                    return;
+                }
+                blueChannelPreviewVisualElement.style.backgroundImage = texture;
+                blueChannelDimensionsLabel.text = texture.width.ToString() + PixelDimensionsX + texture.height.ToString();
+            });
+            
+            blueChannelAdvancedOptionsFoldout.value = false;
+            
+            blueChannelUseAllChannelsToggle.RegisterValueChangedCallback(evt =>
+            {
+                if (!blueChannelUseAllChannelsToggle.value)
+                {
+                    return;
+                }
+                blueChannelUseRedChannelToggle.value = false; 
+                blueChannelUseGreenChannelToggle.value = false; 
+                blueChannelUseBlueChannelToggle.value = false; 
+                blueChannelUseAlphaChannelToggle.value = false;
+            });
+            
+            blueChannelUseRedChannelToggle.RegisterValueChangedCallback(evt =>
+            {
+                if (!blueChannelUseRedChannelToggle.value)
+                {
+                    return;
+                }
+                blueChannelUseAllChannelsToggle.value = false; 
+                blueChannelUseGreenChannelToggle.value = false; 
+                blueChannelUseBlueChannelToggle.value = false; 
+                blueChannelUseAlphaChannelToggle.value = false;
+            });
+            
+            blueChannelUseGreenChannelToggle.RegisterValueChangedCallback(evt =>
+            {
+                if (!blueChannelUseGreenChannelToggle.value)
+                {
+                    return;
+                }
+                blueChannelUseAllChannelsToggle.value = false; 
+                blueChannelUseRedChannelToggle.value = false; 
+                blueChannelUseBlueChannelToggle.value = false; 
+                blueChannelUseAlphaChannelToggle.value = false;
+            });
+            
+            blueChannelUseBlueChannelToggle.RegisterValueChangedCallback(evt =>
+            {
+                if (!blueChannelUseBlueChannelToggle.value)
+                {
+                    return;
+                }
+                blueChannelUseAllChannelsToggle.value = false; 
+                blueChannelUseRedChannelToggle.value = false; 
+                blueChannelUseGreenChannelToggle.value = false; 
+                blueChannelUseAlphaChannelToggle.value = false;
+            });
+            
+            blueChannelUseAlphaChannelToggle.RegisterValueChangedCallback(evt =>
+            {
+                if (!blueChannelUseAlphaChannelToggle.value)
+                {
+                    return;
+                }
+                blueChannelUseAllChannelsToggle.value = false; 
+                blueChannelUseRedChannelToggle.value = false; 
+                blueChannelUseGreenChannelToggle.value = false; 
+                blueChannelUseBlueChannelToggle.value = false;
+            });
+            
+            // Inputs - Alpha Channel
+            alphaChannelVisualElement.SetEnabled(alphaChannelToggle.value);
+            alphaChannelToggle.RegisterValueChangedCallback(evt =>
+            {
+                alphaChannelVisualElement.SetEnabled(alphaChannelToggle.value);
+            });
+            
+            alphaChannelObjectField.objectType = typeof(Texture2D);
+            alphaChannelObjectField.RegisterValueChangedCallback(evt =>
+            {
+                if (alphaChannelObjectField.value == null)
+                {
+                    alphaChannelDimensionsLabel.text = "";
+                    return;
+                }
+                
+                var texture = (Texture2D) alphaChannelObjectField.value;
+                if (texture == null)
+                {
+                    alphaChannelDimensionsLabel.text = "";
+                    return;
+                }
+                alphaChannelPreviewVisualElement.style.backgroundImage = texture;
+                alphaChannelDimensionsLabel.text = texture.width.ToString() + PixelDimensionsX + texture.height.ToString();
+            });
+            
+            alphaChannelAdvancedOptionsFoldout.value = false;
+            
+            alphaChannelUseAllChannelsToggle.RegisterValueChangedCallback(evt =>
+            {
+                if (!alphaChannelUseAllChannelsToggle.value)
+                {
+                    return;
+                }
+                alphaChannelUseRedChannelToggle.value = false; 
+                alphaChannelUseGreenChannelToggle.value = false; 
+                alphaChannelUseBlueChannelToggle.value = false; 
+                alphaChannelUseAlphaChannelToggle.value = false;
+            });
+            
+            alphaChannelUseRedChannelToggle.RegisterValueChangedCallback(evt =>
+            {
+                if (!alphaChannelUseRedChannelToggle.value)
+                {
+                    return;
+                }
+                alphaChannelUseAllChannelsToggle.value = false; 
+                alphaChannelUseGreenChannelToggle.value = false; 
+                alphaChannelUseBlueChannelToggle.value = false; 
+                alphaChannelUseAlphaChannelToggle.value = false;
+            });
+            
+            alphaChannelUseGreenChannelToggle.RegisterValueChangedCallback(evt =>
+            {
+                if (!alphaChannelUseGreenChannelToggle.value)
+                {
+                    return;
+                }
+                alphaChannelUseAllChannelsToggle.value = false; 
+                alphaChannelUseRedChannelToggle.value = false; 
+                alphaChannelUseBlueChannelToggle.value = false; 
+                alphaChannelUseAlphaChannelToggle.value = false;
+            });
+            
+            alphaChannelUseBlueChannelToggle.RegisterValueChangedCallback(evt =>
+            {
+                if (!blueChannelUseBlueChannelToggle.value)
+                {
+                    return;
+                }
+                alphaChannelUseAllChannelsToggle.value = false; 
+                alphaChannelUseRedChannelToggle.value = false; 
+                alphaChannelUseGreenChannelToggle.value = false; 
+                alphaChannelUseAlphaChannelToggle.value = false;
+            });
+            
+            alphaChannelUseAlphaChannelToggle.RegisterValueChangedCallback(evt =>
+            {
+                if (!alphaChannelUseAlphaChannelToggle.value)
+                {
+                    return;
+                }
+                alphaChannelUseAllChannelsToggle.value = false; 
+                alphaChannelUseRedChannelToggle.value = false; 
+                alphaChannelUseGreenChannelToggle.value = false; 
+                alphaChannelUseBlueChannelToggle.value = false;
             });
             #endregion
         }

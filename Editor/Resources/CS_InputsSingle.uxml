@@ -106,7 +106,7 @@
                 </ui:VisualElement>
                 <ui:VisualElement name="VE_BlueChannelInputRow" class="single_channel_input">
                     <ui:VisualElement name="VE_BlueChannel" class="single_channel_input thin_border">
-                        <uie:ObjectField name="OF_GreenChannelTexture" class="single_input_row_texture_input" />
+                        <uie:ObjectField name="OF_BlueChannelTexture" class="single_input_row_texture_input" />
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="VE_BlueChannelAdvancedOptions" class="thin_border">
