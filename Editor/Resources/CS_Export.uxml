@@ -4,16 +4,21 @@
         <ui:Label text="Export" class="section_title_bold" />
         <ui:VisualElement name="VE_Type" class="external_border">
             <ui:Label text="Type" />
-            <uie:EnumField label="Texture Format" value="Center" />
-            <ui:TextField picking-mode="Ignore" label="Name Identifier" value="filler text" />
+            <uie:EnumField label="Texture Format" value="Center" name="EF_TextureFormat" />
         </ui:VisualElement>
         <ui:VisualElement name="VE_Size" class="external_border">
             <ui:Label text="Size" />
-            <uie:EnumField label="Sizing Criteria" />
-            <ui:VisualElement class="external_border">
-                <uie:IntegerField label="X" value="1024" />
-                <uie:IntegerField label="Y" value="1024" />
+            <uie:EnumField label="Sizing Criteria" name="EF_SizingCriteria" />
+            <ui:VisualElement name="VE_Sizes" class="external_border">
+                <uie:IntegerField label="X" value="1024" name="IF_Width" tooltip="width" />
+                <uie:IntegerField label="Y" value="1024" name="IF_Height" tooltip="height" />
             </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="VE_Name" class="external_border">
+            <ui:Label text="Name(s)" />
+            <ui:Toggle label="Derive Root from Inputs" name="TG_DeriveRootFromInputs" />
+            <ui:TextField picking-mode="Ignore" label="Root" value="filler text" name="TF_Root" />
+            <ui:TextField picking-mode="Ignore" label="Name Identifier" value="filler text" name="TF_NameIndentifier" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

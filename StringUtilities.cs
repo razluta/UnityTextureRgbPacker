@@ -8,8 +8,8 @@ namespace UnityTextureRgbPacker
     {
         public static string GetCommonPrefix(List<string> names)
         {
-            // If there's only one string, return an empty string as the common prefix
-            if (names.Count == 1)
+            // If there's only one or no strings, return an empty string as the common prefix
+            if (names.Count == 0 || names.Count == 1)
             {
                 return string.Empty;;
             }

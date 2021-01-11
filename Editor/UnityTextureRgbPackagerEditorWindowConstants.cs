@@ -76,6 +76,14 @@ namespace UnityTextureRgbPacker.Editor
         public const string ExportUxmlPath = "CS_Export";
         public const string ExportVisualElementName = "VE_Export";
         public const string ExportSingleVisualElementName = "VE_ExportSingle";
+        public const string ExportTextureFormatEnumFieldName = "EF_TextureFormat";
+        public const string ExportSizingCriteriaEnumFieldName = "EF_SizingCriteria";
+        public const string ExportSizesVisualElementName = "VE_Sizes";
+        public const string ExportWidthIntegerFieldName = "IF_Width";
+        public const string ExportHeightIntegerFieldName = "IF_Height";
+        public const string ExportDeriveRootFromInputsToggleName = "TG_DeriveRootFromInputs";
+        public const string ExportRootTextFieldName = "TF_Root";
+        public const string ExportNameIdentifierTextFieldName = "TF_NameIndentifier";
         // Preview
         public const string PreviewUxmlPath = "CS_Preview";
         public const string PreviewVisualElement = "VE_Preview";

@@ -41,6 +41,16 @@ namespace UnityTextureRgbPacker.Editor
         [SerializeField] private bool isAlphaChannelTextureUseGreenChannel;
         [SerializeField] private bool isAlphaChannelTextureUseBlueChannel;
         [SerializeField] private bool isAlphaChannelTextureUseAlphaChannel;
+        // Export Type
+        [SerializeField] private TextureUtilities.TextureUtilitiesFormats textureFormat;
+        // Export Size
+        [SerializeField] private SizingCriteriaCategories sizingCriteria;
+        [SerializeField] private int textureWidth;
+        [SerializeField] private int textureHeight;
+        // Export Names
+        [SerializeField] private bool deriveRootFromInputs;
+        [SerializeField] private string root;
+        [SerializeField] private string nameIdentifier;
         #endregion
         
         #region PUBLIC FIELDS 
@@ -49,6 +59,11 @@ namespace UnityTextureRgbPacker.Editor
             Pack,
             // Unpack,
             // Swap
+        }
+        public enum SizingCriteriaCategories
+        {
+            ScaleToSmallestInput,
+            SpecifySize
         }
         #endregion
         
@@ -212,6 +227,44 @@ namespace UnityTextureRgbPacker.Editor
             get => isAlphaChannelTextureUseAlphaChannel;
             set => isAlphaChannelTextureUseAlphaChannel = value;
         }
+        // Export Type
+        public TextureUtilities.TextureUtilitiesFormats TextureFormat
+        {
+            get => textureFormat;
+            set => textureFormat = value;
+        }
+        // Export Size
+        public SizingCriteriaCategories SizingCriteria
+        {
+            get => sizingCriteria;
+            set => sizingCriteria = value;
+        }
+        public int TextureWidth
+        {
+            get => textureWidth;
+            set => textureWidth = value;
+        }
+        public int TextureHeight
+        {
+            get => textureHeight;
+            set => textureHeight = value;
+        }
+        // Export Names
+        public bool DeriveRootFromInputs
+        {
+            get => deriveRootFromInputs;
+            set => deriveRootFromInputs = value;
+        }
+        public string Root
+        {
+            get => root;
+            set => root = value;
+        }
+        public string NameIdentifier
+        {
+            get => nameIdentifier;
+            set => nameIdentifier = value;
+        }
         #endregion
 
         #region PRIVATE DEFAULT VALUES
@@ -250,6 +303,16 @@ namespace UnityTextureRgbPacker.Editor
         private const bool IsAlphaChannelTextureUseGreenChannelDefault = false;
         private const bool IsAlphaChannelTextureUseBlueChannelDefault = false;
         private const bool IsAlphaChannelTextureUseAlphaChannelDefault = false;
+        // Export Type
+        private const TextureUtilities.TextureUtilitiesFormats TextureFormatDefault =
+            TextureUtilities.TextureUtilitiesFormats.Tga;
+        // Export Size
+        private const int TextureWidthDefault = 512;
+        private const int TextureHeightDefault = 512;
+        // Export Names
+        private const bool DeriveRootFromInputsDefault = true;
+        private const string RootDefault = "";
+        private const string NameIdentifierDefault = "Composite";
         #endregion
 
         public TexturePackerData()
@@ -296,10 +359,17 @@ namespace UnityTextureRgbPacker.Editor
         public void Reset()
         {
             ProcessType = ProcessTypeDefault;
-            isPackSingle = IsPackSingleDefault;
-            isPackBatch = IsPackBatchDefault;
+            IsPackSingle = IsPackSingleDefault;
+            IsPackBatch = IsPackBatchDefault;
             
             ClearInputs();
+
+            TextureFormat = TextureFormatDefault;
+            TextureWidth = TextureWidthDefault;
+            TextureHeight = TextureHeightDefault;
+            DeriveRootFromInputs = DeriveRootFromInputsDefault;
+            Root = RootDefault;
+            NameIdentifier = NameIdentifierDefault;
         }
 
     }

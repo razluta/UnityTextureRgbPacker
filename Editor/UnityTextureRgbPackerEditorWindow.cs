@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.UIElements;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static UnityTextureRgbPacker.Editor.UnityTextureRgbPackagerEditorWindowConstants;
@@ -117,6 +119,14 @@ namespace UnityTextureRgbPacker.Editor
             var exportVisualElement = _root.Q<VisualElement>(ExportVisualElementName);
             exportVisualElement.name = ExportSingleVisualElementName;
             exportVisualElement = _root.Q<VisualElement>(ExportSingleVisualElementName);
+            var exportSingleTextureFormatEnumField = exportVisualElement.Q<EnumField>(ExportTextureFormatEnumFieldName);
+            var exportSingleSizingCriteriaEnumField = exportVisualElement.Q<EnumField>(ExportSizingCriteriaEnumFieldName);
+            var exportSingleSizesVisualElement = exportVisualElement.Q<VisualElement>(ExportSizesVisualElementName);
+            var exportSingleWidthIntegerField = exportVisualElement.Q<IntegerField>(ExportWidthIntegerFieldName);
+            var exportSingleHeightIntegerField = exportVisualElement.Q<IntegerField>(ExportHeightIntegerFieldName);
+            var exportDeriveRootFromInputsToggle = exportVisualElement.Q<Toggle>(ExportDeriveRootFromInputsToggleName);
+            var exportRootTextFieldName = exportVisualElement.Q<TextField>(ExportRootTextFieldName);
+            var exportNameIdentifierTextField = exportVisualElement.Q<TextField>(ExportNameIdentifierTextFieldName);
 
             // Preview
             var previewVisualTreeAsset = Resources.Load<VisualTreeAsset>(PreviewUxmlPath);
@@ -344,6 +354,50 @@ namespace UnityTextureRgbPacker.Editor
             {
                 alphaChannelUseAlphaChannelToggle.BindProperty(alphaChannelTextureUseAlphaChannelProperty);
             }
+            
+            // Export Type
+            var textureFormatProperty = texPackSerObj.FindProperty(TextureFormatPropName);
+            if (textureFormatProperty != null)
+            {
+                exportSingleTextureFormatEnumField.BindProperty(textureFormatProperty);
+            }
+            // Export Size
+            var sizingCriteriaProperty = texPackSerObj.FindProperty(SizingCriteriaPropName);
+            if (sizingCriteriaProperty != null)
+            {
+                exportSingleSizingCriteriaEnumField.BindProperty(sizingCriteriaProperty);
+            }
+
+            var textureWidthProperty = texPackSerObj.FindProperty(TextureWidthPropName);
+            if (textureWidthProperty != null)
+            {
+                exportSingleWidthIntegerField.BindProperty(textureWidthProperty);
+            }
+
+            var textureHeightProperty = texPackSerObj.FindProperty(TextureHeightPropName);
+            if (textureHeightProperty != null)
+            {
+                exportSingleHeightIntegerField.BindProperty(textureHeightProperty);
+            }
+
+            // Export Names
+            var deriveRootFromInputsProperty = texPackSerObj.FindProperty(DeriveRootFromInputsPropName);
+            if (deriveRootFromInputsProperty != null)
+            {
+                exportDeriveRootFromInputsToggle.BindProperty(deriveRootFromInputsProperty);
+            }
+
+            var rootProperty = texPackSerObj.FindProperty(RootPropName);
+            if (rootProperty != null)
+            {
+                exportRootTextFieldName.BindProperty(rootProperty);
+            }
+
+            var nameIdentifierProperty = texPackSerObj.FindProperty(NameIdentifierPropName);
+            if (nameIdentifierProperty != null)
+            {
+                exportNameIdentifierTextField.BindProperty(nameIdentifierProperty);
+            }
             #endregion
 
             #region BEHAVIOR
@@ -453,6 +507,12 @@ namespace UnityTextureRgbPacker.Editor
             redChannelObjectField.objectType = typeof(Texture2D);
             redChannelObjectField.RegisterValueChangedCallback(evt =>
             {
+                if (exportDeriveRootFromInputsToggle.value == true)
+                {
+                    exportDeriveRootFromInputsToggle.value = false;
+                    exportDeriveRootFromInputsToggle.value = true;
+                }
+                
                 if (redChannelObjectField.value == null)
                 {
                     redChannelDimensionsLabel.text = "";
@@ -559,6 +619,12 @@ namespace UnityTextureRgbPacker.Editor
             greenChannelObjectField.objectType = typeof(Texture2D);
             greenChannelObjectField.RegisterValueChangedCallback(evt =>
             {
+                if (exportDeriveRootFromInputsToggle.value == true)
+                {
+                    exportDeriveRootFromInputsToggle.value = false;
+                    exportDeriveRootFromInputsToggle.value = true;
+                }
+                
                 if (greenChannelObjectField.value == null)
                 {
                     greenChannelDimensionsLabel.text = "";
@@ -661,6 +727,12 @@ namespace UnityTextureRgbPacker.Editor
             blueChannelObjectField.objectType = typeof(Texture2D);
             blueChannelObjectField.RegisterValueChangedCallback(evt =>
             {
+                if (exportDeriveRootFromInputsToggle.value == true)
+                {
+                    exportDeriveRootFromInputsToggle.value = false;
+                    exportDeriveRootFromInputsToggle.value = true;
+                }
+                
                 if (blueChannelObjectField.value == null)
                 {
                     blueChannelDimensionsLabel.text = "";
@@ -763,6 +835,12 @@ namespace UnityTextureRgbPacker.Editor
             alphaChannelObjectField.objectType = typeof(Texture2D);
             alphaChannelObjectField.RegisterValueChangedCallback(evt =>
             {
+                if (exportDeriveRootFromInputsToggle.value == true)
+                {
+                    exportDeriveRootFromInputsToggle.value = false;
+                    exportDeriveRootFromInputsToggle.value = true;
+                }
+                
                 if (alphaChannelObjectField.value == null)
                 {
                     alphaChannelDimensionsLabel.text = "";
@@ -873,8 +951,63 @@ namespace UnityTextureRgbPacker.Editor
             // Export - Type
             // ...
             
-            // Export - Type
-            // ...
+            // Export - Size
+            exportSingleSizingCriteriaEnumField.RegisterValueChangedCallback(evt =>
+            {
+                if (Equals(exportSingleSizingCriteriaEnumField.value, 
+                    (Enum) TexturePackerData.SizingCriteriaCategories.ScaleToSmallestInput))
+                {
+                    exportSingleSizesVisualElement.SetEnabled(false);
+                }
+                
+                if (Equals(exportSingleSizingCriteriaEnumField.value, 
+                    (Enum) TexturePackerData.SizingCriteriaCategories.SpecifySize))
+                {
+                    exportSingleSizesVisualElement.SetEnabled(true);
+                }
+            });
+            exportSingleSizesVisualElement.SetEnabled(false);
+            
+            // Export - Names
+            exportDeriveRootFromInputsToggle.RegisterValueChangedCallback(evt =>
+            {
+                if (exportDeriveRootFromInputsToggle.value == true)
+                {
+                    // Get textures
+                    var redChannelTexture = redChannelObjectField.value;
+                    var greenChannelTexture = greenChannelObjectField.value;
+                    var blueChannelTexture = blueChannelObjectField.value;
+                    var alphaChannelTexture = alphaChannelObjectField.value;
+                    
+                    // If inputs are valid, add their names to a list
+                    var validInputsNameList = new List<string>();
+                    if (redChannelTexture)
+                    {
+                        validInputsNameList.Add(redChannelTexture.name);
+                    }
+                    if (greenChannelTexture)
+                    {
+                        validInputsNameList.Add(greenChannelTexture.name);
+                    }
+                    if (blueChannelTexture)
+                    {
+                        validInputsNameList.Add(blueChannelTexture.name);
+                    }
+                    if (alphaChannelTexture)
+                    {
+                        validInputsNameList.Add(alphaChannelTexture.name);
+                    }
+
+                    // Get Root Name
+                    exportRootTextFieldName.value = StringUtilities.GetCommonPrefix(validInputsNameList);
+                    exportRootTextFieldName.SetEnabled(false);
+                }
+                else
+                {
+                    exportRootTextFieldName.SetEnabled(true);
+                }
+            });
+            exportRootTextFieldName.SetEnabled(false);
             
             // Pack
             generatePackSingleButton.clickable.clicked += () =>

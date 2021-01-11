@@ -37,5 +37,15 @@ namespace UnityTextureRgbPacker.Editor
         public const string IsAlphaChannelTextureUseGreenChannelPropName = "isAlphaChannelTextureUseGreenChannel";
         public const string IsAlphaChannelTextureUseBlueChannelPropName = "isAlphaChannelTextureUseBlueChannel";
         public const string IsAlphaChannelTextureUseAlphaChannelPropName = "isAlphaChannelTextureUseAlphaChannel";
+        // Export Type
+        public const string TextureFormatPropName = "textureFormat";
+        // Export Size
+        public const string SizingCriteriaPropName = "sizingCriteria";
+        public const string TextureWidthPropName = "textureWidth";
+        public const string TextureHeightPropName = "textureHeight";
+        // Export Names
+        public const string DeriveRootFromInputsPropName = "deriveRootFromInputs";
+        public const string RootPropName = "root";
+        public const string NameIdentifierPropName = "nameIdentifier";
     }
 }
