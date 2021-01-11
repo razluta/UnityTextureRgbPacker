@@ -3,7 +3,7 @@
         <Style src="TextureRgbaPacker.uss" />
         <ui:Label text="Preview" class="section_title_bold" />
         <ui:VisualElement style="flex-grow: 1; flex-shrink: 0; background-color: rgb(38, 38, 38);">
-            <ui:Button name="BT_FinalPreview" class="preview_result_button" style="-unity-background-scale-mode: scale-to-fit; margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px; background-color: rgba(93, 93, 93, 0);">
+            <ui:Button name="BT_FinalPreview" class="preview_result_button" style="-unity-background-scale-mode: scale-to-fit; margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px; background-color: rgba(93, 93, 93, 0); border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0);">
                 <ui:Label name="LB_FinalPreviewName" class="texture_properties" style="flex-grow: 1; -unity-text-align: lower-right; padding-left: 2px; padding-right: 2px; padding-top: 1px; padding-bottom: 1px; -unity-font-style: bold; font-size: 15px; white-space: normal; color: rgba(0, 0, 0, 255);" />
                 <ui:Label name="LB_FinalPreviewSize" class="texture_properties" style="flex-grow: 0; -unity-text-align: lower-right; padding-left: 2px; padding-right: 2px; padding-top: 1px; padding-bottom: 1px; -unity-font-style: bold; font-size: 15px;" />
             </ui:Button>

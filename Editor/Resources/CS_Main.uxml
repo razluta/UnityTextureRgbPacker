@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:VisualElement name="VE_Main" style="flex-direction: row; flex-grow: 1;">
+        <Style src="TextureRgbaPacker.uss" />
+        <ui:VisualElement name="VE_Left" class="external_border" style="flex-grow: 1; flex-shrink: 1; width: 390px;" />
+        <ui:VisualElement name="VE_Right" class="external_border" style="flex-grow: 1; width: 810px;" />
+    </ui:VisualElement>
+</ui:UXML>

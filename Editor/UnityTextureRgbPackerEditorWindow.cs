@@ -29,29 +29,34 @@ namespace UnityTextureRgbPacker.Editor
             _root = rootVisualElement;
 
             #region INITIALIZATION AND QUERY
+            // Main
+            var mainVisualTreeAsset = Resources.Load<VisualTreeAsset>(MainUxmlPath);
+            mainVisualTreeAsset.CloneTree(_root);
+            var mainLeftVisualElement = _root.Q<VisualElement>(LeftVisualElementName);
+            var mainRightVisualElement = _root.Q<VisualElement>(RightVisualElementName);
 
             // Process Type
             var processTypeVisualTreeAsset = Resources.Load<VisualTreeAsset>(ProcessTypeUxmlPath);
-            processTypeVisualTreeAsset.CloneTree(_root);
-            var processTypeEnumField = _root.Q<EnumField>(ProcessTypeEnumFieldName);
+            processTypeVisualTreeAsset.CloneTree(mainLeftVisualElement);
+            var processTypeEnumField = mainLeftVisualElement.Q<EnumField>(ProcessTypeEnumFieldName);
 
             // Pack - Single vs Batch
             var tabButtonsVisualTreeAsset = Resources.Load<VisualTreeAsset>(TabButtonsUxmlPath);
-            tabButtonsVisualTreeAsset.CloneTree(_root);
-            var tabPackButtonsVisualElement = _root.Q<VisualElement>(TabButtonsVisualElementName);
+            tabButtonsVisualTreeAsset.CloneTree(mainLeftVisualElement);
+            var tabPackButtonsVisualElement = mainLeftVisualElement.Q<VisualElement>(TabButtonsVisualElementName);
             tabPackButtonsVisualElement.name = TabButtonsPackVisualElementName;
-            tabPackButtonsVisualElement = _root.Q<VisualElement>(TabButtonsPackVisualElementName);
-            var tabPackSingleButton = _root.Q<Button>(TabButtonsSingleName);
+            tabPackButtonsVisualElement = mainLeftVisualElement.Q<VisualElement>(TabButtonsPackVisualElementName);
+            var tabPackSingleButton = mainLeftVisualElement.Q<Button>(TabButtonsSingleName);
             tabPackSingleButton.name = TabButtonsSinglePackName;
-            tabPackSingleButton = _root.Q<Button>(TabButtonsSinglePackName);
-            var tabPackBatchButton = _root.Q<Button>(TabButtonsBatchName);
+            tabPackSingleButton = mainLeftVisualElement.Q<Button>(TabButtonsSinglePackName);
+            var tabPackBatchButton = mainLeftVisualElement.Q<Button>(TabButtonsBatchName);
             tabPackBatchButton.name = TabButtonsBatchPackName;
-            tabPackBatchButton = _root.Q<Button>(TabButtonsBatchPackName);
+            tabPackBatchButton = mainLeftVisualElement.Q<Button>(TabButtonsBatchPackName);
 
             // Inputs
             var inputsVisualTreeAsset = Resources.Load<VisualTreeAsset>(InputsSingleUxmlPath);
-            inputsVisualTreeAsset.CloneTree(_root);
-            var inputsVisualElement = _root.Q<VisualElement>(InputsSingleVisualElementName);
+            inputsVisualTreeAsset.CloneTree(mainLeftVisualElement);
+            var inputsVisualElement = mainLeftVisualElement.Q<VisualElement>(InputsSingleVisualElementName);
             // Inputs - Red Channel
             var redChannelToggle = inputsVisualElement.Q<Toggle>(RedChannelToggleName);
             var redChannelVisualElement = inputsVisualElement.Q<VisualElement>(RedChannelVisualElementName);
@@ -116,10 +121,10 @@ namespace UnityTextureRgbPacker.Editor
 
             // Export
             var exportVisualTreeAsset = Resources.Load<VisualTreeAsset>(ExportUxmlPath);
-            exportVisualTreeAsset.CloneTree(_root);
-            var exportVisualElement = _root.Q<VisualElement>(ExportVisualElementName);
+            exportVisualTreeAsset.CloneTree(mainLeftVisualElement);
+            var exportVisualElement = mainLeftVisualElement.Q<VisualElement>(ExportVisualElementName);
             exportVisualElement.name = ExportSingleVisualElementName;
-            exportVisualElement = _root.Q<VisualElement>(ExportSingleVisualElementName);
+            exportVisualElement = mainLeftVisualElement.Q<VisualElement>(ExportSingleVisualElementName);
             var exportSingleTextureFormatEnumField = exportVisualElement.Q<EnumField>(ExportTextureFormatEnumFieldName);
             var exportSingleSizingCriteriaEnumField = exportVisualElement.Q<EnumField>(ExportSizingCriteriaEnumFieldName);
             var exportSingleSizesVisualElement = exportVisualElement.Q<VisualElement>(ExportSizesVisualElementName);
@@ -131,8 +136,8 @@ namespace UnityTextureRgbPacker.Editor
 
             // Preview
             var previewVisualTreeAsset = Resources.Load<VisualTreeAsset>(PreviewUxmlPath);
-            previewVisualTreeAsset.CloneTree(_root);
-            var previewVisualElement = _root.Q<VisualElement>(PreviewVisualElement);
+            previewVisualTreeAsset.CloneTree(mainRightVisualElement);
+            var previewVisualElement = mainRightVisualElement.Q<VisualElement>(PreviewVisualElement);
             var previewImageButton = previewVisualElement.Q<Button>(PreviewImageButtonName);
             var previewNameLabel = previewVisualElement.Q<Label>(PreviewNameLabelName);
             var previewSizeLabel = previewVisualElement.Q<Label>(PreviewSizeLabelName);

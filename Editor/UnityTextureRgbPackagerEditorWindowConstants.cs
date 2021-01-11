@@ -5,9 +5,13 @@ namespace UnityTextureRgbPacker.Editor
     public static class UnityTextureRgbPackagerEditorWindowConstants
     {
         public const string TexturePackerName = "Texture RGB(A) Packer";
-        public static readonly Vector2 MinWindowSize = new Vector2(387, 1100);
+        public static readonly Vector2 MinWindowSize = new Vector2(1200, 1000);
         public const string PixelDimensionsX = "x";
         
+        // Main
+        public const string MainUxmlPath = "CS_Main";
+        public const string LeftVisualElementName = "VE_Left";
+        public const string RightVisualElementName = "VE_Right";
         // Process Type
         public const string ProcessTypeUxmlPath = "CS_Process";
         public const string ProcessTypeEnumFieldName = "EF_ProcessType";
