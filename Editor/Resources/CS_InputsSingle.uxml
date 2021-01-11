@@ -2,7 +2,7 @@
     <ui:VisualElement name="VE_InputsSingle" class="external_border">
         <Style src="TextureRgbaPacker.uss" />
         <ui:Label text="Inputs" class="section_title_bold" />
-        <ui:VisualElement name="VE_RedChannelInputRow" class="single_input_row">
+        <ui:VisualElement name="VE_RedChannelInputRow" class="single_input_row" style="background-color: rgba(152, 0, 0, 0.25);">
             <ui:Toggle name="TG_RedChannel" class="thin_border single_input_row_toggle" />
             <ui:VisualElement name="VE_RedChannelInput" style="flex-grow: 1;">
                 <ui:VisualElement name="VE_RedChannelText" class="single_channel_input thin_border">
@@ -50,7 +50,7 @@
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="VE_GreenChannelInputRow" class="single_input_row">
+        <ui:VisualElement name="VE_GreenChannelInputRow" class="single_input_row" style="background-color: rgba(18, 70, 0, 0.25);">
             <ui:Toggle name="TG_GreenChannel" class="thin_border single_input_row_toggle" />
             <ui:VisualElement name="VE_GreenChannelInput" style="flex-grow: 1;">
                 <ui:VisualElement name="VE_RedChannelText" class="single_channel_input thin_border">
@@ -98,7 +98,7 @@
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="VE_BlueChannelInputRow" class="single_input_row">
+        <ui:VisualElement name="VE_BlueChannelInputRow" class="single_input_row" style="background-color: rgba(40, 81, 183, 0.25);">
             <ui:Toggle name="TG_BlueChannel" class="thin_border single_input_row_toggle" />
             <ui:VisualElement name="VE_BlueChannelInput" style="flex-grow: 1;">
                 <ui:VisualElement name="VE_BlueChannelText" class="single_channel_input thin_border">
@@ -146,7 +146,7 @@
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="VE_AlphaChannelInputRow" class="single_input_row">
+        <ui:VisualElement name="VE_AlphaChannelInputRow" class="single_input_row" style="background-color: rgba(96, 96, 96, 0.25);">
             <ui:Toggle name="TG_AlphaChannel" class="thin_border single_input_row_toggle" />
             <ui:VisualElement name="VE_AlphaChannelInput" style="flex-grow: 1;">
                 <ui:VisualElement name="VE_AlphaChannelText" class="single_channel_input thin_border">

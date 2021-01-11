@@ -476,6 +476,18 @@ namespace UnityTextureRgbPacker.Editor
             });
             
             redChannelAdvancedOptionsFoldout.value = false;
+            redChannelAdvancedOptionsFoldout.RegisterValueChangedCallback(evt =>
+            {
+                if (redChannelAdvancedOptionsFoldout.value == true)
+                {
+                    CollapseFoldouts(new List<Foldout>()
+                    {
+                        greenChannelAdvancedOptionsFoldout,
+                        blueChannelAdvancedOptionsFoldout,
+                        alphaChannelAdvancedOptionsFoldout
+                    });
+                }
+            });
             
             redChannelUseAllChannelsToggle.RegisterValueChangedCallback(evt =>
             {
@@ -566,6 +578,18 @@ namespace UnityTextureRgbPacker.Editor
             });
             
             greenChannelAdvancedOptionsFoldout.value = false;
+            greenChannelAdvancedOptionsFoldout.RegisterValueChangedCallback(evt =>
+            {
+                if (greenChannelAdvancedOptionsFoldout.value == true)
+                {
+                    CollapseFoldouts(new List<Foldout>()
+                    {
+                        redChannelAdvancedOptionsFoldout,
+                        blueChannelAdvancedOptionsFoldout,
+                        alphaChannelAdvancedOptionsFoldout
+                    });
+                }
+            });
             
             greenChannelUseAllChannelsToggle.RegisterValueChangedCallback(evt =>
             {
@@ -656,6 +680,18 @@ namespace UnityTextureRgbPacker.Editor
             });
             
             blueChannelAdvancedOptionsFoldout.value = false;
+            blueChannelAdvancedOptionsFoldout.RegisterValueChangedCallback(evt =>
+            {
+                if (blueChannelAdvancedOptionsFoldout.value == true)
+                {
+                    CollapseFoldouts(new List<Foldout>()
+                    {
+                        redChannelAdvancedOptionsFoldout,
+                        greenChannelAdvancedOptionsFoldout,
+                        alphaChannelAdvancedOptionsFoldout
+                    });
+                }
+            });
             
             blueChannelUseAllChannelsToggle.RegisterValueChangedCallback(evt =>
             {
@@ -746,6 +782,18 @@ namespace UnityTextureRgbPacker.Editor
             });
             
             alphaChannelAdvancedOptionsFoldout.value = false;
+            alphaChannelAdvancedOptionsFoldout.RegisterValueChangedCallback(evt =>
+            {
+                if (alphaChannelAdvancedOptionsFoldout.value == true)
+                {
+                    CollapseFoldouts(new List<Foldout>()
+                    {
+                        redChannelAdvancedOptionsFoldout,
+                        greenChannelAdvancedOptionsFoldout,
+                        blueChannelAdvancedOptionsFoldout
+                    });
+                }
+            });
             
             alphaChannelUseAllChannelsToggle.RegisterValueChangedCallback(evt =>
             {
