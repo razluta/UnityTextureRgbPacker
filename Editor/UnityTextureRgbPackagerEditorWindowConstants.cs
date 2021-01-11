@@ -26,6 +26,8 @@ namespace UnityTextureRgbPacker.Editor
         // Inputs
         public const string InputsSingleUxmlPath = "CS_InputsSingle";
         public const string InputsSingleVisualElementName = "VE_InputsSingle";
+        public const string InputsBatchUxmlPath = "CS_InputsBatch";
+        public const string InputsBatchVisualElementName = "VE_InputsBatch";
         // Inputs Red
         public const string RedChannelToggleName = "TG_RedChannel";
         public const string RedChannelVisualElementName = "VE_RedChannelInput";
@@ -80,6 +82,7 @@ namespace UnityTextureRgbPacker.Editor
         public const string ExportUxmlPath = "CS_Export";
         public const string ExportVisualElementName = "VE_Export";
         public const string ExportSingleVisualElementName = "VE_ExportSingle";
+        public const string ExportBatchVisualElementName = "VE_ExportBatch";
         public const string ExportTextureFormatEnumFieldName = "EF_TextureFormat";
         public const string ExportSizingCriteriaEnumFieldName = "EF_SizingCriteria";
         public const string ExportSizesVisualElementName = "VE_Sizes";
@@ -88,6 +91,9 @@ namespace UnityTextureRgbPacker.Editor
         public const string ExportDeriveRootFromInputsToggleName = "TG_DeriveRootFromInputs";
         public const string ExportRootTextFieldName = "TF_Root";
         public const string ExportNameIdentifierTextFieldName = "TF_NameIndentifier";
+        // Rules Batch
+        public const string RulesBatchUxmlPath = "CS_RulesBatch";
+        public const string RulesBatchVisualElementName = "VE_RulesBatch";
         // Preview
         public const string PreviewUxmlPath = "CS_Preview";
         public const string PreviewVisualElement = "VE_Preview";

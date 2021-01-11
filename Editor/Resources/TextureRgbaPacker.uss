@@ -162,3 +162,8 @@
 
 .round {
 }
+
+.section_subtitle_faded {
+    padding-left: 4px;
+    color: rgba(217, 217, 217, 0.5);
+}

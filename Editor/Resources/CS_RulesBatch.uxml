@@ -1,0 +1,24 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:VisualElement name="VE_RulesBatch" class="external_border">
+        <Style src="TextureRgbaPacker.uss" />
+        <ui:Label text="Rules" class="section_title_bold" />
+        <ui:Label text="For all the assets in this directory (defined above), find the textures that are obeying the rules defined and combine them using the specific channels." class="section_subtitle_faded" style="white-space: normal;" />
+        <uie:EnumField label="String Parsing Rules" name="EF_StringParsingRules" />
+        <ui:VisualElement class="single_input_row">
+            <ui:Toggle name="TG_RulesRedKeyword" style="margin-top: 3px;" />
+            <ui:TextField picking-mode="Ignore" label="Red Channel Keyword" value="filler text" name="TF_RulesRedKeyword" style="flex-grow: 1;" />
+        </ui:VisualElement>
+        <ui:VisualElement class="single_input_row">
+            <ui:Toggle name="TG_RulesGreenKeyword" style="margin-top: 3px;" />
+            <ui:TextField picking-mode="Ignore" label="Green Channel Keyword" value="filler text" name="TF_RulesGreenKeyword" style="flex-grow: 1;" />
+        </ui:VisualElement>
+        <ui:VisualElement class="single_input_row">
+            <ui:Toggle name="TG_RulesBlueKeyword" style="margin-top: 3px;" />
+            <ui:TextField picking-mode="Ignore" label="Blue Channel Keyword" value="filler text" name="TF_RulesBlueKeyword" style="flex-grow: 1;" />
+        </ui:VisualElement>
+        <ui:VisualElement class="single_input_row">
+            <ui:Toggle name="TG_RulesAlphaKeyword" style="margin-top: 3px;" />
+            <ui:TextField picking-mode="Ignore" label="Alpha Channel Keyword" value="filler text" name="TF_RulesAlphaKeyword" style="flex-grow: 1;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
