@@ -14,7 +14,7 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="VE_RedChannelAdvancedOptions" class="thin_border">
-                    <ui:Foldout text="Advanced Options" name="FO_RedChannelAdvancedOptions">
+                    <ui:Foldout text="Advanced Options" name="FO_RedChannelAdvancedOptions" style="flex-grow: 1;">
                         <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
                             <ui:VisualElement class="thin_border" style="flex-direction: column;">
                                 <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
@@ -62,7 +62,7 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="VE_GreenChannelAdvancedOptions" class="thin_border">
-                    <ui:Foldout text="Advanced Options" name="FO_GreenChannelAdvancedOptions">
+                    <ui:Foldout text="Advanced Options" name="FO_GreenChannelAdvancedOptions" style="flex-grow: 1;">
                         <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
                             <ui:VisualElement class="thin_border" style="flex-direction: column;">
                                 <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
@@ -110,7 +110,7 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="VE_BlueChannelAdvancedOptions" class="thin_border">
-                    <ui:Foldout text="Advanced Options" name="FO_BlueChannelAdvancedOptions">
+                    <ui:Foldout text="Advanced Options" name="FO_BlueChannelAdvancedOptions" style="flex-grow: 1;">
                         <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
                             <ui:VisualElement class="thin_border" style="flex-direction: column;">
                                 <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
@@ -158,7 +158,7 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="VE_AlphaChannelAdvancedOptions" class="thin_border">
-                    <ui:Foldout text="Advanced Options" name="FO_AlphaChannelAdvancedOptions">
+                    <ui:Foldout text="Advanced Options" name="FO_AlphaChannelAdvancedOptions" style="flex-grow: 1;">
                         <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
                             <ui:VisualElement class="thin_border" style="flex-direction: column;">
                                 <ui:VisualElement style="flex-direction: row; flex-grow: 1;">

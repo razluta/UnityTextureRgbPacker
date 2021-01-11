@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEditorInternal;
@@ -132,6 +133,9 @@ namespace UnityTextureRgbPacker.Editor
             var previewVisualTreeAsset = Resources.Load<VisualTreeAsset>(PreviewUxmlPath);
             previewVisualTreeAsset.CloneTree(_root);
             var previewVisualElement = _root.Q<VisualElement>(PreviewVisualElement);
+            var previewImageButton = previewVisualElement.Q<Button>(PreviewImageButtonName);
+            var previewNameLabel = previewVisualElement.Q<Label>(PreviewNameLabelName);
+            var previewSizeLabel = previewVisualElement.Q<Label>(PreviewSizeLabelName);
 
             // Single Pack - Generate Button
             var generateButtonVisualTreeAsset = Resources.Load<VisualTreeAsset>(GenerateUxmlPath);
@@ -1013,7 +1017,10 @@ namespace UnityTextureRgbPacker.Editor
             generatePackSingleButton.clickable.clicked += () =>
             {
                 // Pack
-                
+                Pack(_texturePackerData,
+                    previewImageButton,
+                    previewNameLabel,
+                    previewSizeLabel);
                 
                 // Collapse Options
                 CollapseFoldouts(new List<Foldout>()
@@ -1065,6 +1072,271 @@ namespace UnityTextureRgbPacker.Editor
             {
                 f.value = false;
             }
+        }
+
+        private void Pack(
+            TexturePackerData tpd, 
+            Button previewImageButton=null,
+            Label previewLabelTextureName=null,
+            Label previewLabelTextureSize=null)
+        {
+            Texture2D redChannelInput = null;
+            Texture2D greenChannelInput = null;
+            Texture2D blueChannelInput = null;
+            Texture2D alphaChannelInput = null;
+
+            // Get input and properties from Red Channel Input
+            if (tpd.IsRedChannelActive)
+            {
+                if (tpd.RedChannelTexture != null)
+                {
+                    if (tpd.IsRedChannelTextureUseAllChannels)
+                    {
+                        redChannelInput = tpd.RedChannelTexture;
+                    }
+                    else
+                    {
+                        if (tpd.IsRedChannelTextureUseRedChannel)
+                        {
+                            redChannelInput = TextureUtilities.GetSingleChannelTexture(
+                                tpd.RedChannelTexture, TextureUtilities.TextureChannel.R); 
+                        }
+                        else if (tpd.IsRedChannelTextureUseGreenChannel)
+                        {
+                            redChannelInput = TextureUtilities.GetSingleChannelTexture(
+                                tpd.RedChannelTexture, TextureUtilities.TextureChannel.G); 
+                        }
+                        else if (tpd.IsRedChannelTextureUseBlueChannel)
+                        {
+                            redChannelInput = TextureUtilities.GetSingleChannelTexture(
+                                tpd.RedChannelTexture, TextureUtilities.TextureChannel.B); 
+                        }
+                        else if (tpd.IsRedChannelTextureUseAlphaChannel)
+                        {
+                            redChannelInput = TextureUtilities.GetSingleChannelTexture(
+                                tpd.RedChannelTexture, TextureUtilities.TextureChannel.A); 
+                        }
+                    }
+                }
+            }
+            
+            // Get input and properties from Green Channel Input
+            if (tpd.IsGreenChannelActive)
+            {
+                if (tpd.GreenChannelTexture != null)
+                {
+                    if (tpd.IsGreenChannelTextureUseAllChannels)
+                    {
+                        greenChannelInput = tpd.GreenChannelTexture;
+                    }
+                    else
+                    {
+                        if (tpd.IsGreenChannelTextureUseRedChannel)
+                        {
+                            greenChannelInput = TextureUtilities.GetSingleChannelTexture(
+                                tpd.GreenChannelTexture, TextureUtilities.TextureChannel.R); 
+                        }
+                        else if (tpd.IsGreenChannelTextureUseGreenChannel)
+                        {
+                            greenChannelInput = TextureUtilities.GetSingleChannelTexture(
+                                tpd.GreenChannelTexture, TextureUtilities.TextureChannel.G); 
+                        }
+                        else if (tpd.IsGreenChannelTextureUseBlueChannel)
+                        {
+                            greenChannelInput = TextureUtilities.GetSingleChannelTexture(
+                                tpd.GreenChannelTexture, TextureUtilities.TextureChannel.B); 
+                        }
+                        else if (tpd.IsGreenChannelTextureUseAlphaChannel)
+                        {
+                            greenChannelInput = TextureUtilities.GetSingleChannelTexture(
+                                tpd.GreenChannelTexture, TextureUtilities.TextureChannel.A); 
+                        }
+                    }
+                }
+            }
+            
+            // Get input and properties from Blue Channel Input
+            if (tpd.IsBlueChannelActive)
+            {
+                if (tpd.BlueChannelTexture != null)
+                {
+                    if (tpd.IsBlueChannelTextureUseAllChannels)
+                    {
+                        blueChannelInput = tpd.BlueChannelTexture;
+                    }
+                    else
+                    {
+                        if (tpd.IsBlueChannelTextureUseRedChannel)
+                        {
+                            blueChannelInput = TextureUtilities.GetSingleChannelTexture(
+                                tpd.BlueChannelTexture, TextureUtilities.TextureChannel.R); 
+                        }
+                        else if (tpd.IsBlueChannelTextureUseGreenChannel)
+                        {
+                            blueChannelInput = TextureUtilities.GetSingleChannelTexture(
+                                tpd.BlueChannelTexture, TextureUtilities.TextureChannel.G); 
+                        }
+                        else if (tpd.IsBlueChannelTextureUseBlueChannel)
+                        {
+                            blueChannelInput = TextureUtilities.GetSingleChannelTexture(
+                                tpd.BlueChannelTexture, TextureUtilities.TextureChannel.B); 
+                        }
+                        else if (tpd.IsBlueChannelTextureUseAlphaChannel)
+                        {
+                            blueChannelInput = TextureUtilities.GetSingleChannelTexture(
+                                tpd.BlueChannelTexture, TextureUtilities.TextureChannel.A); 
+                        }
+                    }
+                }
+            }
+            
+            // Get input and properties from Alpha Channel Input
+            if (tpd.IsAlphaChannelActive)
+            {
+                if (tpd.AlphaChannelTexture != null)
+                {
+                    if (tpd.IsAlphaChannelTextureUseAllChannels)
+                    {
+                        alphaChannelInput = tpd.AlphaChannelTexture;
+                    }
+                    else
+                    {
+                        if (tpd.IsAlphaChannelTextureUseRedChannel)
+                        {
+                            alphaChannelInput = TextureUtilities.GetSingleChannelTexture(
+                                tpd.AlphaChannelTexture, TextureUtilities.TextureChannel.R); 
+                        }
+                        else if (tpd.IsAlphaChannelTextureUseGreenChannel)
+                        {
+                            alphaChannelInput = TextureUtilities.GetSingleChannelTexture(
+                                tpd.AlphaChannelTexture, TextureUtilities.TextureChannel.G); 
+                        }
+                        else if (tpd.IsAlphaChannelTextureUseBlueChannel)
+                        {
+                            alphaChannelInput = TextureUtilities.GetSingleChannelTexture(
+                                tpd.AlphaChannelTexture, TextureUtilities.TextureChannel.B); 
+                        }
+                        else if (tpd.IsAlphaChannelTextureUseAlphaChannel)
+                        {
+                            alphaChannelInput = TextureUtilities.GetSingleChannelTexture(
+                                tpd.AlphaChannelTexture, TextureUtilities.TextureChannel.A); 
+                        }
+                    }
+                }
+            }
+
+            // Create the composite texture
+            Texture2D compositeTexture;
+            var compositeTextureName = tpd.Root + tpd.NameIdentifier;
+            if (tpd.SizingCriteria == TexturePackerData.SizingCriteriaCategories.SpecifySize)
+            {
+                // Use input sizes
+                compositeTexture = TexturePacker.GetCompositeTextureRgb(
+                    compositeTextureName,
+                    redChannelInput,
+                    greenChannelInput,
+                    blueChannelInput,
+                    alphaChannelInput,
+                    tpd.TextureWidth,
+                    tpd.TextureHeight);
+            }
+            else
+            {
+                // Scale to smallest input
+                compositeTexture = TexturePacker.GetCompositeTextureRgb(
+                    compositeTextureName,
+                    redChannelInput,
+                    greenChannelInput,
+                    blueChannelInput,
+                    alphaChannelInput);
+            }
+            
+            
+            // Find the first valid input and create the path based on that 
+            var listOfTextureInputs = new List<Texture2D>()
+            {
+                tpd.RedChannelTexture,
+                tpd.GreenChannelTexture,
+                tpd.BlueChannelTexture,
+                tpd.AlphaChannelTexture
+            };
+            var relativeCompositeTexturePath =
+                Path.Combine(Path.GetDirectoryName(
+                        AssetDatabase.GetAssetPath(
+                            GetFirstValidTextureInput(listOfTextureInputs))), 
+                    compositeTextureName);
+
+            // Save composite texture
+            var hasSaved = false;
+            if (tpd.TextureFormat == TextureUtilities.TextureUtilitiesFormats.Tga)
+            {
+                var newRelativeCompositeTexturePath = relativeCompositeTexturePath + TextureUtilities.TgaExtension;
+                var absoluteCompositeTexturePath = Path.Combine(
+                    Directory.GetParent(Application.dataPath).FullName,
+                    newRelativeCompositeTexturePath);
+                TextureUtilities.SaveTextureToPath(
+                    compositeTexture,
+                    absoluteCompositeTexturePath,
+                    TextureUtilities.TextureUtilitiesFormats.Tga);
+                hasSaved = true;
+            }
+            else if (tpd.TextureFormat == TextureUtilities.TextureUtilitiesFormats.Png)
+            {
+                var newRelativeCompositeTexturePath = relativeCompositeTexturePath + TextureUtilities.PngExtension;
+                var absoluteCompositeTexturePath = Path.Combine(
+                    Directory.GetParent(Application.dataPath).FullName, 
+                    newRelativeCompositeTexturePath);
+                TextureUtilities.SaveTextureToPath(
+                    compositeTexture,
+                    absoluteCompositeTexturePath,
+                    TextureUtilities.TextureUtilitiesFormats.Png);
+                hasSaved = true;
+            }
+            
+            // If a new texture has been saved to disk, display it and select in the Project Window
+            if (hasSaved)
+            {
+                AssetDatabase.Refresh();
+                compositeTexture.Apply();
+                
+                // Update Previews
+                if (previewImageButton != null)
+                {
+                    previewImageButton.style.backgroundImage = compositeTexture;
+                }
+
+                if (previewLabelTextureName != null)
+                {
+                    previewLabelTextureName.text = compositeTextureName;
+                }
+
+                if (previewLabelTextureSize != null)
+                {
+                    previewLabelTextureSize.text =
+                        compositeTexture.width.ToString() + PixelDimensionsX + compositeTexture.height.ToString();
+                }
+
+                // Select the asset
+                Selection.activeObject = AssetDatabase.LoadAssetAtPath(relativeCompositeTexturePath, typeof(Texture2D));
+            }
+            
+        }
+        
+        private Texture2D GetFirstValidTextureInput(List<Texture2D> textureInputs)
+        {
+            var textureInputCount = textureInputs.Count;
+            var firstValidInput = textureInputs[textureInputCount - 1];
+
+            for (var i = 0; i < textureInputCount; i++)
+            {
+                if (textureInputs[i])
+                {
+                    firstValidInput = textureInputs[i];
+                    return firstValidInput;
+                }
+            }
+        
+            return firstValidInput;
         }
     }
 }

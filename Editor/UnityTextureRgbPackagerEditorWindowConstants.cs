@@ -5,7 +5,7 @@ namespace UnityTextureRgbPacker.Editor
     public static class UnityTextureRgbPackagerEditorWindowConstants
     {
         public const string TexturePackerName = "Texture RGB(A) Packer";
-        public static readonly Vector2 MinWindowSize = new Vector2(387, 1000);
+        public static readonly Vector2 MinWindowSize = new Vector2(387, 1100);
         public const string PixelDimensionsX = "x";
         
         // Process Type
@@ -87,6 +87,9 @@ namespace UnityTextureRgbPacker.Editor
         // Preview
         public const string PreviewUxmlPath = "CS_Preview";
         public const string PreviewVisualElement = "VE_Preview";
+        public const string PreviewImageButtonName = "BT_FinalPreview";
+        public const string PreviewNameLabelName = "LB_FinalPreviewName";
+        public const string PreviewSizeLabelName = "LB_FinalPreviewSize";
         // Generate
         public const string GenerateUxmlPath = "CS_GenerateButton";
         public const string GenerateVisualElementName = "VE_GenerateButton";

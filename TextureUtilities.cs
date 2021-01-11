@@ -3,8 +3,11 @@ using UnityEngine;
 
 namespace UnityTextureRgbPacker 
 {
-    public class TextureUtilities
+    public static class TextureUtilities
     {
+        public const string TgaExtension = ".tga";
+        public const string PngExtension = ".png";
+            
         public enum TextureUtilitiesFormats
         {
             Png,
@@ -82,5 +85,50 @@ namespace UnityTextureRgbPacker
             
             return smallestTexture;
         }
+        
+        public static UnityEngine.Texture2D GetSingleChannelTexture(Texture2D texture, TextureChannel textureChannel)
+        {
+            var textureWidth = texture.width;
+            var textureHeight = texture.height;
+            var singleChannelTexture = new Texture2D(textureWidth, textureHeight);
+            var readableTexture = GetRwTextureCopy(texture);
+
+            for (var x = 0; x < textureWidth; x++)
+            {
+                for (var y = 0; y < textureHeight; y++)
+                {
+                    var color = readableTexture.GetPixel(x, y);
+                    var newColor = Color.black;
+                    switch (textureChannel)
+                    {
+                        case TextureChannel.R:
+                            newColor = new Color(color.r, color.r, color.r);
+                            break;
+                        case TextureChannel.G:
+                            newColor = new Color(color.g, color.g, color.g);
+                            break;
+                        case TextureChannel.B:
+                            newColor = new Color(color.b, color.b, color.b);
+                            break;
+                        case TextureChannel.A:
+                            newColor = new Color(color.a, color.a, color.a);
+                            break;
+                    }
+                    
+                    singleChannelTexture.SetPixel(x, y, newColor);
+                }
+            }
+            
+            return singleChannelTexture;
+        }
+        
+        public enum TextureChannel
+        {
+            R,
+            G,
+            B,
+            A
+        };
+
     }
 }
