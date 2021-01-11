@@ -26,11 +26,12 @@ namespace UnityTextureRgbPacker.Editor
             _root = rootVisualElement;
 
             #region INITIALIZATION AND QUERY
+
             // Process Type
             var processTypeVisualTreeAsset = Resources.Load<VisualTreeAsset>(ProcessTypeUxmlPath);
             processTypeVisualTreeAsset.CloneTree(_root);
             var processTypeEnumField = _root.Q<EnumField>(ProcessTypeEnumFieldName);
-            
+
             // Pack - Single vs Batch
             var tabButtonsVisualTreeAsset = Resources.Load<VisualTreeAsset>(TabButtonsUxmlPath);
             tabButtonsVisualTreeAsset.CloneTree(_root);
@@ -43,7 +44,7 @@ namespace UnityTextureRgbPacker.Editor
             var tabPackBatchButton = _root.Q<Button>(TabButtonsBatchName);
             tabPackBatchButton.name = TabButtonsBatchPackName;
             tabPackBatchButton = _root.Q<Button>(TabButtonsBatchPackName);
-            
+
             // Inputs
             var inputsVisualTreeAsset = Resources.Load<VisualTreeAsset>(InputsSingleUxmlPath);
             inputsVisualTreeAsset.CloneTree(_root);
@@ -52,7 +53,8 @@ namespace UnityTextureRgbPacker.Editor
             var redChannelToggle = inputsVisualElement.Q<Toggle>(RedChannelToggleName);
             var redChannelVisualElement = inputsVisualElement.Q<VisualElement>(RedChannelVisualElementName);
             var redChannelObjectField = inputsVisualElement.Q<ObjectField>(RedChannelObjectFieldName);
-            var redChannelPreviewVisualElement = inputsVisualElement.Q<VisualElement>(RedChannelPreviewVisualElementName);
+            var redChannelPreviewVisualElement =
+                inputsVisualElement.Q<VisualElement>(RedChannelPreviewVisualElementName);
             var redChannelAdvancedOptionsFoldout = inputsVisualElement.Q<Foldout>(RedChannelAdvancedOptionsFoldoutName);
             var redChannelUseAllChannelsToggle = inputsVisualElement.Q<Toggle>(RedChannelUseAllChannelsToggleName);
             var redChannelUseRedChannelToggle = inputsVisualElement.Q<Toggle>(RedChannelUseRedChannelToggleName);
@@ -64,20 +66,26 @@ namespace UnityTextureRgbPacker.Editor
             var greenChannelToggle = inputsVisualElement.Q<Toggle>(GreenChannelToggleName);
             var greenChannelVisualElement = inputsVisualElement.Q<VisualElement>(GreenChannelVisualElementName);
             var greenChannelObjectField = inputsVisualElement.Q<ObjectField>(GreenChannelObjectFieldName);
-            var greenChannelPreviewVisualElement = inputsVisualElement.Q<VisualElement>(GreenChannelPreviewVisualElementName);
-            var greenChannelAdvancedOptionsFoldout = inputsVisualElement.Q<Foldout>(GreenChannelAdvancedOptionsFoldoutName);
+            var greenChannelPreviewVisualElement =
+                inputsVisualElement.Q<VisualElement>(GreenChannelPreviewVisualElementName);
+            var greenChannelAdvancedOptionsFoldout =
+                inputsVisualElement.Q<Foldout>(GreenChannelAdvancedOptionsFoldoutName);
             var greenChannelUseAllChannelsToggle = inputsVisualElement.Q<Toggle>(GreenChannelUseAllChannelsToggleName);
             var greenChannelUseRedChannelToggle = inputsVisualElement.Q<Toggle>(GreenChannelUseRedChannelToggleName);
-            var greenChannelUseGreenChannelToggle = inputsVisualElement.Q<Toggle>(GreenChannelUseGreenChannelToggleName);
+            var greenChannelUseGreenChannelToggle =
+                inputsVisualElement.Q<Toggle>(GreenChannelUseGreenChannelToggleName);
             var greenChannelUseBlueChannelToggle = inputsVisualElement.Q<Toggle>(GreenChannelUseBlueChannelToggleName);
-            var greenChannelUseAlphaChannelToggle = inputsVisualElement.Q<Toggle>(GreenChannelUseAlphaChannelToggleName);
+            var greenChannelUseAlphaChannelToggle =
+                inputsVisualElement.Q<Toggle>(GreenChannelUseAlphaChannelToggleName);
             var greenChannelDimensionsLabel = inputsVisualElement.Q<Label>(GreenChannelDimensionsLabelName);
             // Inputs - Blue Channel
             var blueChannelToggle = inputsVisualElement.Q<Toggle>(BlueChannelToggleName);
             var blueChannelVisualElement = inputsVisualElement.Q<VisualElement>(BlueChannelVisualElementName);
             var blueChannelObjectField = inputsVisualElement.Q<ObjectField>(BlueChannelObjectFieldName);
-            var blueChannelPreviewVisualElement = inputsVisualElement.Q<VisualElement>(BlueChannelPreviewVisualElementName);
-            var blueChannelAdvancedOptionsFoldout = inputsVisualElement.Q<Foldout>(BlueChannelAdvancedOptionsFoldoutName);
+            var blueChannelPreviewVisualElement =
+                inputsVisualElement.Q<VisualElement>(BlueChannelPreviewVisualElementName);
+            var blueChannelAdvancedOptionsFoldout =
+                inputsVisualElement.Q<Foldout>(BlueChannelAdvancedOptionsFoldoutName);
             var blueChannelUseAllChannelsToggle = inputsVisualElement.Q<Toggle>(BlueChannelUseAllChannelsToggleName);
             var blueChannelUseRedChannelToggle = inputsVisualElement.Q<Toggle>(BlueChannelUseRedChannelToggleName);
             var blueChannelUseGreenChannelToggle = inputsVisualElement.Q<Toggle>(BlueChannelUseGreenChannelToggleName);
@@ -88,15 +96,21 @@ namespace UnityTextureRgbPacker.Editor
             var alphaChannelToggle = inputsVisualElement.Q<Toggle>(AlphaChannelToggleName);
             var alphaChannelVisualElement = inputsVisualElement.Q<VisualElement>(AlphaChannelVisualElementName);
             var alphaChannelObjectField = inputsVisualElement.Q<ObjectField>(AlphaChannelObjectFieldName);
-            var alphaChannelPreviewVisualElement = inputsVisualElement.Q<VisualElement>(AlphaChannelPreviewVisualElementName);
-            var alphaChannelAdvancedOptionsFoldout = inputsVisualElement.Q<Foldout>(AlphaChannelAdvancedOptionsFoldoutName);
+            var alphaChannelPreviewVisualElement =
+                inputsVisualElement.Q<VisualElement>(AlphaChannelPreviewVisualElementName);
+            var alphaChannelAdvancedOptionsFoldout =
+                inputsVisualElement.Q<Foldout>(AlphaChannelAdvancedOptionsFoldoutName);
             var alphaChannelUseAllChannelsToggle = inputsVisualElement.Q<Toggle>(AlphaChannelUseAllChannelsToggleName);
             var alphaChannelUseRedChannelToggle = inputsVisualElement.Q<Toggle>(AlphaChannelUseRedChannelToggleName);
-            var alphaChannelUseGreenChannelToggle = inputsVisualElement.Q<Toggle>(AlphaChannelUseGreenChannelToggleName);
+            var alphaChannelUseGreenChannelToggle =
+                inputsVisualElement.Q<Toggle>(AlphaChannelUseGreenChannelToggleName);
             var alphaChannelUseBlueChannelToggle = inputsVisualElement.Q<Toggle>(AlphaChannelUseBlueChannelToggleName);
-            var alphaChannelUseAlphaChannelToggle = inputsVisualElement.Q<Toggle>(AlphaChannelUseAlphaChannelToggleName);
+            var alphaChannelUseAlphaChannelToggle =
+                inputsVisualElement.Q<Toggle>(AlphaChannelUseAlphaChannelToggleName);
             var alphaChannelDimensionsLabel = inputsVisualElement.Q<Label>(AlphaChannelDimensionsLabelName);
-            
+            // Clear 
+            var clearButton = inputsVisualElement.Q<Button>(ClearButtonName);
+
             // Export
             var exportVisualTreeAsset = Resources.Load<VisualTreeAsset>(ExportUxmlPath);
             exportVisualTreeAsset.CloneTree(_root);
@@ -108,7 +122,7 @@ namespace UnityTextureRgbPacker.Editor
             var previewVisualTreeAsset = Resources.Load<VisualTreeAsset>(PreviewUxmlPath);
             previewVisualTreeAsset.CloneTree(_root);
             var previewVisualElement = _root.Q<VisualElement>(PreviewVisualElement);
-            
+
             // Single Pack - Generate Button
             var generateButtonVisualTreeAsset = Resources.Load<VisualTreeAsset>(GenerateUxmlPath);
             generateButtonVisualTreeAsset.CloneTree(_root);
@@ -119,13 +133,15 @@ namespace UnityTextureRgbPacker.Editor
             generatePackSingleButton.name = GeneratePackSingleButtonName;
             generatePackSingleButton = _root.Q<Button>(GeneratePackSingleButtonName);
             generatePackSingleButton.text = GeneratePackSingleButtonLabel;
+
             #endregion
 
             #region BINDINGS
+
             // Setup
             _texturePackerData = ScriptableObject.CreateInstance<TexturePackerData>();
             var texPackSerObj = new UnityEditor.SerializedObject(_texturePackerData);
-            
+
             // Process Type
             var processTypeProperty = texPackSerObj.FindProperty(ProcessTypePropName);
             if (processTypeProperty != null)
@@ -136,9 +152,202 @@ namespace UnityTextureRgbPacker.Editor
             // Pack - Single vs Batch
             var packIsSingleProperty = texPackSerObj.FindProperty(IsPackSinglePropName);
             var packIsBatchProperty = texPackSerObj.FindProperty(IsPackBatchPropName);
+
+            // Red Channel Texture Input
+            var isRedChannelActiveProperty = texPackSerObj.FindProperty(IsRedChannelActivePropName);
+            if (isRedChannelActiveProperty != null)
+            {
+                redChannelToggle.BindProperty(isRedChannelActiveProperty);
+            }
+
+            var redChannelTextureProperty = texPackSerObj.FindProperty(RedChannelTexturePropName);
+            if (redChannelTextureProperty != null)
+            {
+                redChannelObjectField.BindProperty(redChannelTextureProperty);
+            }
+
+            var redChannelTextureUseAllChannelsProperty =
+                texPackSerObj.FindProperty(IsRedChannelTextureUseAllChannelsPropName);
+            if (redChannelTextureUseAllChannelsProperty != null)
+            {
+                redChannelUseAllChannelsToggle.BindProperty(redChannelTextureUseAllChannelsProperty);
+            }
+
+            var redChannelTextureUseRedChannelProperty =
+                texPackSerObj.FindProperty(IsRedChannelTextureUseRedChannelPropName);
+            if (redChannelTextureUseRedChannelProperty != null)
+            {
+                redChannelUseRedChannelToggle.BindProperty(redChannelTextureUseRedChannelProperty);
+            }
+            
+            var redChannelTextureUseGreenChannelProperty =
+                texPackSerObj.FindProperty(IsRedChannelTextureUseGreenChannelPropName);
+            if (redChannelTextureUseGreenChannelProperty != null)
+            {
+                redChannelUseGreenChannelToggle.BindProperty(redChannelTextureUseGreenChannelProperty);
+            }
+            
+            var redChannelTextureUseBlueChannelProperty =
+                texPackSerObj.FindProperty(IsRedChannelTextureUseBlueChannelPropName);
+            if (redChannelTextureUseBlueChannelProperty != null)
+            {
+                redChannelUseBlueChannelToggle.BindProperty(redChannelTextureUseBlueChannelProperty);
+            }
+            
+            var redChannelTextureUseAlphaChannelProperty =
+                texPackSerObj.FindProperty(IsRedChannelTextureUseAlphaChannelPropName);
+            if (redChannelTextureUseAlphaChannelProperty != null)
+            {
+                redChannelUseAlphaChannelToggle.BindProperty(redChannelTextureUseAlphaChannelProperty);
+            }
+            
+            // Green Channel Texture Input
+            var isGreenChannelActiveProperty = texPackSerObj.FindProperty(IsGreenChannelActivePropName);
+            if (isGreenChannelActiveProperty != null)
+            {
+                greenChannelToggle.BindProperty(isGreenChannelActiveProperty);
+            }
+
+            var greenChannelTextureProperty = texPackSerObj.FindProperty(GreenChannelTexturePropName);
+            if (greenChannelTextureProperty != null)
+            {
+                greenChannelObjectField.BindProperty(greenChannelTextureProperty);
+            }
+
+            var greenChannelTextureUseAllChannelsProperty =
+                texPackSerObj.FindProperty(IsGreenChannelTextureUseAllChannelsPropName);
+            if (greenChannelTextureUseAllChannelsProperty != null)
+            {
+                greenChannelUseAllChannelsToggle.BindProperty(greenChannelTextureUseAllChannelsProperty);
+            }
+
+            var greenChannelTextureUseRedChannelProperty =
+                texPackSerObj.FindProperty(IsGreenChannelTextureUseRedChannelPropName);
+            if (greenChannelTextureUseRedChannelProperty != null)
+            {
+                greenChannelUseRedChannelToggle.BindProperty(greenChannelTextureUseRedChannelProperty);
+            }
+            
+            var greenChannelTextureUseGreenChannelProperty =
+                texPackSerObj.FindProperty(IsGreenChannelTextureUseGreenChannelPropName);
+            if (greenChannelTextureUseGreenChannelProperty != null)
+            {
+                greenChannelUseGreenChannelToggle.BindProperty(greenChannelTextureUseGreenChannelProperty);
+            }
+            
+            var greenChannelTextureUseBlueChannelProperty =
+                texPackSerObj.FindProperty(IsGreenChannelTextureUseBlueChannelPropName);
+            if (greenChannelTextureUseBlueChannelProperty != null)
+            {
+                greenChannelUseBlueChannelToggle.BindProperty(greenChannelTextureUseBlueChannelProperty);
+            }
+            
+            var greenChannelTextureUseAlphaChannelProperty =
+                texPackSerObj.FindProperty(IsGreenChannelTextureUseAlphaChannelPropName);
+            if (greenChannelTextureUseAlphaChannelProperty != null)
+            {
+                greenChannelUseAlphaChannelToggle.BindProperty(greenChannelTextureUseAlphaChannelProperty);
+            }
+            
+            // Blue Channel Texture Input
+            var isBlueChannelActiveProperty = texPackSerObj.FindProperty(IsBlueChannelActivePropName);
+            if (isBlueChannelActiveProperty != null)
+            {
+                blueChannelToggle.BindProperty(isBlueChannelActiveProperty);
+            }
+
+            var blueChannelTextureProperty = texPackSerObj.FindProperty(BlueChannelTexturePropName);
+            if (blueChannelTextureProperty != null)
+            {
+                blueChannelObjectField.BindProperty(blueChannelTextureProperty);
+            }
+
+            var blueChannelTextureUseAllChannelsProperty =
+                texPackSerObj.FindProperty(IsBlueChannelTextureUseAllChannelsPropName);
+            if (blueChannelTextureUseAllChannelsProperty != null)
+            {
+                blueChannelUseAllChannelsToggle.BindProperty(blueChannelTextureUseAllChannelsProperty);
+            }
+
+            var blueChannelTextureUseRedChannelProperty =
+                texPackSerObj.FindProperty(IsBlueChannelTextureUseRedChannelPropName);
+            if (blueChannelTextureUseRedChannelProperty != null)
+            {
+                blueChannelUseRedChannelToggle.BindProperty(blueChannelTextureUseRedChannelProperty);
+            }
+            
+            var blueChannelTextureUseGreenChannelProperty =
+                texPackSerObj.FindProperty(IsBlueChannelTextureUseGreenChannelPropName);
+            if (blueChannelTextureUseGreenChannelProperty != null)
+            {
+                blueChannelUseGreenChannelToggle.BindProperty(blueChannelTextureUseGreenChannelProperty);
+            }
+            
+            var blueChannelTextureUseBlueChannelProperty =
+                texPackSerObj.FindProperty(IsBlueChannelTextureUseBlueChannelPropName);
+            if (blueChannelTextureUseBlueChannelProperty != null)
+            {
+                blueChannelUseBlueChannelToggle.BindProperty(blueChannelTextureUseBlueChannelProperty);
+            }
+            
+            var blueChannelTextureUseAlphaChannelProperty =
+                texPackSerObj.FindProperty(IsBlueChannelTextureUseAlphaChannelPropName);
+            if (blueChannelTextureUseAlphaChannelProperty != null)
+            {
+                blueChannelUseAlphaChannelToggle.BindProperty(blueChannelTextureUseAlphaChannelProperty);
+            }
+
+            // Alpha Channel Texture Input
+            var isAlphaChannelActiveProperty = texPackSerObj.FindProperty(IsAlphaChannelActivePropName);
+            if (isAlphaChannelActiveProperty != null)
+            {
+                alphaChannelToggle.BindProperty(isAlphaChannelActiveProperty);
+            }
+
+            var alphaChannelTextureProperty = texPackSerObj.FindProperty(AlphaChannelTexturePropName);
+            if (alphaChannelTextureProperty != null)
+            {
+                alphaChannelObjectField.BindProperty(alphaChannelTextureProperty);
+            }
+
+            var alphaChannelTextureUseAllChannelsProperty =
+                texPackSerObj.FindProperty(IsAlphaChannelTextureUseAllChannelsPropName);
+            if (alphaChannelTextureUseAllChannelsProperty != null)
+            {
+                alphaChannelUseAllChannelsToggle.BindProperty(alphaChannelTextureUseAllChannelsProperty);
+            }
+
+            var alphaChannelTextureUseRedChannelProperty =
+                texPackSerObj.FindProperty(IsAlphaChannelTextureUseRedChannelPropName);
+            if (alphaChannelTextureUseRedChannelProperty != null)
+            {
+                alphaChannelUseRedChannelToggle.BindProperty(alphaChannelTextureUseRedChannelProperty);
+            }
+            
+            var alphaChannelTextureUseGreenChannelProperty =
+                texPackSerObj.FindProperty(IsAlphaChannelTextureUseGreenChannelPropName);
+            if (alphaChannelTextureUseGreenChannelProperty != null)
+            {
+                alphaChannelUseGreenChannelToggle.BindProperty(alphaChannelTextureUseGreenChannelProperty);
+            }
+            
+            var alphaChannelTextureUseBlueChannelProperty =
+                texPackSerObj.FindProperty(IsAlphaChannelTextureUseBlueChannelPropName);
+            if (alphaChannelTextureUseBlueChannelProperty != null)
+            {
+                alphaChannelUseBlueChannelToggle.BindProperty(alphaChannelTextureUseBlueChannelProperty);
+            }
+            
+            var alphaChannelTextureUseAlphaChannelProperty =
+                texPackSerObj.FindProperty(IsAlphaChannelTextureUseAlphaChannelPropName);
+            if (alphaChannelTextureUseAlphaChannelProperty != null)
+            {
+                alphaChannelUseAlphaChannelToggle.BindProperty(alphaChannelTextureUseAlphaChannelProperty);
+            }
             #endregion
 
             #region BEHAVIOR
+
             // Process Type
             processTypeEnumField.RegisterValueChangedCallback(evt =>
             {
@@ -148,7 +357,7 @@ namespace UnityTextureRgbPacker.Editor
                     {
                         DisableDisplayContents(new List<VisualElement>()
                         {
-                            
+
                         });
                         EnableDisplayContents(new List<VisualElement>()
                         {
@@ -158,7 +367,7 @@ namespace UnityTextureRgbPacker.Editor
                         break;
                 }
             });
-            
+
             // Pack - Single vs Batch
             SetSelectedStyle(new List<VisualElement>() {tabPackSingleButton});
             SetUnselectedStyle(new List<VisualElement>() {tabPackBatchButton});
@@ -167,15 +376,15 @@ namespace UnityTextureRgbPacker.Editor
                 // Set States
                 _texturePackerData.IsPackSingle = true;
                 _texturePackerData.IsPackBatch = false;
-                
+
                 // Change Style
                 SetSelectedStyle(new List<VisualElement>() {tabPackSingleButton});
                 SetUnselectedStyle(new List<VisualElement>() {tabPackBatchButton});
-                
+
                 // Toggle Content
                 DisableDisplayContents(new List<VisualElement>()
                 {
-                    
+
                 });
                 EnableDisplayContents(new List<VisualElement>()
                 {
@@ -195,17 +404,17 @@ namespace UnityTextureRgbPacker.Editor
                 (evt.target as VisualElement).style.backgroundColor =
                     _texturePackerData.IsPackSingle ? SelectedTabColor : UnselectedTabColor;
             });
-            
+
             tabPackBatchButton.clickable.clicked += () =>
             {
                 // Set States
                 _texturePackerData.IsPackSingle = false;
                 _texturePackerData.IsPackBatch = true;
-                
+
                 // Change Style
                 SetSelectedStyle(new List<VisualElement>() {tabPackBatchButton});
                 SetUnselectedStyle(new List<VisualElement>() {tabPackSingleButton});
-                
+
                 // Toggle Content
                 DisableDisplayContents(new List<VisualElement>()
                 {
@@ -217,7 +426,7 @@ namespace UnityTextureRgbPacker.Editor
                 });
                 EnableDisplayContents(new List<VisualElement>()
                 {
-                    
+
                 });
             };
             tabPackBatchButton.RegisterCallback<MouseEnterEvent>(evt =>
@@ -233,31 +442,37 @@ namespace UnityTextureRgbPacker.Editor
                 (evt.target as VisualElement).style.backgroundColor =
                     _texturePackerData.IsPackBatch ? SelectedTabColor : UnselectedTabColor;
             });
-            
+
             // Inputs - Red Channel
             redChannelVisualElement.SetEnabled(redChannelToggle.value);
             redChannelToggle.RegisterValueChangedCallback(evt =>
             {
                 redChannelVisualElement.SetEnabled(redChannelToggle.value);
             });
-            
+
             redChannelObjectField.objectType = typeof(Texture2D);
             redChannelObjectField.RegisterValueChangedCallback(evt =>
             {
                 if (redChannelObjectField.value == null)
                 {
                     redChannelDimensionsLabel.text = "";
+                    redChannelPreviewVisualElement.style.backgroundImage = null;
+                    redChannelAdvancedOptionsFoldout.value = false;
                     return;
                 }
-                
+
                 var texture = (Texture2D) redChannelObjectField.value;
                 if (texture == null)
                 {
                     redChannelDimensionsLabel.text = "";
+                    redChannelPreviewVisualElement.style.backgroundImage = null;
+                    redChannelAdvancedOptionsFoldout.value = false;
                     return;
                 }
+
                 redChannelPreviewVisualElement.style.backgroundImage = texture;
-                redChannelDimensionsLabel.text = texture.width.ToString() + PixelDimensionsX + texture.height.ToString();
+                redChannelDimensionsLabel.text =
+                    texture.width.ToString() + PixelDimensionsX + texture.height.ToString();
             });
             
             redChannelAdvancedOptionsFoldout.value = false;
@@ -335,6 +550,7 @@ namespace UnityTextureRgbPacker.Editor
                 if (greenChannelObjectField.value == null)
                 {
                     greenChannelDimensionsLabel.text = "";
+                    greenChannelPreviewVisualElement.style.backgroundImage = null;
                     return;
                 }
                 
@@ -342,6 +558,7 @@ namespace UnityTextureRgbPacker.Editor
                 if (texture == null)
                 {
                     greenChannelDimensionsLabel.text = "";
+                    greenChannelPreviewVisualElement.style.backgroundImage = null;
                     return;
                 }
                 greenChannelPreviewVisualElement.style.backgroundImage = texture;
@@ -423,6 +640,7 @@ namespace UnityTextureRgbPacker.Editor
                 if (blueChannelObjectField.value == null)
                 {
                     blueChannelDimensionsLabel.text = "";
+                    blueChannelPreviewVisualElement.style.backgroundImage = null;
                     return;
                 }
                 
@@ -430,6 +648,7 @@ namespace UnityTextureRgbPacker.Editor
                 if (texture == null)
                 {
                     blueChannelDimensionsLabel.text = "";
+                    blueChannelPreviewVisualElement.style.backgroundImage = null;
                     return;
                 }
                 blueChannelPreviewVisualElement.style.backgroundImage = texture;
@@ -511,6 +730,7 @@ namespace UnityTextureRgbPacker.Editor
                 if (alphaChannelObjectField.value == null)
                 {
                     alphaChannelDimensionsLabel.text = "";
+                    alphaChannelPreviewVisualElement.style.backgroundImage = null;
                     return;
                 }
                 
@@ -518,6 +738,7 @@ namespace UnityTextureRgbPacker.Editor
                 if (texture == null)
                 {
                     alphaChannelDimensionsLabel.text = "";
+                    alphaChannelPreviewVisualElement.style.backgroundImage = null;
                     return;
                 }
                 alphaChannelPreviewVisualElement.style.backgroundImage = texture;
@@ -585,6 +806,43 @@ namespace UnityTextureRgbPacker.Editor
                 alphaChannelUseGreenChannelToggle.value = false; 
                 alphaChannelUseBlueChannelToggle.value = false;
             });
+            
+            // Clear 
+            clearButton.clickable.clicked += () =>
+            {
+                // Clear Data
+                _texturePackerData.ClearInputs();
+                // Collapse Options
+                CollapseFoldouts(new List<Foldout>()
+                {
+                    redChannelAdvancedOptionsFoldout,
+                    greenChannelAdvancedOptionsFoldout,
+                    blueChannelAdvancedOptionsFoldout,
+                    alphaChannelAdvancedOptionsFoldout
+                });
+            };
+            
+            // Export - Type
+            // ...
+            
+            // Export - Type
+            // ...
+            
+            // Pack
+            generatePackSingleButton.clickable.clicked += () =>
+            {
+                // Pack
+                
+                
+                // Collapse Options
+                CollapseFoldouts(new List<Foldout>()
+                {
+                    redChannelAdvancedOptionsFoldout,
+                    greenChannelAdvancedOptionsFoldout,
+                    blueChannelAdvancedOptionsFoldout,
+                    alphaChannelAdvancedOptionsFoldout
+                });
+            };
             #endregion
         }
 
@@ -617,6 +875,14 @@ namespace UnityTextureRgbPacker.Editor
             foreach (var ve in visualElements)
             {
                 ve.style.display = DisplayStyle.Flex;
+            }
+        }
+
+        private void CollapseFoldouts(List<Foldout> foldouts)
+        {
+            foreach (var f in foldouts)
+            {
+                f.value = false;
             }
         }
     }

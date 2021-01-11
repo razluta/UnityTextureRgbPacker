@@ -70,6 +70,8 @@ namespace UnityTextureRgbPacker.Editor
         public const string AlphaChannelUseBlueChannelToggleName = "TG_AlphaUseBlueChannel";
         public const string AlphaChannelUseAlphaChannelToggleName = "TG_AlphaUseAlphaChannel";
         public const string AlphaChannelDimensionsLabelName = "LB_AlphaChannelDimensions";
+        // Clear
+        public const string ClearButtonName = "BT_ClearInputs";
         // Export
         public const string ExportUxmlPath = "CS_Export";
         public const string ExportVisualElementName = "VE_Export";

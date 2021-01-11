@@ -15,7 +15,7 @@
                 </ui:VisualElement>
                 <ui:VisualElement name="VE_RedChannelAdvancedOptions" class="thin_border">
                     <ui:Foldout text="Advanced Options" name="FO_RedChannelAdvancedOptions">
-                        <ui:VisualElement style="flex-direction: row;">
+                        <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
                             <ui:VisualElement class="thin_border" style="flex-direction: column;">
                                 <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
                                     <ui:Toggle name="TG_RedUseAllChannels" />
@@ -63,7 +63,7 @@
                 </ui:VisualElement>
                 <ui:VisualElement name="VE_GreenChannelAdvancedOptions" class="thin_border">
                     <ui:Foldout text="Advanced Options" name="FO_GreenChannelAdvancedOptions">
-                        <ui:VisualElement style="flex-direction: row;">
+                        <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
                             <ui:VisualElement class="thin_border" style="flex-direction: column;">
                                 <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
                                     <ui:Toggle name="TG_GreenUseAllChannels" />
@@ -111,7 +111,7 @@
                 </ui:VisualElement>
                 <ui:VisualElement name="VE_BlueChannelAdvancedOptions" class="thin_border">
                     <ui:Foldout text="Advanced Options" name="FO_BlueChannelAdvancedOptions">
-                        <ui:VisualElement style="flex-direction: row;">
+                        <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
                             <ui:VisualElement class="thin_border" style="flex-direction: column;">
                                 <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
                                     <ui:Toggle name="TG_BlueUseAllChannels" />
@@ -159,7 +159,7 @@
                 </ui:VisualElement>
                 <ui:VisualElement name="VE_AlphaChannelAdvancedOptions" class="thin_border">
                     <ui:Foldout text="Advanced Options" name="FO_AlphaChannelAdvancedOptions">
-                        <ui:VisualElement style="flex-direction: row;">
+                        <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
                             <ui:VisualElement class="thin_border" style="flex-direction: column;">
                                 <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
                                     <ui:Toggle name="TG_AlphaUseAllChannels" />
