@@ -119,6 +119,7 @@ namespace UnityTextureRgbPacker
                 }
             }
             
+            singleChannelTexture.Apply();
             return singleChannelTexture;
         }
         
