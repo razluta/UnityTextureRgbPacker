@@ -93,10 +93,29 @@ public class UnityTextureRgbPackerEditorWindow : EditorWindow
         var width = _widthIntField.value;
         var height = _heightIntField.value;
 
-        var redChannelTexture = (Texture2D) redChannelInput;
-        var greenChannelTexture = (Texture2D) greenChannelInput;
-        var blueChannelTexture = (Texture2D) blueChannelInput;
-        var alphaChannelTexture = (Texture2D) alphaChannelInput;
+        var redChannelTexture = new Texture2D(width, height);
+        if (redChannelInput != null)
+        {
+            redChannelTexture = (Texture2D) redChannelInput;
+        }
+        
+        var greenChannelTexture = new Texture2D(width, height);
+        if (greenChannelInput != null)
+        {
+            greenChannelTexture = (Texture2D) greenChannelInput;
+        }
+        
+        var blueChannelTexture = new Texture2D(width, height);
+        if (blueChannelInput != null)
+        {
+            blueChannelTexture = (Texture2D) blueChannelInput;
+        }
+
+        var alphaChannelTexture = new Texture2D(width, height);
+        if (alphaChannelInput != null)
+        {
+            alphaChannelTexture = (Texture2D) alphaChannelInput;
+        }
 
         // Create the composite texture
         Texture2D compositeTexture;
