@@ -3,7 +3,7 @@ This is a Unity Texture Packer that allows the user to pack 1 to 4 textures in a
 
 Verified on the following versions of Unity:
 - 2019.4
-- 2019.3
+- 2019.3 
 
 _Important to note: input textures must be the same size; if the input textures are not the same size, the code will scale the larger textures to match the smaller textures and artifacts can occur in the compression_
 
